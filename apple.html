@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login com Apple</title>
+    <link rel="shortcut icon" href="favicon/faviconapple.ico" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #000000, #333333);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .apple-logo {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            background: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: white;
+            font-weight: bold;
+        }
+
+        h1 {
+            color: #000;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #000;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #f8f8f8;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #007AFF;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #007AFF;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-bottom: 25px;
+        }
+
+        .forgot-password a {
+            color: #007AFF;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            background: #007AFF;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .login-btn:hover {
+            background: #0056CC;
+            transform: translateY(-1px);
+        }
+
+        .separator {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+            color: #666;
+        }
+
+        .separator::before,
+        .separator::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .separator span {
+            padding: 0 15px;
+            font-size: 14px;
+        }
+
+        .signup-btn {
+            width: 100%;
+            padding: 16px;
+            background: transparent;
+            color: #007AFF;
+            border: 2px solid #007AFF;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .signup-btn:hover {
+            background: #007AFF;
+            color: white;
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            color: #666;
+            font-size: 12px;
+        }
+
+        .footer a {
+            color: #007AFF;
+            text-decoration: none;
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img src="Imagens/apple-logo-1-2.png" alt="" width="50px">
+        <h1>Fazer Login</h1>
+        <p class="subtitle">Use sua Apple ID para continuar.</p>
+        
+        <form id="appleLoginForm">
+            <div class="form-group">
+                <label for="appleId">Apple ID</label>
+                <input type="text" id="appleId" placeholder="seu@email.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <div class="password-container">
+                    <input type="password" id="password" placeholder="Digite sua senha" required>
+                    <button type="button" class="toggle-password" onclick="togglePassword()">
+                        Mostrar
+                    </button>
+                </div>
+            </div>
+            
+            <div class="forgot-password">
+                <a href="#" onclick="forgotPassword()">Esqueceu a senha?</a>
+            </div>
+            
+            <button type="submit" class="login-btn">Continuar</button>
+        </form>
+        
+        <div class="separator">
+            <span>ou</span>
+        </div>
+        
+        <button class="signup-btn" onclick="createAppleId()">Criar Apple ID</button>
+        
+        <div class="footer">
+            <p>Ao continuar, você concorda com os <a href="#">Termos de Serviço</a> e <a href="#">Política de Privacidade</a> da Apple.</p>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleButton = document.querySelector('.toggle-password');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleButton.textContent = 'Ocultar';
+            } else {
+                passwordInput.type = 'password';
+                toggleButton.textContent = 'Mostrar';
+            }
+        }
+
+        function forgotPassword() {
+            alert('Redirecionando para recuperação de senha...');
+            // Em implementação real: window.location.href = 'https://iforgot.apple.com';
+        }
+
+        function createAppleId() {
+            alert('Redirecionando para criação de Apple ID...');
+            // Em implementação real: window.location.href = 'https://appleid.apple.com/account';
+        }
+
+        document.getElementById('appleLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const appleId = document.getElementById('appleId').value;
+            const password = document.getElementById('password').value;
+            
+            // Simulação de login
+            if (appleId && password) {
+                alert(`Login realizado com Apple ID: ${appleId}\n\nEm uma implementação real, isso se conectaria aos servidores da Apple.`);
+                // Aqui iria a integração com Sign in with Apple
+            } else {
+                alert('Por favor, preencha todos os campos.');
+            }
+        });
+
+        // Foco automático no campo Apple ID
+        document.getElementById('appleId').focus();
+    </script>
+    <script src="social-redirecionamento.js"></script>
+    
+</body>
+</html>
