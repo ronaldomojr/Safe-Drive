@@ -33,65 +33,6 @@
     transition: all 0.3s ease;
 }
 
-/* Responsividade */
-@media (max-width: 1200px) {
-    .container {
-        padding: 0 70px;
-    }
-    
-    .imagem img {
-        max-width: 400px;
-    }
-}
-
-@media (max-width: 992px) {
-    .container {
-        padding: 0 60px;
-    }
-    
-    .imagem img {
-        max-width: 350px;
-    }
-}
-
-@media (max-width: 768px) {
-    .container {
-        padding: 0 40px;
-        flex-direction: column;
-        justify-content: center;
-        gap: 40px;
-        height: auto;
-        min-height: 100vh;
-    }
-    
-    .conteudo {
-        width: 100%;
-        max-width: 400px;
-    }
-    
-    .imagem img {
-        max-width: 300px;
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        padding: 0 20px;
-    }
-    
-    .imagem img {
-        max-width: 250px;
-    }
-    
-    .login-social {
-        flex-direction: column;
-    }
-    
-    .social-btn {
-        width: 100%;
-    }
-}
-
 .bemvindo {
     font-size: 32px;
     margin-bottom: 8px;
@@ -147,7 +88,6 @@
     text-decoration: underline;
 }
 
-/* Checkbox */
 .lembre-se {
     margin: 20px 0;
     display: flex;
@@ -163,13 +103,12 @@
     accent-color: #1a4bd8;
 }
 
-/* Botão Login AMARELO */
 .botlogin {
     display: block;
     width: 100%;
     padding: 12px;
-    background-color: #ffd700; /* Amarelo */
-    color: #333; /* Texto escuro para contraste */
+    background-color: #ffd700;
+    color: #333;
     text-align: center;
     text-decoration: none;
     border-radius: 6px;
@@ -182,12 +121,11 @@
 }
 
 .botlogin:hover {
-    background-color: #ffc800; /* Amarelo mais escuro no hover */
+    background-color: #ffc800;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
 }
 
-/* Divisor */
 .divisor {
     text-align: center;
     margin: 25px 0;
@@ -214,7 +152,6 @@
     right: 0;
 }
 
-/* Botões sociais UM DO LADO DO OUTRO */
 .login-social {
     display: flex;
     gap: 12px;
@@ -251,7 +188,6 @@
     flex-shrink: 0;
 }
 
-/* Cadastro */
 .cadastro {
     text-align: center;
     color: #666;
@@ -267,6 +203,7 @@
 .cadastro a:hover {
     text-decoration: underline;
 }
+
 .page-transition {
     position: fixed;
     top: 0;
@@ -307,7 +244,6 @@
     100% { transform: rotate(360deg); }
 }
 
-/* Efeito de fade out na página atual */
 .fade-out {
     animation: fadeOut 0.5s ease forwards;
 }
@@ -320,5 +256,63 @@
     to {
         opacity: 0;
         transform: translateY(-20px);
+    }
+}
+
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 70px;
+    }
+    
+    .imagem img {
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 992px) {
+    .container {
+        padding: 0 60px;
+    }
+    
+    .imagem img {
+        max-width: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 40px;
+        flex-direction: column;
+        justify-content: center;
+        gap: 40px;
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    .conteudo {
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    .imagem img {
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 20px;
+    }
+    
+    .imagem img {
+        max-width: 250px;
+    }
+    
+    .login-social {
+        flex-direction: column;
+    }
+    
+    .social-btn {
+        width: 100%;
     }
 }

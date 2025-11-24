@@ -1,12 +1,11 @@
 // redirecionamento.js - Controla o redirecionamento com delay entre páginas
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Configuração dos redirecionamentos
     setupRedirects();
 });
 
 function setupRedirects() {
-    // PÁGINA DE CADASTRO - Botão "Inscreva-se"
+
     const botaoInscrever = document.querySelector('.botlogin');
     if (botaoInscrever && window.location.pathname.includes('cadastro')) {
         botaoInscrever.addEventListener('click', function(e) {
@@ -15,7 +14,7 @@ function setupRedirects() {
         });
     }
 
-    // PÁGINA DE LOGIN - Link "Cadastre-se"
+    
     const linkCadastro = document.querySelector('.cadastro a');
     if (linkCadastro && window.location.pathname.includes('Telalogin')) {
         linkCadastro.addEventListener('click', function(e) {
@@ -24,41 +23,41 @@ function setupRedirects() {
         });
     }
 
-    // PÁGINA DE LOGIN - Botão "Login" (se existir e for para cadastro)
+    
     const botaoLogin = document.querySelector('.botlogin');
     if (botaoLogin && window.location.pathname.includes('Telalogin') && 
-        (botaoLogin.getAttribute('href') === 'cadastro.html' || 
+        (botaoLogin.getAttribute('href') === 'p_safedrive.html' || 
          botaoLogin.textContent.toLowerCase().includes('login'))) {
         botaoLogin.addEventListener('click', function(e) {
             e.preventDefault();
-            redirectWithDelay('cadastro.html', 2000, 'Validando credenciais...');
+            redirectWithDelay('p_safedrive.html', 2000, 'Validando credenciais...');
         });
     }
 }
 
 function redirectWithDelay(url, delay, message) {
-    // Cria o overlay de loading se não existir
+    
     let overlay = document.querySelector('.page-transition');
     if (!overlay) {
         overlay = createLoadingOverlay();
     }
 
-    // Atualiza a mensagem
+    
     const messageElement = overlay.querySelector('.loading-message');
     if (messageElement) {
         messageElement.textContent = message;
     }
 
-    // Mostra o overlay
+    
     overlay.classList.add('active');
     
-    // Adiciona efeito de fade out na página atual
+    
     const container = document.querySelector('.container');
     if (container) {
         container.classList.add('fade-out');
     }
 
-    // Inicia o contador regressivo
+    
     startCountdown(overlay, url, delay);
 }
 
@@ -88,7 +87,7 @@ function startCountdown(overlay, url, delay) {
     const countdownElement = overlay.querySelector('.countdown');
     const progressFill = overlay.querySelector('.progress-fill');
 
-    // Animação da barra de progresso
+    
     progressFill.style.animation = `progressFill ${delay}ms linear forwards`;
 
     const countdownInterval = setInterval(() => {
@@ -105,7 +104,7 @@ function startCountdown(overlay, url, delay) {
 }
 
 function completeRedirect(url, overlay) {
-    // Adiciona efeito final antes do redirecionamento
+    
     overlay.classList.add('completing');
     
     setTimeout(() => {

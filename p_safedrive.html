@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safe Drive</title>
+    <link rel="stylesheet" href="p_safedrive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico/favicon.ico" type="image/x-icon">
+</head>
+    
+<body>
+    <header class="main-header">
+        <div class="container header-content">
+            <h1 class="logo">
+                <img src="img/logo-removebg-preview.png" alt="Safe Drive Logo">Safe Drive
+            </h1>
+            
+            <nav class="nav-top">
+                <a href="mapa.html">Mapa ao vivo</a>
+                <a href="#">Baixar</a>
+                <a href="Telalogin.html"><button class="btn-header-entry">Entrar</button></a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-mapas">
+            <div class="container">
+                <p class="slogan">Sempre o melhor e mais seguro trajeto para você</p>
+                <a href="mapa.html"><button class="btn-primary-large">Navegar com segurança</button></a>
+                <a href="mapa.html">
+                    <div class="mapas-container">
+                        <img src="img/ns1.png" alt="Vista aérea da rota segura">
+                        <img src="img/ns2.png" alt="Mapa de ruas com indicação de rotas">
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section class="servicos section-spacing">
+            <div class="container">
+                <h2>Nossos Serviços</h2>
+                <div class="servicos-grid">
+                    <div class="servico-item">
+                        <img src="img/s1.png" alt="Alerta em Tempo Real">
+                        <h3>Alertas em Tempo Real:</h3>
+                        <p>Avisos sobre manifestações, eventos de trânsito ou acidentes para zelar pelo tráfego e a segurança.</p>
+                    </div>
+                    <div class="servico-item">
+                        <img src="img/s2.png" alt="Notícias Locais de Segurança">
+                        <h3>Notícias Locais de Segurança:</h3>
+                        <p>Receba as últimas informações sobre segurança pública na cidade ou região.</p>
+                    </div>
+                    <div class="servico-item">
+                        <img src="img/s3.png" alt="Infográficos">
+                        <h3>Infográficos:</h3>
+                        <p>Estatísticas de Acidentes por Bairro, "Checklist de Segurança para sua Casa".</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="conhecimentos section-spacing">
+            <div class="container conhecimentos-layout">
+                <div class="conhecimentos-texto">
+                    <h2>Conhecimentos</h2>
+                    <div class="lista-conhecimentos">
+                        <p>Guia Completo de Primeiros Socorros em Acidentes de Trânsito, "Como Manter seu Veículo Seguro contra Furtos"</p>
+                        <p>Como Ensinar Segurança no Trânsito para os Pequenos.</p>
+                        <p>O usuário pode definir pontos de check-in em sua rota.</p>
+                    </div>
+                    <div class="botoes-conhecimentos">
+                        <button class="btn-conhecimentos btn-entrar"><a href="Telalogin.html">Entrar</a></button>
+                        <button class="btn-conhecimentos btn-central"><a href="central.html">Central da Comunidade</a></button>
+                    </div>
+                </div>
+                <div class="conhecimentos-ilustracao">
+                    <img src="img/Carro.png" alt="Ilustração de pessoa perto de um carro com mapa">
+                </div>
+            </div>
+        </section>
+
+        <section class="saiba-mais section-spacing">
+            <div class="container">
+                <h2>Saiba mais</h2>
+                <div class="saiba-mais-grid">
+                    <div class="saiba-mais-item">
+                        <img src="img/m1.png" alt="Ilustração de medalhas e rankings">
+                        <p>Usuários ganham pontos e medalhas por reportar problemas (buracos, falta de luz, atividade suspeita).</p>
+                    </div>
+                    <div class="saiba-mais-item">
+                        <img src="img/m2.png" alt="Ilustração Rato-X de Segurança do Bairro">
+                        <h3>Raio-X da Segurança do Bairro:</h3>
+                        <p>Veja estatísticas detalhadas de segurança em tempo real do seu bairro.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="comunidade section-spacing">
+            
+                <div class="container">
+                    <h2 class="secao"><a href="central.html">Seção da Comunidade</a></h2>
+                    <div class="testemunhos-grid">
+                        <div class="testemunho-card imagem-card">
+                            <a href="central.html"><img src="img/c1.png" alt="Testemunho de Lucas"></a>
+                        </div>
+                        <div class="testemunho-card imagem-card">
+                            <a href="central.html"><img src="img/c2.png" alt="Testemunho de Ana"></a>
+                        </div>
+                        <div class="testemunho-card imagem-card">
+                            <a href="central.html"><img src="img/c3.png" alt="Testemunho de Roberta"></a>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <section class="cta-final">
+            <div class="container cta-content">
+                <h2 class="cta-slogan">Sempre a rota mais segura</h2>
+                <div class="cta-botoes">
+                    <a href="Telalogin.html" class="btn-cta-entry">Entrar</a>
+                    <a href="mapa.html" class="btn-cta-mapa">Mapa ao vivo da cidade</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="extra-info-bar">
+        <button id="toggle-info" class="btn-toggle-info">
+            Mais informações ▾
+        </button>
+        <div class="info-extra" id="infoExtra">
+            <div class="container info-extra-content">
+                <div class="coluna">
+                    <h4>Institucional</h4>
+                    <a href="#">Sobre a Safe Drive</a>
+                    <a href="#">Carreiras</a>
+                    <a href="#">Imprensa</a>
+                </div>
+                <div class="coluna">
+                    <h4>Ajuda</h4>
+                    <a href="#">Central de suporte</a>
+                    <a href="#">Termos de uso</a>
+                    <a href="#">Política de privacidade</a>
+                </div>
+                <div class="coluna">
+                    <h4>Serviços</h4>
+                    <a href="mapa.html">Rotas seguras</a>
+                    <a href="mapa.html">Mapa ao vivo</a>
+                    <a href="#">Planos e preços</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="complementary-bar">
+        <div class="container footer-nav-bar">
+            <nav class="footer-nav-links-centered">
+                <ul>
+                    <li><a href="mapa.html">Acidentes próximos</a></li>
+                    <li><a href="mapa.html">Rotas mais seguras</a></li>
+                    <li><a href="mapa.html">Mapa ao vivo</a></li>
+                    <li><a href="mapa.html">Suporte</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <footer class="main-footer-white">
+        <div class="container footer-content-white">
+            <div class="footer-left-block">
+                <div class="logo-footer">
+                    <img src="img/logo-removebg-preview.png" alt="Logo Safe Drive: Cadeado e Localização" class="lock-icon-small">
+                    <span class="safe-drive-text-inline">Safe Drive</span>
+                </div>
+            </div>
+            <div class="footer-center-block">
+                <p>&copy; 2025 Safe Drive. Todos os direitos reservados.</p>
+            </div>
+            <div class="footer-right-block">
+                <div class="social-links-white">
+                    <a href="#" aria-label="Facebook"><img src="img/icons8-facebook-50.png" alt=""></a>
+                    <a href="#" aria-label="LinkedIn"><img src="img/icons8-linkedin-50.png" alt=""></a>
+                    <a href="#" aria-label="YouTube"><img src="img/icons8-youtube-50.png" alt=""></a>
+                    <a href="#" aria-label="Instagram"><img src="img/icons8-instagram-50 (1).png" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button class="btn-acessibilidade" id="btnAcessibilidade" aria-label="Ativar modo acessibilidade" title="Modo Acessibilidade">
+        <img src="Imagens/acess.png" alt="" width="50px">
+    </button>
+
+    <script>
+        const btnToggle = document.getElementById('toggle-info');
+        const infoExtra = document.getElementById('infoExtra');
+        const btnAcessibilidade = document.getElementById('btnAcessibilidade');
+
+        btnToggle.addEventListener('click', () => {
+            const aberta = infoExtra.classList.toggle('mostrar');
+            if (aberta) {
+                btnToggle.textContent = 'Menos informações ▴';
+            } else {
+                btnToggle.textContent = 'Mais informações ▾';
+            }
+        });
+
+        btnAcessibilidade.addEventListener('click', () => {
+            document.body.classList.toggle('modo-acessibilidade');
+            const ativo = document.body.classList.contains('modo-acessibilidade');
+            
+            if (ativo) {
+                btnAcessibilidade.style.backgroundColor = '#ffffff';
+                btnAcessibilidade.style.color = '#000000';
+                btnAcessibilidade.setAttribute('aria-label', 'Desativar modo acessibilidade');
+                btnAcessibilidade.title = 'Desativar Modo Acessibilidade';
+            } else {
+                btnAcessibilidade.style.backgroundColor = '';
+                btnAcessibilidade.style.color = '';
+                btnAcessibilidade.setAttribute('aria-label', 'Ativar modo acessibilidade');
+                btnAcessibilidade.title = 'Modo Acessibilidade';
+            }
+        });
+    </script>
+</body>
+</html>
