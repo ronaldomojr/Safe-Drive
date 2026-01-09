@@ -10,7 +10,7 @@ function setupRedirects() {
     if (botaoInscrever && window.location.pathname.includes('cadastro')) {
         botaoInscrever.addEventListener('click', function(e) {
             e.preventDefault();
-            redirectWithDelay('Telalogin.html', 2000, 'Cadastro realizado com sucesso');
+            redirectWithDelay('index.html', 2000, 'Cadastro realizado com sucesso');
         });
     }
 
