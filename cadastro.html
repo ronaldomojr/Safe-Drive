@@ -15,52 +15,51 @@
         <main class="conteudo">
             <section>
                 <h1 class="Comeceagora">Comece Agora!</h1>
-                <p class="credenciais">Insira suas informação para seu cadastro</p>
+                <p class="credenciais">Insira suas informações para realizar seu cadastro</p>
             </section>
-            <div class="campo">
-                <label>Nome</label>
-                <input type="Nome" placeholder="Digite seu nome">
-            </div>
 
-            <div class="campo">
-                <label>Endereço de email</label>
-                <input type="email" placeholder="Digite seu e-mail" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required>
-            </div>
+            <form action="index.html" method="get">
 
-            <div class="campo">
-                <div class="senha-topo">
-                    <label>Senha</label>
+                <div class="campo">
+                    <label>Nome</label>
+                    <input type="text" placeholder="Digite seu nome" required>
                 </div>
-                <input type="password" placeholder="Digite aqui sua senha" pattern=".{8,}">
-            </div>
 
-            
+                <div class="campo">
+                    <label>Endereço de email</label>
+                    <input type="email" placeholder="Digite seu e-mail" required>
+                </div>
 
-            <section>
-                <a href="index.html" class="botlogin">Inscreva-se</a>
-            </section>
+                <div class="campo">
+                    <label>Senha</label>
+                    <input type="password" placeholder="Digite aqui sua senha" pattern=".{8,}" required>
+                </div>
+
+                <button type="submit" class="botlogin">Inscreva-se</button>
+
+            </form>
 
             <div class="divisor">Ou</div>
 
             <section class="login-social">
-                <a href="google.html" class="social-btn" target="_blank">
-                    <img src="Imagens/google-logo.png" width="20" alt="Google">
+                <a href="google.html" class="social-btn">
+                    <img src="imagens/google-logo.png" width="20" alt="Google">
                     Entrar com Google
                 </a>
-                <a href="apple.html" class="social-btn" target="_blank">
-                    <img src="Imagens/apple.png" width="20" alt="Apple">
+                <a href="apple.html" class="social-btn">
+                    <img src="imagens/apple.png" width="20" alt="Apple">
                     Entrar com Apple
                 </a>
             </section>
 
-            
         </main>
 
         <div class="imagem">
-            <img src="Imagens/image-removebg-preview (1).png" alt="Logo Safe Drive">
+            <img src="imagens/logo.png" alt="Logo Safe Drive">
         </div>
 
     </div>
+
     <script src="redirecionamento.js"></script>
 </body>
 </html>
