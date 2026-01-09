@@ -11,22 +11,16 @@
 
 <body>
     <div class="container">
-
         <main class="conteudo">
             <section>
-                <h1 class="bemvindo">Bem-vindo!</h1>
+                <h1 class="bemvindo">Bem Vindo!</h1>
                 <p class="credenciais">Insira suas credenciais para acessar sua conta</p>
             </section>
 
-            <form id="formLogin">
-
+            <form id="loginForm">
                 <div class="campo">
                     <label>Endereço de email</label>
-                    <input 
-                        type="email" 
-                        id="email"
-                        placeholder="Digite seu e-mail"
-                        required>
+                    <input type="email" id="email" placeholder="Digite seu e-mail" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required>
                 </div>
 
                 <div class="campo">
@@ -34,63 +28,25 @@
                         <label>Senha</label>
                         <a href="#" class="esqueci">Esqueci minha senha</a>
                     </div>
-                    <input 
-                        type="password" 
-                        id="senha"
-                        placeholder="Digite sua senha"
-                        required>
+                    <input type="password" id="senha" placeholder="Digite aqui sua senha" required>
+                    <div class="requisitos-senha">
+                        
+                    </div>
                 </div>
-
-                <p id="erroEmail" style="color:red; display:none;">
-                    Insira um e-mail válido.
-                </p>
-
-                <p id="erroSenha" style="color:red; display:none;">
-                    A senha deve ter no mínimo 8 caracteres, uma letra maiúscula e um caractere especial.
-                </p>
 
                 <section class="lembre-se">
                     <input type="checkbox" id="lembrete" checked>
                     <label for="lembrete">Lembre-se por 30 dias</label>
                 </section>
 
-                <button type="submit" class="botlogin">Login</button>
-
+                <section>
+                    <button type="submit" class="botlogin">Login</button>
+                </section>
             </form>
-                <h1 class="bemvindo">Bem Vindo!</h1>
-                <p class="credenciais">Insira suas credenciais para acessar sua conta</p>
-            </section>
-
-            <div class="campo">
-                <label>Endereço de email</label>
-                <input type="email" placeholder="Digite seu e-mail" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required>
-            </div>
-
-            <div class="campo">
-                <div class="senha-topo">
-                    <label>Senha</label>
-                    <a href="#" class="esqueci">Esqueci minha senha</a>
-                </div>
-                <input type="password" placeholder="Digite aqui sua senha" pattern=".{8,}" required>
-            </div>
-
-            <section class="lembre-se">
-                <input type="checkbox" id="lembrete" checked>
-                <label for="lembrete">Lembre-se por 30 dias</label>
-            </section>
-
-            <section>
-                <a href="p_safedrive.html" class="botlogin">Login</a>
-            </section>
 
             <div class="divisor">Ou</div>
 
             <section class="login-social">
-                <a href="google.html" class="social-btn">
-                    <img src="Imagens/google-logo.png" width="20" alt="Google">
-                    Entrar com Google
-                </a>
-                <a href="apple.html" class="social-btn">
                 <a href="google.html" class="social-btn" target="_blank">
                     <img src="Imagens/google-logo.png" width="20" alt="Google">
                     Entrar com Google
@@ -101,63 +57,74 @@
                 </a>
             </section>
 
-            <p class="cadastro">
-                Não tem uma conta? <a href="cadastro.html">Cadastre-se</a>
-            </p>
             <p class="cadastro">Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
         </main>
 
         <div class="imagem">
             <img src="Imagens/image-removebg-preview (1).png" alt="Logo Safe Drive">
         </div>
-
     </div>
 
     <script>
-        const form = document.getElementById("formLogin");
-        const emailInput = document.getElementById("email");
-        const senhaInput = document.getElementById("senha");
-
-        const erroEmail = document.getElementById("erroEmail");
-        const erroSenha = document.getElementById("erroSenha");
-
-        form.addEventListener("submit", function (event) {
+        // Validação da senha forte
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault();
-
-            const email = emailInput.value;
-            const senha = senhaInput.value;
-
-            const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            const senhaForte = /^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
-
-            erroEmail.style.display = "none";
-            erroSenha.style.display = "none";
-
-            let valido = true;
-
-            if (!emailValido.test(email)) {
-                erroEmail.style.display = "block";
-                valido = false;
+            
+            const senha = document.getElementById('senha').value;
+            const email = document.getElementById('email').value;
+            
+            // Expressão regular para senha forte
+            const regexSenhaForte = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+            
+            // Validação básica do email
+            const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            
+            // Verificar se o email é válido
+            if (!regexEmail.test(email)) {
+                alert('Por favor, insira um endereço de email válido.');
+                return;
             }
-
-            if (!senhaForte.test(senha)) {
-                erroSenha.style.display = "block";
-                valido = false;
+            
+            // Verificar se a senha atende aos requisitos
+            if (!regexSenhaForte.test(senha)) {
+                alert('A senha deve ter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma minúscula, um número e um caractere especial (!@#$%^&*).');
+                return;
             }
-
-            if (!valido) return;
-
-            // Login válido
-            window.location.href = "p_safedrive.html";
+            
+            // Se passar na validação, redirecionar
+            window.location.href = 'p_safedrive.html';
         });
+
+        // Validação em tempo real da senha
+        document.getElementById('senha').addEventListener('input', function() {
+            const senha = this.value;
+            
+            // Verificar cada requisito
+            const temTamanho = senha.length >= 8;
+            const temMaiuscula = /[A-Z]/.test(senha);
+            const temMinuscula = /[a-z]/.test(senha);
+            const temNumero = /\d/.test(senha);
+            const temEspecial = /[!@#$%^&*]/.test(senha);
+            
+            // Atualizar visualização dos requisitos
+            atualizarRequisito('req-tamanho', temTamanho, 'Pelo menos 8 caracteres');
+            atualizarRequisito('req-maiuscula', temMaiuscula, 'Uma letra maiúscula');
+            atualizarRequisito('req-minuscula', temMinuscula, 'Uma letra minúscula');
+            atualizarRequisito('req-numero', temNumero, 'Um número');
+            atualizarRequisito('req-especial', temEspecial, 'Um caractere especial (!@#$%^&*)');
+        });
+        
+        function atualizarRequisito(id, condicao, texto) {
+            const elemento = document.getElementById(id);
+            if (condicao) {
+                elemento.innerHTML = '✓ ' + texto;
+                elemento.style.color = '#28a745';
+            } else {
+                elemento.innerHTML = '✗ ' + texto;
+                elemento.style.color = '#dc3545';
+            }
+        }
     </script>
-
 </body>
-        
-
-    </div>
-    <script src="redirecionamento.js"></script>
-    <body>
-        
 
 </html>
