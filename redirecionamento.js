@@ -10,13 +10,13 @@ function setupRedirects() {
     if (botaoInscrever && window.location.pathname.includes('cadastro')) {
         botaoInscrever.addEventListener('click', function(e) {
             e.preventDefault();
-            redirectWithDelay('Telalogin.html', 2000, 'Cadastro realizado com sucesso');
+            redirectWithDelay('index.html', 2000, 'Cadastro realizado com sucesso');
         });
     }
 
     
     const linkCadastro = document.querySelector('.cadastro a');
-    if (linkCadastro && window.location.pathname.includes('Telalogin')) {
+    if (linkCadastro && window.location.pathname.includes('index')) {
         linkCadastro.addEventListener('click', function(e) {
             e.preventDefault();
             redirectWithDelay('cadastro.html', 2000, 'Preparando formulário de cadastro...');
@@ -25,7 +25,7 @@ function setupRedirects() {
 
     
     const botaoLogin = document.querySelector('.botlogin');
-    if (botaoLogin && window.location.pathname.includes('Telalogin') && 
+    if (botaoLogin && window.location.pathname.includes('index') && 
         (botaoLogin.getAttribute('href') === 'p_safedrive.html' || 
          botaoLogin.textContent.toLowerCase().includes('login'))) {
         botaoLogin.addEventListener('click', function(e) {

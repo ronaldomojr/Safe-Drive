@@ -14,56 +14,112 @@
 
         <main class="conteudo">
             <section>
-                <h1 class="bemvindo">Bem Vindo!</h1>
+                <h1 class="bemvindo">Bem-vindo!</h1>
                 <p class="credenciais">Insira suas credenciais para acessar sua conta</p>
             </section>
 
-            <div class="campo">
-                <label>Endereço de email</label>
-                <input type="email" placeholder="Digite seu e-mail" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required>
-            </div>
+            <form id="formLogin">
 
-            <div class="campo">
-                <div class="senha-topo">
-                    <label>Senha</label>
-                    <a href="#" class="esqueci">Esqueci minha senha</a>
+                <div class="campo">
+                    <label>Endereço de email</label>
+                    <input 
+                        type="email" 
+                        id="email"
+                        placeholder="Digite seu e-mail"
+                        required>
                 </div>
-                <input type="password" placeholder="Digite aqui sua senha" pattern=".{8,}" required>
-            </div>
 
-            <section class="lembre-se">
-                <input type="checkbox" id="lembrete" checked>
-                <label for="lembrete">Lembre-se por 30 dias</label>
-            </section>
+                <div class="campo">
+                    <div class="senha-topo">
+                        <label>Senha</label>
+                        <a href="#" class="esqueci">Esqueci minha senha</a>
+                    </div>
+                    <input 
+                        type="password" 
+                        id="senha"
+                        placeholder="Digite sua senha"
+                        required>
+                </div>
 
-            <section>
-                <a href="p_safedrive.html" class="botlogin">Login</a>
-            </section>
+                <p id="erroEmail" style="color:red; display:none;">
+                    Insira um e-mail válido.
+                </p>
+
+                <p id="erroSenha" style="color:red; display:none;">
+                    A senha deve ter no mínimo 8 caracteres, uma letra maiúscula e um caractere especial.
+                </p>
+
+                <section class="lembre-se">
+                    <input type="checkbox" id="lembrete" checked>
+                    <label for="lembrete">Lembre-se por 30 dias</label>
+                </section>
+
+                <button type="submit" class="botlogin">Login</button>
+
+            </form>
 
             <div class="divisor">Ou</div>
 
             <section class="login-social">
-                <a href="google.html" class="social-btn" target="_blank">
+                <a href="google.html" class="social-btn">
                     <img src="Imagens/google-logo.png" width="20" alt="Google">
                     Entrar com Google
                 </a>
-                <a href="apple.html" class="social-btn" target="_blank">
+                <a href="apple.html" class="social-btn">
                     <img src="Imagens/apple.png" width="20" alt="Apple">
                     Entrar com Apple
                 </a>
             </section>
 
-            <p class="cadastro">Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+            <p class="cadastro">
+                Não tem uma conta? <a href="cadastro.html">Cadastre-se</a>
+            </p>
         </main>
 
         <div class="imagem">
             <img src="Imagens/image-removebg-preview (1).png" alt="Logo Safe Drive">
         </div>
-        
 
     </div>
-    <script src="redirecionamento.js"></script>
-    <body>
-        
 
+    <script>
+        const form = document.getElementById("formLogin");
+        const emailInput = document.getElementById("email");
+        const senhaInput = document.getElementById("senha");
+
+        const erroEmail = document.getElementById("erroEmail");
+        const erroSenha = document.getElementById("erroSenha");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const email = emailInput.value;
+            const senha = senhaInput.value;
+
+            const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const senhaForte = /^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
+
+            erroEmail.style.display = "none";
+            erroSenha.style.display = "none";
+
+            let valido = true;
+
+            if (!emailValido.test(email)) {
+                erroEmail.style.display = "block";
+                valido = false;
+            }
+
+            if (!senhaForte.test(senha)) {
+                erroSenha.style.display = "block";
+                valido = false;
+            }
+
+            if (!valido) return;
+
+            // Login válido
+            window.location.href = "p_safedrive.html";
+        });
+    </script>
+
+</body>
 </html>

@@ -15,45 +15,61 @@
         <main class="conteudo">
             <section>
                 <h1 class="Comeceagora">Comece Agora!</h1>
-                <p class="credenciais">Insira suas informação para seu cadastro</p>
+                <p class="credenciais">Insira suas informações para seu cadastro</p>
             </section>
-            <div class="campo">
-                <label>Nome</label>
-                <input type="Nome" placeholder="Digite seu nome">
-            </div>
 
-            <div class="campo">
-                <label>Endereço de email</label>
-                <input type="email" placeholder="Digite seu e-mail" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required>
-            </div>
+            <form id="formCadastro">
 
-            <div class="campo">
-                <div class="senha-topo">
-                    <label>Senha</label>
+                <div class="campo">
+                    <label>Nome</label>
+                    <input type="text" id="nome" placeholder="Digite seu nome" required>
                 </div>
-                <input type="password" placeholder="Digite aqui sua senha">
-            </div>
 
-            
+                <div class="campo">
+                    <label>Endereço de email</label>
+                    <input 
+                        type="email" 
+                        id="email"
+                        placeholder="Digite seu e-mail"
+                        required>
+                </div>
 
-            <section>
-                <a href="Telalogin.html" class="botlogin">Inscreva-se</a>
-            </section>
+                <div class="campo">
+                    <div class="senha-topo">
+                        <label>Senha</label>
+                    </div>
+                    <input 
+                        type="password" 
+                        id="senha"
+                        placeholder="Digite sua senha"
+                        required>
+                </div>
+
+                <p id="erroEmail" style="color:red; display:none;">
+                    Insira um e-mail válido.
+                </p>
+
+                <p id="erroSenha" style="color:red; display:none;">
+                    A senha deve ter no mínimo 8 caracteres, uma letra maiúscula e um caractere especial.
+                </p>
+
+                <button type="submit" class="botlogin">Inscreva-se</button>
+
+            </form>
 
             <div class="divisor">Ou</div>
 
             <section class="login-social">
-                <a href="google.html" class="social-btn" target="_blank">
+                <a href="google.html" class="social-btn">
                     <img src="Imagens/google-logo.png" width="20" alt="Google">
                     Entrar com Google
                 </a>
-                <a href="apple.html" class="social-btn" target="_blank">
+                <a href="apple.html" class="social-btn">
                     <img src="Imagens/apple.png" width="20" alt="Apple">
                     Entrar com Apple
                 </a>
             </section>
 
-            
         </main>
 
         <div class="imagem">
@@ -61,6 +77,45 @@
         </div>
 
     </div>
-    <script src="redirecionamento.js"></script>
+
+    <script>
+        const form = document.getElementById("formCadastro");
+        const emailInput = document.getElementById("email");
+        const senhaInput = document.getElementById("senha");
+
+        const erroEmail = document.getElementById("erroEmail");
+        const erroSenha = document.getElementById("erroSenha");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const email = emailInput.value;
+            const senha = senhaInput.value;
+
+            const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const senhaForte = /^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
+
+            erroEmail.style.display = "none";
+            erroSenha.style.display = "none";
+
+            let valido = true;
+
+            if (!emailValido.test(email)) {
+                erroEmail.style.display = "block";
+                valido = false;
+            }
+
+            if (!senhaForte.test(senha)) {
+                erroSenha.style.display = "block";
+                valido = false;
+            }
+
+            if (!valido) return;
+
+            // Cadastro válido → redireciona para login
+            window.location.href = "index.html";
+        });
+    </script>
+
 </body>
 </html>
