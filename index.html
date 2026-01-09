@@ -57,6 +57,31 @@
                 <button type="submit" class="botlogin">Login</button>
 
             </form>
+                <h1 class="bemvindo">Bem Vindo!</h1>
+                <p class="credenciais">Insira suas credenciais para acessar sua conta</p>
+            </section>
+
+            <div class="campo">
+                <label>Endereço de email</label>
+                <input type="email" placeholder="Digite seu e-mail" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required>
+            </div>
+
+            <div class="campo">
+                <div class="senha-topo">
+                    <label>Senha</label>
+                    <a href="#" class="esqueci">Esqueci minha senha</a>
+                </div>
+                <input type="password" placeholder="Digite aqui sua senha" pattern=".{8,}" required>
+            </div>
+
+            <section class="lembre-se">
+                <input type="checkbox" id="lembrete" checked>
+                <label for="lembrete">Lembre-se por 30 dias</label>
+            </section>
+
+            <section>
+                <a href="p_safedrive.html" class="botlogin">Login</a>
+            </section>
 
             <div class="divisor">Ou</div>
 
@@ -66,6 +91,11 @@
                     Entrar com Google
                 </a>
                 <a href="apple.html" class="social-btn">
+                <a href="google.html" class="social-btn" target="_blank">
+                    <img src="Imagens/google-logo.png" width="20" alt="Google">
+                    Entrar com Google
+                </a>
+                <a href="apple.html" class="social-btn" target="_blank">
                     <img src="Imagens/apple.png" width="20" alt="Apple">
                     Entrar com Apple
                 </a>
@@ -74,6 +104,7 @@
             <p class="cadastro">
                 Não tem uma conta? <a href="cadastro.html">Cadastre-se</a>
             </p>
+            <p class="cadastro">Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
         </main>
 
         <div class="imagem">
@@ -122,4 +153,11 @@
     </script>
 
 </body>
+        
+
+    </div>
+    <script src="redirecionamento.js"></script>
+    <body>
+        
+
 </html>

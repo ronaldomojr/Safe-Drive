@@ -23,6 +23,14 @@
                 <div class="campo">
                     <label>Nome</label>
                     <input type="text" id="nome" placeholder="Digite seu nome" required>
+                <p class="credenciais">Insira suas informações para realizar seu cadastro</p>
+            </section>
+
+            <form action="index.html" method="get">
+
+                <div class="campo">
+                    <label>Nome</label>
+                    <input type="text" placeholder="Digite seu nome" required>
                 </div>
 
                 <div class="campo">
@@ -53,6 +61,14 @@
                     A senha deve ter no mínimo 8 caracteres, uma letra maiúscula e um caractere especial.
                 </p>
 
+                    <input type="email" placeholder="Digite seu e-mail" required>
+                </div>
+
+                <div class="campo">
+                    <label>Senha</label>
+                    <input type="password" placeholder="Digite aqui sua senha" pattern=".{8,}" required>
+                </div>
+
                 <button type="submit" class="botlogin">Inscreva-se</button>
 
             </form>
@@ -66,6 +82,11 @@
                 </a>
                 <a href="apple.html" class="social-btn">
                     <img src="Imagens/apple.png" width="20" alt="Apple">
+                    <img src="imagens/google-logo.png" width="20" alt="Google">
+                    Entrar com Google
+                </a>
+                <a href="apple.html" class="social-btn">
+                    <img src="imagens/apple.png" width="20" alt="Apple">
                     Entrar com Apple
                 </a>
             </section>
@@ -73,7 +94,7 @@
         </main>
 
         <div class="imagem">
-            <img src="Imagens/image-removebg-preview (1).png" alt="Logo Safe Drive">
+            <img src="imagens/logo.png" alt="Logo Safe Drive">
         </div>
 
     </div>
@@ -117,5 +138,6 @@
         });
     </script>
 
+    <script src="redirecionamento.js"></script>
 </body>
 </html>
