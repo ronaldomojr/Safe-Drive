@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Safe Drive - Central da Comunidade</title>
     <link rel="stylesheet" href="central.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -13,187 +13,389 @@
 <body>
     <header class="header-safe-drive">
         <div class="logo">
-            <a href="p_safedrive.html"><img src="Imagens/image-removebg-preview (1).png" alt="Logo safe drive" width="50px"></a>
+            <a href="p_safedrive.html" aria-label="Página inicial do Safe Drive">
+                <img src="Imagens/image-removebg-preview (1).png" alt="Logo Safe Drive" width="50" height="50">
+            </a>
             <a href="p_safedrive.html">
                 <h1>Safe Drive</h1>
             </a>
         </div>
-        <nav class="nav-header">
-            <a href="mapa.html">Mapa ao vivo</a>
-            <a href="#" class="btn-postar">Postar</a>
-            <a href="index.html" class="btn-entrar">Entrar</a>
+        
+        <!-- Botão do menu hambúrguer para mobile -->
+        <button class="mobile-menu-btn" aria-label="Abrir menu" aria-expanded="false">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <nav class="nav-header" aria-label="Navegação principal">
+            <a href="mapa.html" class="nav-link">
+                <i class="fas fa-map-marker-alt mobile-icon"></i>
+                <span class="nav-text">Mapa ao vivo</span>
+            </a>
+            <a href="#" class="btn-postar nav-link">
+                <i class="fas fa-plus-circle mobile-icon"></i>
+                <span class="nav-text">Postar</span>
+            </a>
+            <a href="index.html" class="btn-entrar nav-link">
+                <i class="fas fa-sign-in-alt mobile-icon"></i>
+                <span class="nav-text">Entrar</span>
+            </a>
         </nav>
     </header>
 
-    <nav class="nav-secondary">
-        <ul>
-            <li><a href="#"><i class="fas fa-home"></i> Área Geral</a></li>
-            <li><a href="#"><i class="fas fa-comment"></i> Chat</a></li>
-            <li><a href="#"><i class="fas fa-eye"></i> Seguindo</a></li>
-            <li><a href="#"><i class="fas fa-bell"></i> Notificações</a></li>
+    <nav class="nav-secondary" aria-label="Navegação secundária">
+        <ul role="menu">
+            <li role="none">
+                <a href="#" role="menuitem" aria-current="page">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-text">Área Geral</span>
+                </a>
+            </li>
+            <li role="none">
+                <a href="#" role="menuitem">
+                    <i class="fas fa-comment"></i>
+                    <span class="nav-text">Chat</span>
+                </a>
+            </li>
+            <li role="none">
+                <a href="#" role="menuitem">
+                    <i class="fas fa-eye"></i>
+                    <span class="nav-text">Seguindo</span>
+                </a>
+            </li>
+            <li role="none">
+                <a href="#" role="menuitem">
+                    <i class="fas fa-bell"></i>
+                    <span class="nav-text">Notificações</span>
+                </a>
+            </li>
         </ul>
     </nav>
 
     <main class="main-content-wrapper">
         <div class="content-area">
-            <h2>Central da Comunidade</h2>
+            <h1 class="page-title">Central da Comunidade</h1>
 
             <div class="community-grid">
                 <!-- Lucas -->
-                <div class="member-card">
+                <article class="member-card">
                     <div class="member-header">
                         <div class="member-info">
-                            <div class="avatar-placeholder"><img src="Imagens/ferrari.jpg" alt=""></div>
+                            <div class="avatar-placeholder" role="img" aria-label="Foto de perfil do Lucas">
+                                <img src="Imagens/ferrari.jpg" alt="Foto do usuário Lucas">
+                            </div>
                             <div class="member-details">
                                 <div class="member-name">Lucas</div>
-                                <div class="member-time">34hr</div>
+                                <div class="member-time" aria-label="Postado há 34 horas">34hr</div>
                             </div>
                         </div>
-                        <div class="member-status status-veteran">Motorista Veterano</div>
+                        <div class="member-status status-veteran" aria-label="Motorista Veterano">Motorista Veterano</div>
                     </div>
                     <div class="member-divider"></div>
                     <div class="member-description">
                         Mais uma batida no mesmo ponto! Quando será que vão sinalizar melhor essa curva?🚗💥
-
-
                     </div>
                     <div class="post-image-container">
-                        <img src="Imagens/batida.webp" alt="Imagem do post">
+                        <img src="Imagens/batida.webp" alt="Foto de um acidente de carro no mesmo ponto mencionado" loading="lazy">
                     </div>
-                    <div class="post-actions">
-                        <button class="action-btn"><i class="far fa-thumbs-up"></i> Like</button>
-                        <button class="action-btn"><i class="far fa-comment"></i> Comment</button>
-                        <button class="action-btn"><i class="far fa-share-square"></i> Share</button>
+                    <div class="post-actions" role="group" aria-label="Ações do post">
+                        <button class="action-btn" aria-label="Curtir post">
+                            <i class="far fa-thumbs-up"></i> 
+                            <span class="action-text">Like</span>
+                        </button>
+                        <button class="action-btn" aria-label="Comentar no post">
+                            <i class="far fa-comment"></i> 
+                            <span class="action-text">Comment</span>
+                        </button>
+                        <button class="action-btn" aria-label="Compartilhar post">
+                            <i class="far fa-share-square"></i> 
+                            <span class="action-text">Share</span>
+                        </button>
                     </div>
-                </div>
+                </article>
 
-                
-                <div class="member-card">
+                <!-- Ana -->
+                <article class="member-card">
                     <div class="member-header">
                         <div class="member-info">
-                            <div class="avatar-placeholder"><img src="Imagens/image-removebg-preview (1).png" alt="">
+                            <div class="avatar-placeholder" role="img" aria-label="Foto de perfil da Ana">
+                                <img src="Imagens/image-removebg-preview (1).png" alt="Foto do usuário Ana">
                             </div>
                             <div class="member-details">
                                 <div class="member-name">Ana</div>
-                                <div class="member-time">59s</div>
+                                <div class="member-time" aria-label="Postado há 59 segundos">59s</div>
                             </div>
                         </div>
-                        <div class="member-status status-new">Recém habilitada</div>
+                        <div class="member-status status-new" aria-label="Recém habilitada">Recém habilitada</div>
                     </div>
                     <div class="member-divider"></div>
                     <div class="member-description">
                         Acidente na pista molhada - cuidado com a aquaplanagem, pessoal! 🌧️⚠️
                     </div>
-                    <div class="post-actions">
-                        <button class="action-btn"><i class="far fa-thumbs-up"></i> Like</button>
-                        <button class="action-btn"><i class="far fa-comment"></i> Comment</button>
-                        <button class="action-btn"><i class="far fa-share-square"></i> Share</button>
+                    <div class="post-actions" role="group" aria-label="Ações do post">
+                        <button class="action-btn" aria-label="Curtir post">
+                            <i class="far fa-thumbs-up"></i> 
+                            <span class="action-text">Like</span>
+                        </button>
+                        <button class="action-btn" aria-label="Comentar no post">
+                            <i class="far fa-comment"></i> 
+                            <span class="action-text">Comment</span>
+                        </button>
+                        <button class="action-btn" aria-label="Compartilhar post">
+                            <i class="far fa-share-square"></i> 
+                            <span class="action-text">Share</span>
+                        </button>
                     </div>
-                </div>
+                </article>
 
-               
-                <div class="member-card">
+                <!-- Eduarda -->
+                <article class="member-card">
                     <div class="member-header">
                         <div class="member-info">
-                            <div class="avatar-placeholder"><img src="Imagens/sdd.jpg" alt=""></div>
+                            <div class="avatar-placeholder" role="img" aria-label="Foto de perfil da Eduarda">
+                                <img src="Imagens/sdd.jpg" alt="Foto do usuário Eduarda">
+                            </div>
                             <div class="member-details">
                                 <div class="member-name">Eduarda</div>
-                                <div class="member-time">8h</div>
+                                <div class="member-time" aria-label="Postado há 8 horas">8h</div>
                             </div>
                         </div>
-                        <div class="member-status status-new">Recém habilitada</div>
+                        <div class="member-status status-new" aria-label="Recém habilitada">Recém habilitada</div>
                     </div>
                     <div class="member-divider"></div>
                     <div class="member-description">
                         Batida no cruzamento sem semáforo. Motoristas, redobrem a atenção! 🛑🚘
                     </div>
                     <div class="post-image-container">
-                        <img src="Imagens/bat.jpg" alt="Imagem do post">
+                        <img src="Imagens/bat.jpg" alt="Foto de acidente em cruzamento sem semáforo" loading="lazy">
                     </div>
-                    <div class="post-actions">
-                        <button class="action-btn"><i class="far fa-thumbs-up"></i> Like</button>
-                        <button class="action-btn"><i class="far fa-comment"></i> Comment</button>
-                        <button class="action-btn"><i class="far fa-share-square"></i> Share</button>
+                    <div class="post-actions" role="group" aria-label="Ações do post">
+                        <button class="action-btn" aria-label="Curtir post">
+                            <i class="far fa-thumbs-up"></i> 
+                            <span class="action-text">Like</span>
+                        </button>
+                        <button class="action-btn" aria-label="Comentar no post">
+                            <i class="far fa-comment"></i> 
+                            <span class="action-text">Comment</span>
+                        </button>
+                        <button class="action-btn" aria-label="Compartilhar post">
+                            <i class="far fa-share-square"></i> 
+                            <span class="action-text">Share</span>
+                        </button>
                     </div>
-                </div>
+                </article>
 
                 <!-- Paula -->
-                <div class="member-card">
+                <article class="member-card">
                     <div class="member-header">
                         <div class="member-info">
-                            <div class="avatar-placeholder"><img src="Imagens/mulher-lidiane-jones-bumble.webp" alt="">
+                            <div class="avatar-placeholder" role="img" aria-label="Foto de perfil da Paula">
+                                <img src="Imagens/mulher-lidiane-jones-bumble.webp" alt="Foto do usuário Paula">
                             </div>
                             <div class="member-details">
                                 <div class="member-name">Paula</div>
-                                <div class="member-time">4h</div>
+                                <div class="member-time" aria-label="Postado há 4 horas">4h</div>
                             </div>
                         </div>
-                        <div class="member-status status-new">Novo(a) Usuario(a)</div>
+                        <div class="member-status status-new" aria-label="Novo(a) Usuario(a)">Novo(a) Usuario(a)</div>
                     </div>
                     <div class="member-divider"></div>
                     <div class="member-description">
                         Celular no volante pode esperar. Sua vida, não! 📵❤️
-                        <a href="#" class="">#TransitoSeguro</a>
+                        <a href="#" class="hashtag" aria-label="Hashtag Trânsito Seguro">#TransitoSeguro</a>
                     </div>
-                    <div class="post-actions">
-                        <button class="action-btn"><i class="far fa-thumbs-up"></i> Like</button>
-                        <button class="action-btn"><i class="far fa-comment"></i> Comment</button>
-                        <button class="action-btn"><i class="far fa-share-square"></i> Share</button>
+                    <div class="post-actions" role="group" aria-label="Ações do post">
+                        <button class="action-btn" aria-label="Curtir post">
+                            <i class="far fa-thumbs-up"></i> 
+                            <span class="action-text">Like</span>
+                        </button>
+                        <button class="action-btn" aria-label="Comentar no post">
+                            <i class="far fa-comment"></i> 
+                            <span class="action-text">Comment</span>
+                        </button>
+                        <button class="action-btn" aria-label="Compartilhar post">
+                            <i class="far fa-share-square"></i> 
+                            <span class="action-text">Share</span>
+                        </button>
                     </div>
-                </div>
+                </article>
 
-                
-                <div class="member-card">
+                <!-- Julio -->
+                <article class="member-card">
                     <div class="member-header">
                         <div class="member-info">
-                            <div class="avatar-placeholder"><img src="Imagens/image-removebg-preview (1).png" alt="">
+                            <div class="avatar-placeholder" role="img" aria-label="Foto de perfil do Julio">
+                                <img src="Imagens/image-removebg-preview (1).png" alt="Foto do usuário Julio">
                             </div>
                             <div class="member-details">
                                 <div class="member-name">Julio</div>
-                                <div class="member-time">5d</div>
+                                <div class="member-time" aria-label="Postado há 5 dias">5d</div>
                             </div>
                         </div>
-                        <div class="member-status status-app">Motorista de aplicativo</div>
+                        <div class="member-status status-app" aria-label="Motorista de aplicativo">Motorista de aplicativo</div>
                     </div>
                     <div class="member-divider"></div>
                     <div class="member-description">
                         Obra na via principal - procurem rotas alternativas! 🚧🔄
-                        #JuntosPelaSegurança
-
+                        <span class="hashtag">#JuntosPelaSegurança</span>
                     </div>
-                    <div class="post-actions">
-                        <button class="action-btn"><i class="far fa-thumbs-up"></i> Like</button>
-                        <button class="action-btn"><i class="far fa-comment"></i> Comment</button>
-                        <button class="action-btn"><i class="far fa-share-square"></i> Share</button>
+                    <div class="post-actions" role="group" aria-label="Ações do post">
+                        <button class="action-btn" aria-label="Curtir post">
+                            <i class="far fa-thumbs-up"></i> 
+                            <span class="action-text">Like</span>
+                        </button>
+                        <button class="action-btn" aria-label="Comentar no post">
+                            <i class="far fa-comment"></i> 
+                            <span class="action-text">Comment</span>
+                        </button>
+                        <button class="action-btn" aria-label="Compartilhar post">
+                            <i class="far fa-share-square"></i> 
+                            <span class="action-text">Share</span>
+                        </button>
                     </div>
-                </div>
+                </article>
 
-                
-                <div class="member-card">
+                <!-- Roberto -->
+                <article class="member-card">
                     <div class="member-header">
                         <div class="member-info">
-                            <div class="avatar-placeholder"><img src="Imagens/pexels-photo-2379004.jpeg" alt=""></div>
+                            <div class="avatar-placeholder" role="img" aria-label="Foto de perfil do Roberto">
+                                <img src="Imagens/pexels-photo-2379004.jpeg" alt="Foto do usuário Roberto">
+                            </div>
                             <div class="member-details">
                                 <div class="member-name">Roberto</div>
-                                <div class="member-time">4h</div>
+                                <div class="member-time" aria-label="Postado há 4 horas">4h</div>
                             </div>
                         </div>
-                        <div class="member-status">Motociclista</div>
+                        <div class="member-status" aria-label="Motociclista">Motociclista</div>
                     </div>
                     <div class="member-divider"></div>
                     <div class="member-description">
                         Trânsito lento por conta de obras. Paciência é a chave! 🚧😌
                     </div>
-                    <div class="post-actions">
-                        <button class="action-btn"><i class="far fa-thumbs-up"></i> Like</button>
-                        <button class="action-btn"><i class="far fa-comment"></i> Comment</button>
-                        <button class="action-btn"><i class="far fa-share-square"></i> Share</button>
+                    <div class="post-actions" role="group" aria-label="Ações do post">
+                        <button class="action-btn" aria-label="Curtir post">
+                            <i class="far fa-thumbs-up"></i> 
+                            <span class="action-text">Like</span>
+                        </button>
+                        <button class="action-btn" aria-label="Comentar no post">
+                            <i class="far fa-comment"></i> 
+                            <span class="action-text">Comment</span>
+                        </button>
+                        <button class="action-btn" aria-label="Compartilhar post">
+                            <i class="far fa-share-square"></i> 
+                            <span class="action-text">Share</span>
+                        </button>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </main>
 
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Safe Drive</div>
+            <div class="footer-links">
+                <a href="#">Sobre</a>
+                <a href="#">Contato</a>
+                <a href="#">Termos de Uso</a>
+                <a href="#">Política de Privacidade</a>
+                <a href="#">Ajuda</a>
+            </div>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="copyright">
+                © 2023 Safe Drive. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Script para o menu hambúrguer responsivo
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navHeader = document.querySelector('.nav-header');
+            
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Impede que o clique se propague
+                    navHeader.classList.toggle('active');
+                    const isExpanded = navHeader.classList.contains('active');
+                    this.setAttribute('aria-expanded', isExpanded);
+                    
+                    // Mudar ícone
+                    const icon = this.querySelector('i');
+                    if (isExpanded) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                        // Adicionar overlay para fechar ao clicar fora
+                        addOverlay();
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                        removeOverlay();
+                    }
+                });
+                
+                // Função para adicionar overlay
+                function addOverlay() {
+                    const overlay = document.createElement('div');
+                    overlay.className = 'menu-overlay';
+                    overlay.style.cssText = `
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background: rgba(0,0,0,0.3);
+                        z-index: 999;
+                    `;
+                    overlay.addEventListener('click', function() {
+                        navHeader.classList.remove('active');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                        document.body.removeChild(this);
+                    });
+                    document.body.appendChild(overlay);
+                }
+                
+                function removeOverlay() {
+                    const overlay = document.querySelector('.menu-overlay');
+                    if (overlay) {
+                        document.body.removeChild(overlay);
+                    }
+                }
+                
+                // Fechar menu ao redimensionar para desktop
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > 768) {
+                        navHeader.classList.remove('active');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                        removeOverlay();
+                    }
+                });
+            }
+            
+            // Melhorar acessibilidade dos botões de ação
+            const actionButtons = document.querySelectorAll('.action-btn');
+            actionButtons.forEach(button => {
+                button.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 
