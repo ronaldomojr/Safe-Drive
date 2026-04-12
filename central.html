@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Safe Drive - Central da Comunidade</title>
     <link rel="stylesheet" href="central.css">
+    <link rel="stylesheet" href="perfil.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="shortcut icon" href="favicon.ico/favicon.ico" type="image/x-icon">
 </head>
@@ -39,8 +40,31 @@
                 <i class="fas fa-sign-in-alt mobile-icon"></i>
                 <span class="nav-text">Entrar</span>
             </a>
+            <button class="notification-bell" aria-label="Notificações" title="Abrir notificações">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </button>
         </nav>
     </header>
+
+    <!-- Notification Drawer Overlay -->
+    <div class="notification-drawer-overlay" id="notificationOverlay" aria-hidden="true"></div>
+
+    <!-- Notification Drawer -->
+    <div class="notification-drawer" id="notificationDrawer" aria-label="Painel de notificações" role="region">
+        <div class="notification-drawer-header">
+            <h2 class="notification-drawer-title">
+                <i class="fas fa-bell" style="color: #FFA000;"></i>
+                Notificações
+            </h2>
+            <button class="notification-drawer-close" aria-label="Fechar notificações">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="notification-drawer-content" id="notificationContent">
+            <!-- Notificações serão inseridas aqui via JavaScript -->
+        </div>
+    </div>
 
     <nav class="nav-secondary" aria-label="Navegação secundária">
         <ul role="menu">
@@ -51,21 +75,15 @@
                 </a>
             </li>
             <li role="none">
-                <a href="#" role="menuitem">
-                    <i class="fas fa-comment"></i>
-                    <span class="nav-text">Chat</span>
+                <a href="lucas-perfil.html" role="menuitem">
+                    <i class="fas fa-user"></i>
+                    <span class="nav-text">Perfil</span>
                 </a>
             </li>
             <li role="none">
-                <a href="#" role="menuitem">
-                    <i class="fas fa-eye"></i>
-                    <span class="nav-text">Seguindo</span>
-                </a>
-            </li>
-            <li role="none">
-                <a href="#" role="menuitem">
-                    <i class="fas fa-bell"></i>
-                    <span class="nav-text">Notificações</span>
+                <a href="procurar.html" role="menuitem">
+                    <i class="fas fa-search"></i>
+                    <span class="nav-text">Procurar</span>
                 </a>
             </li>
         </ul>
@@ -77,7 +95,7 @@
 
             <div class="community-grid">
                 <!-- Lucas -->
-                <article class="member-card">
+                <article class="member-card" data-post-id="1" role="button" tabindex="0" style="cursor: pointer;">
                     <div class="member-header">
                         <div class="member-info">
                             <div class="avatar-placeholder" role="img" aria-label="Foto de perfil do Lucas">
@@ -114,7 +132,7 @@
                 </article>
 
                 <!-- Ana -->
-                <article class="member-card">
+                <article class="member-card" data-post-id="2" role="button" tabindex="0" style="cursor: pointer;">
                     <div class="member-header">
                         <div class="member-info">
                             <div class="avatar-placeholder" role="img" aria-label="Foto de perfil da Ana">
@@ -148,7 +166,7 @@
                 </article>
 
                 <!-- Eduarda -->
-                <article class="member-card">
+                <article class="member-card" data-post-id="3" role="button" tabindex="0" style="cursor: pointer;">
                     <div class="member-header">
                         <div class="member-info">
                             <div class="avatar-placeholder" role="img" aria-label="Foto de perfil da Eduarda">
@@ -185,7 +203,7 @@
                 </article>
 
                 <!-- Paula -->
-                <article class="member-card">
+                <article class="member-card" data-post-id="4" role="button" tabindex="0" style="cursor: pointer;">
                     <div class="member-header">
                         <div class="member-info">
                             <div class="avatar-placeholder" role="img" aria-label="Foto de perfil da Paula">
@@ -220,7 +238,7 @@
                 </article>
 
                 <!-- Julio -->
-                <article class="member-card">
+                <article class="member-card" data-post-id="5" role="button" tabindex="0" style="cursor: pointer;">
                     <div class="member-header">
                         <div class="member-info">
                             <div class="avatar-placeholder" role="img" aria-label="Foto de perfil do Julio">
@@ -255,7 +273,7 @@
                 </article>
 
                 <!-- Roberto -->
-                <article class="member-card">
+                <article class="member-card" data-post-id="6" role="button" tabindex="0" style="cursor: pointer;">
                     <div class="member-header">
                         <div class="member-info">
                             <div class="avatar-placeholder" role="img" aria-label="Foto de perfil do Roberto">
@@ -314,24 +332,86 @@
     </footer>
 
     <script>
-        // Script para o menu hambúrguer responsivo
+        // Dados das notificações
+        const notificationsData = [
+            { id: 1, name: 'Lucas', avatar: 'Imagens/ferrari.jpg', time: '2h', type: 'notification-type-post', action: 'postou um novo post', icon: 'fa-edit', preview: 'Mais uma batida no mesmo ponto da avenida! Quando será que resolvem?', unread: true },
+            { id: 2, name: 'Ana', avatar: 'Imagens/image-removebg-preview (1).png', time: '4h', type: 'notification-type-comment', action: 'comentou no seu post', icon: 'fa-comment', preview: 'Verdade, eu também passei por ali ontem. Perigoso demais!', unread: true },
+            { id: 3, name: 'Eduarda', avatar: 'Imagens/sdd.jpg', time: '6h', type: 'notification-type-like', action: 'curtiu seu post', icon: 'fa-thumbs-up', preview: 'Post sobre cruzamento sem semáforo', unread: true },
+            { id: 4, name: 'Paula', avatar: 'Imagens/mulher-lidiane-jones-bumble.webp', time: '1d', type: 'notification-type-follow', action: 'começou a seguir você', icon: 'fa-user-plus', preview: 'Veja o perfil de Paula e suas contribuições', unread: false },
+            { id: 5, name: 'Julio', avatar: 'Imagens/image-removebg-preview (1).png', time: '1d', type: 'notification-type-reply', action: 'respondeu seu comentário', icon: 'fa-reply', preview: 'Concordo! A prefeitura deveria melhorar urgente.', unread: false },
+            { id: 6, name: 'Roberto', avatar: 'Imagens/pexels-photo-2379004.jpeg', time: '2d', type: 'notification-type-alert', action: 'postou uma denúncia de obra', icon: 'fa-flag', preview: 'Via principal interditada por reforma. Desviar pela avenida lateral.', unread: false }
+        ];
+
+        function renderNotifications() {
+            const container = document.getElementById('notificationContent');
+            if (!container) return;
+            const html = notificationsData.map(n => `
+                <div class="drawer-notification-card ${n.type} ${n.unread ? 'unread' : 'read'}" data-notif-id="${n.id}">
+                    <div class="drawer-card-header">
+                        <div class="drawer-card-avatar"><img src="${n.avatar}" alt="${n.name}"></div>
+                        <div class="drawer-card-info">
+                            <div class="drawer-card-header-row">
+                                <span class="drawer-card-name">${n.name}</span>
+                                <span class="drawer-card-time">${n.time}</span>
+                            </div>
+                            <div class="drawer-card-action"><i class="fas ${n.icon}"></i> ${n.action}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            container.innerHTML = html;
+            document.querySelectorAll('.drawer-notification-card').forEach(card => {
+                const unreadIcon = card.querySelector('.drawer-card-action i');
+                if (card.classList.contains('unread') && unreadIcon) {
+                    const markBtn = document.createElement('div');
+                    markBtn.style.cssText = 'width: 8px; height: 8px; background: #FFA000; border-radius: 50%; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);';
+                    card.style.position = 'relative';
+                    card.appendChild(markBtn);
+                }
+            });
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.drawer-notification-card')) {
+                    const card = e.target.closest('.drawer-notification-card');
+                    card.classList.remove('unread');
+                    card.classList.add('read');
+                    const indicator = card.querySelector('div[style*="background: #FFA000"]');
+                    if (indicator) indicator.remove();
+                    updateBadge();
+                }
+            });
+        }
+
+        function updateBadge() {
+            const badge = document.querySelector('.notification-badge');
+            const unreadCount = document.querySelectorAll('.drawer-notification-card.unread').length;
+            badge && (unreadCount ? (badge.classList.remove('zero'), badge.textContent = unreadCount) : badge.classList.add('zero'));
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
+            renderNotifications();
+            updateBadge();
+            const bell = document.querySelector('.notification-bell');
+            const drawer = document.getElementById('notificationDrawer');
+            const overlay = document.getElementById('notificationOverlay');
+            if (bell && drawer) {
+                bell.addEventListener('click', e => (e.stopPropagation(), drawer.classList.toggle('open'), overlay.classList.toggle('open')));
+                document.querySelector('.notification-drawer-close')?.addEventListener('click', () => (drawer.classList.remove('open'), overlay.classList.remove('open')));
+                overlay.addEventListener('click', () => (drawer.classList.remove('open'), overlay.classList.remove('open')));
+                document.addEventListener('keydown', e => e.key === 'Escape' && drawer.classList.contains('open') && (drawer.classList.remove('open'), overlay.classList.remove('open')));
+            }
+            
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
             const navHeader = document.querySelector('.nav-header');
-            
             if (mobileMenuBtn) {
                 mobileMenuBtn.addEventListener('click', function(e) {
-                    e.stopPropagation(); // Impede que o clique se propague
+                    e.stopPropagation();
                     navHeader.classList.toggle('active');
                     const isExpanded = navHeader.classList.contains('active');
                     this.setAttribute('aria-expanded', isExpanded);
-                    
-                    // Mudar ícone
                     const icon = this.querySelector('i');
                     if (isExpanded) {
                         icon.classList.remove('fa-bars');
                         icon.classList.add('fa-times');
-                        // Adicionar overlay para fechar ao clicar fora
                         addOverlay();
                     } else {
                         icon.classList.remove('fa-times');
@@ -339,20 +419,10 @@
                         removeOverlay();
                     }
                 });
-                
-                // Função para adicionar overlay
                 function addOverlay() {
                     const overlay = document.createElement('div');
                     overlay.className = 'menu-overlay';
-                    overlay.style.cssText = `
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        right: 0;
-                        bottom: 0;
-                        background: rgba(0,0,0,0.3);
-                        z-index: 999;
-                    `;
+                    overlay.style.cssText = `position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.3); z-index: 99;`;
                     overlay.addEventListener('click', function() {
                         navHeader.classList.remove('active');
                         mobileMenuBtn.setAttribute('aria-expanded', 'false');
@@ -363,15 +433,10 @@
                     });
                     document.body.appendChild(overlay);
                 }
-                
                 function removeOverlay() {
                     const overlay = document.querySelector('.menu-overlay');
-                    if (overlay) {
-                        document.body.removeChild(overlay);
-                    }
+                    overlay && document.body.removeChild(overlay);
                 }
-                
-                // Fechar menu ao redimensionar para desktop
                 window.addEventListener('resize', function() {
                     if (window.innerWidth > 768) {
                         navHeader.classList.remove('active');
@@ -383,14 +448,31 @@
                     }
                 });
             }
-            
-            // Melhorar acessibilidade dos botões de ação
             const actionButtons = document.querySelectorAll('.action-btn');
-            actionButtons.forEach(button => {
-                button.addEventListener('keypress', function(e) {
+            actionButtons.forEach(button => button.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    const postId = this.getAttribute('data-post-id');
+                    window.location.href = `post-${postId}.html`;
+                }
+            }));
+            
+            // Navegação pelos cards de posts
+            const memberCards = document.querySelectorAll('.member-card[data-post-id]');
+            memberCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    if (e.target.closest('.action-btn') || e.target.closest('.post-actions')) {
+                        return;
+                    }
+                    const postId = this.getAttribute('data-post-id');
+                    window.location.href = `post-${postId}.html`;
+                });
+                
+                card.addEventListener('keypress', function(e) {
                     if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
-                        this.click();
+                        const postId = this.getAttribute('data-post-id');
+                        window.location.href = `post-${postId}.html`;
                     }
                 });
             });

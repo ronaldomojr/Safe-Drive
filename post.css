@@ -1,0 +1,328 @@
+/* ============================================
+   POST INDIVIDUAL - ESTILOS PARA PÁGINAS INDIVIDUAIS
+   ============================================ */
+
+/* Post Fullscreen - Layout Principal */
+.post-container {
+    max-width: 650px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.post-fullscreen {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    border: 1px solid #f0f0f0;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.post-fullscreen:hover {
+    box-shadow: 0 12px 35px rgba(230, 145, 0, 0.15);
+    border-color: #ff9900;
+    transform: translateY(-8px);
+}
+
+/* Header do Post - Breadcrumb e Voltar */
+.post-breadcrumb {
+    padding: 15px 25px;
+    background: #f9f9f9;
+    border-bottom: 1px solid #e8e8e8;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.post-breadcrumb a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #FFA000;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.post-breadcrumb a:hover {
+    color: #ff7700;
+    text-decoration: underline;
+}
+
+.post-breadcrumb i {
+    font-size: 1.1em;
+}
+
+/* Conteúdo do Post */
+.post-content {
+    padding: 30px;
+}
+
+/* Member Card adaptado para fullscreen */
+.member-card.fullscreen {
+    box-shadow: none;
+    border: none;
+}
+
+.member-card.fullscreen:hover {
+    box-shadow: none;
+    transform: none;
+    border-color: #f0f0f0;
+}
+
+/* Imagem do Post - Ampliada */
+.post-content .post-image-container {
+    margin: 20px 0;
+    width: 100%;
+}
+
+.post-content .post-image-container img {
+    width: 100%;
+    max-height: 350px;
+    object-fit: contain;
+    border-radius: 12px;
+    display: block;
+    background: #f5f5f5;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* Seção de Comentários */
+.comments-section {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid #f0f0f0;
+}
+
+.comments-header {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.comments-header i {
+    color: #FFA000;
+}
+
+.comments-placeholder {
+    background: #f9f9f9;
+    padding: 40px 20px;
+    border-radius: 8px;
+    text-align: center;
+    color: #999999;
+    border: 2px dashed #e0e0e0;
+}
+
+.comments-placeholder p {
+    margin: 0;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.comments-placeholder .comment-icon {
+    font-size: 2.5em;
+    color: #ddd;
+    margin-bottom: 15px;
+}
+
+/* Comments List */
+.comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.comment {
+    display: flex;
+    gap: 12px;
+    padding: 16px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.comment:last-child {
+    border-bottom: none;
+}
+
+.comment-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #f0f0f0;
+}
+
+.comment-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.comment-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.comment-author {
+    font-weight: 700;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.comment-time {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.comment-text {
+    color: #555;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Responsividade - Tablet */
+@media (max-width: 950px) {
+    .post-container {
+        max-width: 100%;
+        padding: 0 15px;
+        margin: 30px 0;
+    }
+    
+    .post-content {
+        padding: 20px;
+    }
+    
+    .post-content .post-image-container {
+        margin: 20px -20px -20px -20px;
+        width: calc(100% + 40px);
+    }
+    
+    .post-content .post-image-container img {
+        max-height: 400px;
+    }
+}
+
+/* Responsividade - Mobile */
+@media (max-width: 768px) {
+    .post-breadcrumb {
+        padding: 12px 15px;
+        font-size: 0.95em;
+    }
+    
+    .post-content {
+        padding: 15px;
+    }
+    
+    .post-content .post-image-container {
+        margin: 15px -15px -15px -15px;
+        width: calc(100% + 30px);
+    }
+    
+    .post-content .post-image-container img {
+        max-height: 300px;
+    }
+    
+    .post-fullscreen {
+        border-radius: 8px;
+    }
+    
+    .comments-section {
+        margin-top: 30px;
+        padding-top: 20px;
+    }
+    
+    .comments-placeholder {
+        padding: 30px 15px;
+    }
+}
+
+/* Accessibility Mode */
+body.modo-acessibilidade .post-fullscreen {
+    background: #000000 !important;
+    border-color: #ffffff !important;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15) !important;
+}
+
+body.modo-acessibilidade .post-fullscreen:hover {
+    box-shadow: 0 12px 35px rgba(255, 255, 255, 0.25) !important;
+}
+
+body.modo-acessibilidade .post-breadcrumb {
+    background: #1a1a1a !important;
+    border-bottom-color: #333333 !important;
+}
+
+body.modo-acessibilidade .post-breadcrumb a {
+    color: #FFD700 !important;
+}
+
+body.modo-acessibilidade .post-breadcrumb a:hover {
+    color: #FFED4E !important;
+}
+
+body.modo-acessibilidade .post-content {
+    background: #000000 !important;
+    color: #ffffff !important;
+}
+
+body.modo-acessibilidade .member-card {
+    background: #000000 !important;
+    border-color: #ffffff !important;
+    color: #ffffff !important;
+}
+
+body.modo-acessibilidade .member-card .member-name {
+    color: #ffffff !important;
+}
+
+body.modo-acessibilidade .member-card .member-time {
+    color: #cccccc !important;
+}
+
+body.modo-acessibilidade .member-card .member-description {
+    color: #e0e0e0 !important;
+}
+
+body.modo-acessibilidade .member-divider {
+    background: #333333 !important;
+}
+
+body.modo-acessibilidade .comments-header {
+    color: #ffffff !important;
+}
+
+body.modo-acessibilidade .comments-placeholder {
+    background: #1a1a1a !important;
+    border-color: #444444 !important;
+    color: #aaaaaa !important;
+}
+
+body.modo-acessibilidade .action-btn {
+    background: transparent !important;
+    color: #cccccc !important;
+    border: 1px solid #555555 !important;
+}
+
+body.modo-acessibilidade .action-btn:hover {
+    background: #222222 !important;
+    color: #ffffff !important;
+    border-color: #FFD700 !important;
+}
+
+body.modo-acessibilidade .action-btn i {
+    color: #FFD700 !important;
+}

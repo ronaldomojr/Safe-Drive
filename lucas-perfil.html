@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Lucas - Perfil Safe Drive</title>
+    <link rel="stylesheet" href="central.css">
+    <link rel="stylesheet" href="perfil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="shortcut icon" href="favicon.ico/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <header class="header-safe-drive">
+        <div class="logo">
+            <a href="p_safedrive.html" aria-label="Página inicial do Safe Drive">
+                <img src="Imagens/image-removebg-preview (1).png" alt="Logo Safe Drive" width="50" height="50">
+            </a>
+            <a href="p_safedrive.html">
+                <h1>Safe Drive</h1>
+            </a>
+        </div>
+        
+        <!-- Botão do menu hambúrguer para mobile -->
+        <button class="mobile-menu-btn" aria-label="Abrir menu" aria-expanded="false">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <nav class="nav-header" aria-label="Navegação principal">
+            <a href="mapa.html" class="nav-link">
+                <i class="fas fa-map-marker-alt mobile-icon"></i>
+                <span class="nav-text">Mapa ao vivo</span>
+            </a>
+            <a href="#" class="btn-postar nav-link">
+                <i class="fas fa-plus-circle mobile-icon"></i>
+                <span class="nav-text">Postar</span>
+            </a>
+            <a href="index.html" class="btn-entrar nav-link">
+                <i class="fas fa-sign-in-alt mobile-icon"></i>
+                <span class="nav-text">Entrar</span>
+            </a>
+        </nav>
+    </header>
+
+    <nav class="nav-secondary" aria-label="Navegação secundária">
+        <ul role="menu">
+            <li role="none">
+                <a href="central.html" role="menuitem">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-text">Área Geral</span>
+                </a>
+            </li>
+            <li role="none">
+                <a href="lucas-perfil.html" role="menuitem" aria-current="page">
+                    <i class="fas fa-user"></i>
+                    <span class="nav-text">Perfil</span>
+                </a>
+            </li>
+            <li role="none">
+                <a href="procurar.html" role="menuitem">
+                    <i class="fas fa-search"></i>
+                    <span class="nav-text">Procurar</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="main-content-wrapper">
+        <div class="content-area">
+            <!-- Profile Bio Container -->
+            <div class="profile-bio-container">
+                <div class="profile-avatar" role="img" aria-label="Foto de perfil do Lucas">
+                    <img src="Imagens/ferrari.jpg" alt="Avatar Lucas">
+                </div>
+                <div class="profile-info">
+                    <div class="profile-name">Lucas</div>
+                    <div class="profile-badge" aria-label="Status: Motorista Veterano">
+                        <i class="fas fa-star"></i> Motorista Veterano
+                    </div>
+                    <div class="profile-bio">
+                        Segurança no trânsito é prioridade. Experiência com mais de 15 anos na estrada. 🚗
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn-primary" aria-label="Seguir Lucas">
+                            <i class="fas fa-user-plus"></i> Seguir
+                        </button>
+                        <button class="btn-secondary" aria-label="Enviar mensagem para Lucas">
+                            <i class="fas fa-envelope"></i> Mensagem
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Stats -->
+            <div class="profile-stats">
+                <div class="stat-item">
+                    <div class="stat-number" style="color: #FFA000;">3</div>
+                    <div class="stat-label">Posts</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" style="color: #FFA000;">500</div>
+                    <div class="stat-label">Seguidores</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" style="color: #FFA000;">60</div>
+                    <div class="stat-label">Seguindo</div>
+                </div>
+            </div>
+
+            <!-- Posts Grid Title -->
+            <h2 class="posts-grid-title">
+                <i class="fas fa-images"></i> Minhas Postagens
+            </h2>
+
+            <!-- Posts Grid -->
+            <div class="profile-posts-grid">
+                <!-- Post 1 -->
+                <a href="post-1.html" class="post-thumbnail">
+                    <img src="Imagens/batida.webp" alt="Post 1 - Batida">
+                    <div class="post-thumbnail-overlay">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                </a>
+
+                <!-- Post 3 -->
+                <a href="post-3.html" class="post-thumbnail">
+                    <img src="Imagens/bat.jpg" alt="Post 3 - Batida cruzamento">
+                    <div class="post-thumbnail-overlay">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                </a>
+
+                <!-- Post 5 -->
+                <a href="post-5.html" class="post-thumbnail">
+                    <div class="post-thumbnail-text">
+                        <i class="fas fa-tools"></i>
+                        <p>Obra na via principal</p>
+                    </div>
+                    <div class="post-thumbnail-overlay">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Safe Drive</div>
+            <div class="footer-links">
+                <a href="#">Sobre</a>
+                <a href="#">Contato</a>
+                <a href="#">Termos de Uso</a>
+                <a href="#">Política de Privacidade</a>
+                <a href="#">Ajuda</a>
+            </div>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="copyright">
+                © 2023 Safe Drive. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modo Acessibilidade -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modo_acessibilidade = localStorage.getItem('modo_acessibilidade') === 'true';
+            if (modo_acessibilidade) {
+                document.body.classList.add('modo-acessibilidade');
+            }
+
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navHeader = document.querySelector('.nav-header');
+            
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    navHeader.classList.toggle('active');
+                    const isExpanded = navHeader.classList.contains('active');
+                    this.setAttribute('aria-expanded', isExpanded);
+                    
+                    const icon = this.querySelector('i');
+                    if (isExpanded) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                        addOverlay();
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                        removeOverlay();
+                    }
+                });
+                
+                function addOverlay() {
+                    const overlay = document.createElement('div');
+                    overlay.className = 'menu-overlay';
+                    overlay.style.cssText = `
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background: rgba(0,0,0,0.3);
+                        z-index: 999;
+                    `;
+                    overlay.addEventListener('click', function() {
+                        navHeader.classList.remove('active');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                        document.body.removeChild(this);
+                    });
+                    document.body.appendChild(overlay);
+                }
+                
+                function removeOverlay() {
+                    const overlay = document.querySelector('.menu-overlay');
+                    if (overlay) {
+                        document.body.removeChild(overlay);
+                    }
+                }
+                
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > 768) {
+                        navHeader.classList.remove('active');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                        removeOverlay();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

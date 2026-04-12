@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="mapa.css">
 </head>
 <body>
@@ -18,8 +18,173 @@
    
     <button id="btn-voltar">Voltar</button>
 
+    <!-- Floating Posts Feed -->
+    <div class="floating-posts-container">
+        <!-- Lucas -->
+        <article class="floating-post-card" data-post-id="1" role="button" tabindex="0" style="cursor: pointer;">
+            <div class="member-header">
+                <div class="member-info">
+                    <div class="avatar-placeholder" role="img" aria-label="Foto de perfil do Lucas">
+                        <img src="Imagens/ferrari.jpg" alt="Foto do usuário Lucas">
+                    </div>
+                    <div class="member-details">
+                        <div class="member-name">Lucas</div>
+                        <div class="member-time" aria-label="Postado há 34 horas">34hr</div>
+                    </div>
+                </div>
+                <div class="status-location-wrapper">
+                    <div class="member-status status-veteran" aria-label="Motorista Veterano">Motorista Veterano</div>
+                    <div class="location-indicator" data-location-id="1" title="Batida: Ver localização">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="member-divider"></div>
+            <div class="member-description">
+                Mais uma batida no mesmo ponto! Quando será que vão sinalizar melhor essa curva?🚗💥
+            </div>
+            <div class="post-image-container">
+                <img src="Imagens/batida.webp" alt="Foto de um acidente de carro no mesmo ponto mencionado">
+            </div>
+        </article>
+
+        <!-- Ana -->
+        <article class="floating-post-card" data-post-id="2" role="button" tabindex="0" style="cursor: pointer;">
+            <div class="member-header">
+                <div class="member-info">
+                    <div class="avatar-placeholder" role="img" aria-label="Foto de perfil da Ana">
+                        <img src="Imagens/image-removebg-preview (1).png" alt="Foto do usuário Ana">
+                    </div>
+                    <div class="member-details">
+                        <div class="member-name">Ana</div>
+                        <div class="member-time" aria-label="Postado há 59 segundos">59s</div>
+                    </div>
+                </div>
+                <div class="member-status status-new" aria-label="Recém habilitada">Recém habilitada</div>
+            </div>
+            <div class="member-divider"></div>
+            <div class="member-description">
+                Acidente na pista molhada - cuidado com a aquaplanagem, pessoal! 🌧️⚠️
+            </div>
+        </article>
+
+        <!-- Eduarda -->
+        <article class="floating-post-card" data-post-id="3" role="button" tabindex="0" style="cursor: pointer;">
+            <div class="member-header">
+                <div class="member-info">
+                    <div class="avatar-placeholder" role="img" aria-label="Foto de perfil da Eduarda">
+                        <img src="Imagens/sdd.jpg" alt="Foto do usuário Eduarda">
+                    </div>
+                    <div class="member-details">
+                        <div class="member-name">Eduarda</div>
+                        <div class="member-time" aria-label="Postado há 8 horas">8h</div>
+                    </div>
+                </div>
+                <div class="status-location-wrapper">
+                    <div class="member-status status-new" aria-label="Recém habilitada">Recém habilitada</div>
+                    <div class="location-indicator" data-location-id="3" title="Batida: Ver localização">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="member-divider"></div>
+            <div class="member-description">
+                Batida no cruzamento sem semáforo. Motoristas, redobrem a atenção! 🛑🚘
+            </div>
+            <div class="post-image-container">
+                <img src="Imagens/bat.jpg" alt="Foto de acidente em cruzamento sem semáforo">
+            </div>
+        </article>
+
+        <!-- Paula -->
+        <article class="floating-post-card" data-post-id="4" role="button" tabindex="0" style="cursor: pointer;">
+            <div class="member-header">
+                <div class="member-info">
+                    <div class="avatar-placeholder" role="img" aria-label="Foto de perfil da Paula">
+                        <img src="Imagens/mulher-lidiane-jones-bumble.webp" alt="Foto do usuário Paula">
+                    </div>
+                    <div class="member-details">
+                        <div class="member-name">Paula</div>
+                        <div class="member-time" aria-label="Postado há 4 horas">4h</div>
+                    </div>
+                </div>
+                <div class="member-status status-new" aria-label="Novo(a) Usuario(a)">Novo(a) Usuario(a)</div>
+            </div>
+            <div class="member-divider"></div>
+            <div class="member-description">
+                Celular no volante pode esperar. Sua vida, não! 📵❤️
+            </div>
+        </article>
+
+        <!-- Julio -->
+        <article class="floating-post-card" data-post-id="5" role="button" tabindex="0" style="cursor: pointer;">
+            <div class="member-header">
+                <div class="member-info">
+                    <div class="avatar-placeholder" role="img" aria-label="Foto de perfil do Julio">
+                        <img src="Imagens/image-removebg-preview (1).png" alt="Foto do usuário Julio">
+                    </div>
+                    <div class="member-details">
+                        <div class="member-name">Julio</div>
+                        <div class="member-time" aria-label="Postado há 5 dias">5d</div>
+                    </div>
+                </div>
+                <div class="status-location-wrapper">
+                    <div class="member-status status-app" aria-label="Motorista de aplicativo">Motorista de aplicativo</div>
+                    <div class="location-indicator" data-location-id="5" title="Obra: Ver localização">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="member-divider"></div>
+            <div class="member-description">
+                Obra na via principal - procurem rotas alternativas! 🚧🔄
+            </div>
+        </article>
+
+        <!-- Roberto -->
+        <article class="floating-post-card" data-post-id="6" role="button" tabindex="0" style="cursor: pointer;">
+            <div class="member-header">
+                <div class="member-info">
+                    <div class="avatar-placeholder" role="img" aria-label="Foto de perfil do Roberto">
+                        <img src="Imagens/pexels-photo-2379004.jpeg" alt="Foto do usuário Roberto">
+                    </div>
+                    <div class="member-details">
+                        <div class="member-name">Roberto</div>
+                        <div class="member-time" aria-label="Postado há 4 horas">4h</div>
+                    </div>
+                </div>
+                <div class="status-location-wrapper">
+                    <div class="member-status" aria-label="Motociclista">Motociclista</div>
+                    <div class="location-indicator" data-location-id="6" title="Obra: Ver localização">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="member-divider"></div>
+            <div class="member-description">
+                Trânsito lento por conta de obras. Paciência é a chave! 🚧😌
+            </div>
+        </article>
+    </div>
    
     <script src="script.js"></script>
+    <script>
+        // Navegação para páginas individuais de posts no mapa
+        const floatingPostCards = document.querySelectorAll('.floating-post-card[data-post-id]');
+        floatingPostCards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                const postId = this.getAttribute('data-post-id');
+                window.location.href = `post-${postId}.html`;
+            });
 
+            card.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    const postId = this.getAttribute('data-post-id');
+                    window.location.href = `post-${postId}.html`;
+                }
+            });
+        });
+    </script>
 </body>
 </html>

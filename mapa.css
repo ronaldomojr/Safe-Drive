@@ -5,11 +5,15 @@ body {
     height: 100vh;
     overflow: hidden;
     font-family: Arial, sans-serif;
+    position: relative;
 }
 
 #map {
+    position: fixed;
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
 }
 
 .search-card {
@@ -83,7 +87,7 @@ body {
 }
 
 #btn-voltar {
-    position: absolute;
+    position: fixed;
     bottom: 35px;
     right: 35px;
     background: #FFDD00;
@@ -95,6 +99,7 @@ body {
     font-weight: bold;
     box-shadow: 0 4px 12px rgba(0,0,0,0.25);
     transition: 0.15s ease-in-out;
+    z-index: 1000;
 }
 
 #btn-voltar:hover {
@@ -106,6 +111,207 @@ body {
     filter: brightness(0) saturate(100%) invert(84%) sepia(58%)
             saturate(917%) hue-rotate(359deg) brightness(101%)
             contrast(102%);
+}
+
+/* Floating Posts Feed */
+.floating-posts-container {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    width: 350px;
+    max-height: 90vh;
+    overflow-y: scroll;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 20px 10px 40px 15px;
+    pointer-events: auto;
+    background: transparent;
+}
+
+.floating-posts-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.floating-posts-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.floating-posts-container::-webkit-scrollbar-thumb {
+    background: #AAA;
+    border-radius: 5px;
+}
+
+.floating-posts-container::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}
+
+.floating-post-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    pointer-events: auto;
+    min-height: auto;
+    flex-shrink: 0;
+}
+
+.floating-post-card:hover {
+    box-shadow: 0 8px 30px rgba(255, 160, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.floating-post-card .member-header {
+    padding: 10px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.floating-post-card .member-info {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    flex: 1;
+}
+
+.status-location-wrapper {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.floating-post-card .avatar-placeholder {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.floating-post-card .avatar-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.floating-post-card .member-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.floating-post-card .member-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+    margin: 0;
+}
+
+.floating-post-card .member-time {
+    font-size: 11px;
+    color: #999;
+    margin: 2px 0 0 0;
+}
+
+.floating-post-card .member-status {
+    font-size: 10px;
+    padding: 3px 6px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.location-indicator {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 2px 6px;
+    border-radius: 6px;
+}
+
+.location-indicator i {
+    font-size: 16px;
+    color: #FFA000;
+}
+
+.location-indicator:hover {
+    background: #FFF3E0;
+    transform: scale(1.15);
+}
+
+.location-indicator:hover i {
+    color: #E69100;
+}
+
+.floating-post-card .member-status.status-veteran {
+    background: #fff3e0;
+    color: #ff6f00;
+}
+
+.floating-post-card .member-status.status-new {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.floating-post-card .member-status.status-app {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.floating-post-card .member-divider {
+    height: 1px;
+    background: #f0f0f0;
+    margin: 8px 0;
+}
+
+.floating-post-card .member-description {
+    padding: 0 12px;
+    font-size: 12px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+
+.floating-post-card .post-image-container {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+}
+
+.floating-post-card .post-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .floating-posts-container {
+        width: 320px;
+        right: 15px;
+        top: 20px;
+        gap: 20px;
+        max-height: 90vh;
+    }
+    
+    .floating-post-card .member-description {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 950px) {
+    .floating-posts-container {
+        display: none;
+    }
 }
 
 

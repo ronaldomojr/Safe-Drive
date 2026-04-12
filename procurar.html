@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Safe Drive - Procurar</title>
+    <link rel="stylesheet" href="central.css">
+    <link rel="stylesheet" href="perfil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="shortcut icon" href="favicon.ico/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <header class="header-safe-drive">
+        <div class="logo">
+            <a href="p_safedrive.html" aria-label="Página inicial do Safe Drive">
+                <img src="Imagens/image-removebg-preview (1).png" alt="Logo Safe Drive" width="50" height="50">
+            </a>
+            <a href="p_safedrive.html">
+                <h1>Safe Drive</h1>
+            </a>
+        </div>
+        
+        <!-- Botão do menu hambúrguer para mobile -->
+        <button class="mobile-menu-btn" aria-label="Abrir menu" aria-expanded="false">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <nav class="nav-header" aria-label="Navegação principal">
+            <a href="mapa.html" class="nav-link">
+                <i class="fas fa-map-marker-alt mobile-icon"></i>
+                <span class="nav-text">Mapa ao vivo</span>
+            </a>
+            <a href="#" class="btn-postar nav-link">
+                <i class="fas fa-plus-circle mobile-icon"></i>
+                <span class="nav-text">Postar</span>
+            </a>
+            <a href="index.html" class="btn-entrar nav-link">
+                <i class="fas fa-sign-in-alt mobile-icon"></i>
+                <span class="nav-text">Entrar</span>
+            </a>
+            <button class="notification-bell" aria-label="Notificações" title="Abrir notificações">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Notification Drawer Overlay -->
+    <div class="notification-drawer-overlay" id="notificationOverlay" aria-hidden="true"></div>
+
+    <!-- Notification Drawer -->
+    <div class="notification-drawer" id="notificationDrawer" aria-label="Painel de notificações" role="region">
+        <div class="notification-drawer-header">
+            <h2 class="notification-drawer-title">
+                <i class="fas fa-bell" style="color: #FFA000;"></i>
+                Notificações
+            </h2>
+            <button class="notification-drawer-close" aria-label="Fechar notificações">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="notification-drawer-content" id="notificationContent">
+            <!-- Notificações serão inseridas aqui via JavaScript -->
+        </div>
+    </div>
+
+    <nav class="nav-secondary" aria-label="Navegação secundária">
+        <ul role="menu">
+            <li role="none">
+                <a href="central.html" role="menuitem">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-text">Área Geral</span>
+                </a>
+            </li>
+            <li role="none">
+                <a href="lucas-perfil.html" role="menuitem">
+                    <i class="fas fa-user"></i>
+                    <span class="nav-text">Perfil</span>
+                </a>
+            </li>
+            <li role="none">
+                <a href="procurar.html" role="menuitem" aria-current="page">
+                    <i class="fas fa-search"></i>
+                    <span class="nav-text">Procurar</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="main-content-wrapper">
+        <div class="content-area">
+            <h1 class="page-title">Procurar</h1>
+
+            <!-- Search Box -->
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        class="search-input" 
+                        placeholder="Procure por postagens, usuários ou palavras-chave..."
+                        aria-label="Campo de busca"
+                    >
+                    <button class="search-clear" id="clearBtn" aria-label="Limpar busca">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="search-filters">
+                    <button class="filter-btn" data-filter="all" aria-pressed="true">
+                        <i class="fas fa-stream"></i>
+                        <span>Todos</span>
+                    </button>
+                    <button class="filter-btn" data-filter="posts">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Posts</span>
+                    </button>
+                    <button class="filter-btn" data-filter="users">
+                        <i class="fas fa-users"></i>
+                        <span>Usuários</span>
+                    </button>
+                    <button class="filter-btn" data-filter="locations">
+                        <i class="fas fa-map-pin"></i>
+                        <span>Locais</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Search Results -->
+            <div class="search-results" id="searchResults">
+                <div class="empty-state">
+                    <i class="fas fa-search"></i>
+                    <p>Utilize a barra de busca para encontrar postagens, usuários ou locais</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Safe Drive</div>
+            <div class="footer-links">
+                <a href="#">Sobre</a>
+                <a href="#">Contato</a>
+                <a href="#">Termos de Uso</a>
+                <a href="#">Política de Privacidade</a>
+                <a href="#">Ajuda</a>
+            </div>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="copyright">
+                © 2023 Safe Drive. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dados de exemplo para busca
+        const searchData = {
+            posts: [
+                { id: 1, title: 'Batida no mesmo ponto', author: 'Lucas', content: 'Mais uma batida no mesmo ponto! Quando será que vão sinalizar melhor essa curva?', type: 'post' },
+                { id: 2, title: 'Acidente na pista molhada', author: 'Ana', content: 'Acidente na pista molhada - cuidado com a aquaplanagem, pessoal!', type: 'post' },
+                { id: 3, title: 'Cruzamento sem semáforo', author: 'Eduarda', content: 'Batida no cruzamento sem semáforo. Motoristas, redobrem a atenção!', type: 'post' },
+                { id: 4, title: 'Segurança no trânsito', author: 'Paula', content: 'Celular no volante pode esperar. Sua vida, não!', type: 'post' },
+                { id: 5, title: 'Obra na via principal', author: 'Julio', content: 'Obra na via principal - procurem rotas alternativas!', type: 'post' },
+                { id: 6, title: 'Trânsito lento', author: 'Roberto', content: 'Trânsito lento por conta de obras. Paciência é a chave!', type: 'post' }
+            ],
+            users: [
+                { name: 'Lucas', title: 'Motorista Veterano', avatar: 'Imagens/ferrari.jpg' },
+                { name: 'Ana', title: 'Recém habilitada', avatar: 'Imagens/image-removebg-preview (1).png' },
+                { name: 'Eduarda', title: 'Recém habilitada', avatar: 'Imagens/sdd.jpg' },
+                { name: 'Paula', title: 'Novo(a) Usuario(a)', avatar: 'Imagens/mulher-lidiane-jones-bumble.webp' },
+                { name: 'Julio', title: 'Motorista de aplicativo', avatar: 'Imagens/image-removebg-preview (1).png' },
+                { name: 'Roberto', title: 'Motociclista', avatar: 'Imagens/pexels-photo-2379004.jpeg' }
+            ],
+            locations: [
+                { name: 'Avenida Principal', type: 'Via', incidents: 12 },
+                { name: 'Cruzamento sem semáforo', type: 'Cruzamento', incidents: 8 },
+                { name: 'Pista molhada - BR-101', type: 'Trecho', incidents: 5 },
+                { name: 'Via lateral (desvio)', type: 'Rota alternativa', incidents: 2 }
+            ]
+        };
+
+        const searchInput = document.getElementById('searchInput');
+        const clearBtn = document.getElementById('clearBtn');
+        const searchResults = document.getElementById('searchResults');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        let currentFilter = 'all';
+
+        // Função de busca
+        function performSearch(query) {
+            if (!query.trim()) {
+                searchResults.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-search"></i>
+                        <p>Utilize a barra de busca para encontrar postagens, usuários ou locais</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const results = [];
+            const lowerQuery = query.toLowerCase();
+
+            // Busca em posts
+            if (currentFilter === 'all' || currentFilter === 'posts') {
+                searchData.posts.forEach(post => {
+                    if (post.title.toLowerCase().includes(lowerQuery) || 
+                        post.content.toLowerCase().includes(lowerQuery) ||
+                        post.author.toLowerCase().includes(lowerQuery)) {
+                        results.push({ ...post, result_type: 'post' });
+                    }
+                });
+            }
+
+            // Busca em usuários
+            if (currentFilter === 'all' || currentFilter === 'users') {
+                searchData.users.forEach(user => {
+                    if (user.name.toLowerCase().includes(lowerQuery) || 
+                        user.title.toLowerCase().includes(lowerQuery)) {
+                        results.push({ ...user, result_type: 'user' });
+                    }
+                });
+            }
+
+            // Busca em locais
+            if (currentFilter === 'all' || currentFilter === 'locations') {
+                searchData.locations.forEach(location => {
+                    if (location.name.toLowerCase().includes(lowerQuery) || 
+                        location.type.toLowerCase().includes(lowerQuery)) {
+                        results.push({ ...location, result_type: 'location' });
+                    }
+                });
+            }
+
+            displayResults(results, query);
+        }
+
+        // Exibir resultados
+        function displayResults(results, query) {
+            if (results.length === 0) {
+                searchResults.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-search"></i>
+                        <p>Nenhum resultado encontrado para "<strong>${query}</strong>"</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = `<div class="results-count">Encontrados <strong>${results.length}</strong> resultado${results.length !== 1 ? 's' : ''}</div>`;
+
+            results.forEach(result => {
+                if (result.result_type === 'post') {
+                    html += `
+                        <div class="search-result-item result-post" data-post-id="${result.id}">
+                            <div class="result-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <div class="result-content">
+                                <h3 class="result-title">${result.title}</h3>
+                                <p class="result-meta">por <strong>${result.author}</strong></p>
+                                <p class="result-preview">${result.content}</p>
+                            </div>
+                        </div>
+                    `;
+                } else if (result.result_type === 'user') {
+                    html += `
+                        <div class="search-result-item result-user">
+                            <img src="${result.avatar}" alt="${result.name}" class="result-avatar">
+                            <div class="result-content">
+                                <h3 class="result-title">${result.name}</h3>
+                                <p class="result-meta">${result.title}</p>
+                            </div>
+                        </div>
+                    `;
+                } else if (result.result_type === 'location') {
+                    html += `
+                        <div class="search-result-item result-location">
+                            <div class="result-icon">
+                                <i class="fas fa-map-pin"></i>
+                            </div>
+                            <div class="result-content">
+                                <h3 class="result-title">${result.name}</h3>
+                                <p class="result-meta">${result.type} • ${result.incidents} incidentes</p>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            searchResults.innerHTML = html;
+
+            // Adicionar clique em posts
+            document.querySelectorAll('.result-post').forEach(item => {
+                item.addEventListener('click', function() {
+                    const postId = this.getAttribute('data-post-id');
+                    window.location.href = `post-${postId}.html`;
+                });
+            });
+        }
+
+        // Event listeners
+        searchInput.addEventListener('input', (e) => {
+            performSearch(e.target.value);
+            clearBtn.style.display = e.target.value ? 'flex' : 'none';
+        });
+
+        clearBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            searchInput.focus();
+            clearBtn.style.display = 'none';
+            performSearch('');
+        });
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.setAttribute('aria-pressed', 'false'));
+                this.setAttribute('aria-pressed', 'true');
+                currentFilter = this.getAttribute('data-filter');
+                performSearch(searchInput.value);
+            });
+        });
+
+        // Script para notificações (reutilizado de central.html)
+        const notificationsData = [
+            { id: 1, name: 'Lucas', avatar: 'Imagens/ferrari.jpg', time: '2h', type: 'notification-type-post', action: 'postou um novo post', icon: 'fa-edit', preview: 'Mais uma batida no mesmo ponto da avenida! Quando será que resolvem?', unread: true },
+            { id: 2, name: 'Ana', avatar: 'Imagens/image-removebg-preview (1).png', time: '4h', type: 'notification-type-comment', action: 'comentou no seu post', icon: 'fa-comment', preview: 'Verdade, eu também passei por ali ontem. Perigoso demais!', unread: true },
+            { id: 3, name: 'Eduarda', avatar: 'Imagens/sdd.jpg', time: '6h', type: 'notification-type-like', action: 'curtiu seu post', icon: 'fa-thumbs-up', preview: 'Post sobre cruzamento sem semáforo', unread: true },
+            { id: 4, name: 'Paula', avatar: 'Imagens/mulher-lidiane-jones-bumble.webp', time: '1d', type: 'notification-type-follow', action: 'começou a seguir você', icon: 'fa-user-plus', preview: 'Veja o perfil de Paula e suas contribuições', unread: false },
+            { id: 5, name: 'Julio', avatar: 'Imagens/image-removebg-preview (1).png', time: '1d', type: 'notification-type-reply', action: 'respondeu seu comentário', icon: 'fa-reply', preview: 'Concordo! A prefeitura deveria melhorar urgente.', unread: false },
+            { id: 6, name: 'Roberto', avatar: 'Imagens/pexels-photo-2379004.jpeg', time: '2d', type: 'notification-type-alert', action: 'postou uma denúncia de obra', icon: 'fa-flag', preview: 'Via principal interditada por reforma. Desviar pela avenida lateral.', unread: false }
+        ];
+
+        function renderNotifications() {
+            const container = document.getElementById('notificationContent');
+            if (!container) return;
+            const html = notificationsData.map(n => `
+                <div class="drawer-notification-card ${n.type} ${n.unread ? 'unread' : 'read'}" data-notif-id="${n.id}">
+                    <div class="drawer-card-header">
+                        <div class="drawer-card-avatar"><img src="${n.avatar}" alt="${n.name}"></div>
+                        <div class="drawer-card-info">
+                            <div class="drawer-card-header-row">
+                                <span class="drawer-card-name">${n.name}</span>
+                                <span class="drawer-card-time">${n.time}</span>
+                            </div>
+                            <div class="drawer-card-action"><i class="fas ${n.icon}"></i> ${n.action}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            container.innerHTML = html;
+            document.querySelectorAll('.drawer-notification-card').forEach(card => {
+                const unreadIcon = card.querySelector('.drawer-card-action i');
+                if (card.classList.contains('unread') && unreadIcon) {
+                    const markBtn = document.createElement('div');
+                    markBtn.style.cssText = 'width: 8px; height: 8px; background: #FFA000; border-radius: 50%; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);';
+                    card.style.position = 'relative';
+                    card.appendChild(markBtn);
+                }
+            });
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.drawer-notification-card')) {
+                    const card = e.target.closest('.drawer-notification-card');
+                    card.classList.remove('unread');
+                    card.classList.add('read');
+                    const indicator = card.querySelector('div[style*="background: #FFA000"]');
+                    if (indicator) indicator.remove();
+                    updateBadge();
+                }
+            });
+        }
+
+        function updateBadge() {
+            const badge = document.querySelector('.notification-badge');
+            const unreadCount = document.querySelectorAll('.drawer-notification-card.unread').length;
+            badge && (unreadCount ? (badge.classList.remove('zero'), badge.textContent = unreadCount) : badge.classList.add('zero'));
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderNotifications();
+            updateBadge();
+            const bell = document.querySelector('.notification-bell');
+            const drawer = document.getElementById('notificationDrawer');
+            const overlay = document.getElementById('notificationOverlay');
+            if (bell && drawer) {
+                bell.addEventListener('click', e => (e.stopPropagation(), drawer.classList.toggle('open'), overlay.classList.toggle('open')));
+                document.querySelector('.notification-drawer-close')?.addEventListener('click', () => (drawer.classList.remove('open'), overlay.classList.remove('open')));
+                overlay.addEventListener('click', () => (drawer.classList.remove('open'), overlay.classList.remove('open')));
+                document.addEventListener('keydown', e => e.key === 'Escape' && drawer.classList.contains('open') && (drawer.classList.remove('open'), overlay.classList.remove('open')));
+            }
+            
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navHeader = document.querySelector('.nav-header');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    navHeader.classList.toggle('active');
+                    const isExpanded = navHeader.classList.contains('active');
+                    this.setAttribute('aria-expanded', isExpanded);
+                    const icon = this.querySelector('i');
+                    if (isExpanded) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                        addOverlay();
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                        removeOverlay();
+                    }
+                });
+                function addOverlay() {
+                    const overlay = document.createElement('div');
+                    overlay.className = 'menu-overlay';
+                    overlay.style.cssText = `position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.3); z-index: 99;`;
+                    overlay.addEventListener('click', function() {
+                        navHeader.classList.remove('active');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                        document.body.removeChild(this);
+                    });
+                    document.body.appendChild(overlay);
+                }
+                function removeOverlay() {
+                    const overlay = document.querySelector('.menu-overlay');
+                    overlay && document.body.removeChild(overlay);
+                }
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > 768) {
+                        navHeader.classList.remove('active');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                        removeOverlay();
+                    }
+                });
+            }
+        });
+    </script>
+
+    <style>
+        .search-container {
+            margin: 30px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 500px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #FFA000;
+            font-size: 1.1rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 16px 12px 45px;
+            font-size: 1rem;
+            border: 2px solid #f0f0f0;
+            border-radius: 8px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #FFA000;
+            box-shadow: 0 0 0 3px rgba(255, 160, 0, 0.1);
+        }
+
+        .search-clear {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            display: none;
+            font-size: 1.2rem;
+        }
+
+        .search-clear:hover {
+            color: #FFA000;
+        }
+
+        .search-filters {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            background: white;
+            border: 2px solid #f0f0f0;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            color: #666;
+        }
+
+        .filter-btn:hover {
+            border-color: #FFA000;
+            color: #FFA000;
+        }
+
+        .filter-btn[aria-pressed="true"] {
+            background: #FFA000;
+            color: white;
+            border-color: #FFA000;
+        }
+
+        .search-results {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .results-count {
+            text-align: center;
+            color: #999;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            color: #ddd;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .search-result-item {
+            background: white;
+            border: 1px solid #f0f0f0;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .search-result-item:hover {
+            border-color: #FFA000;
+            box-shadow: 0 4px 12px rgba(255, 160, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .result-icon {
+            font-size: 1.5rem;
+            color: #FFA000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+        }
+
+        .result-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .result-content {
+            flex: 1;
+        }
+
+        .result-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .result-meta {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 6px;
+        }
+
+        .result-preview {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.4;
+            margin: 0;
+        }
+    </style>
+
+</body>
+
+</html>

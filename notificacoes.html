@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Notificações - Safe Drive</title>
+    <link rel="stylesheet" href="central.css">
+    <link rel="stylesheet" href="perfil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="shortcut icon" href="favicon.ico/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <header class="header-safe-drive">
+        <div class="logo">
+            <a href="p_safedrive.html" aria-label="Página inicial do Safe Drive">
+                <img src="Imagens/image-removebg-preview (1).png" alt="Logo Safe Drive" width="50" height="50">
+            </a>
+            <a href="p_safedrive.html">
+                <h1>Safe Drive</h1>
+            </a>
+        </div>
+        
+        <!-- Botão do menu hambúrguer para mobile -->
+        <button class="mobile-menu-btn" aria-label="Abrir menu" aria-expanded="false">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <nav class="nav-header" aria-label="Navegação principal">
+            <a href="mapa.html" class="nav-link">
+                <i class="fas fa-map-marker-alt mobile-icon"></i>
+                <span class="nav-text">Mapa ao vivo</span>
+            </a>
+            <a href="#" class="btn-postar nav-link">
+                <i class="fas fa-plus-circle mobile-icon"></i>
+                <span class="nav-text">Postar</span>
+            </a>
+            <a href="index.html" class="btn-entrar nav-link">
+                <i class="fas fa-sign-in-alt mobile-icon"></i>
+                <span class="nav-text">Entrar</span>
+            </a>
+        </nav>
+    </header>
+
+    <nav class="nav-secondary" aria-label="Navegação secundária">
+        <ul role="menu">
+            <li role="none">
+                <a href="central.html" role="menuitem">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-text">Área Geral</span>
+                </a>
+            </li>
+            <li role="none">
+                <a href="lucas-perfil.html" role="menuitem">
+                    <i class="fas fa-user"></i>
+                    <span class="nav-text">Perfil</span>
+                </a>
+            </li>
+            <li role="none">
+                <a href="notificacoes.html" role="menuitem" aria-current="page">
+                    <i class="fas fa-bell"></i>
+                    <span class="nav-text">Notificações</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="main-content-wrapper">
+        <div class="content-area">
+            <h1 class="page-title">Notificações</h1>
+
+            <div class="community-grid">
+                <!-- Notification 1: New Post (Unread) -->
+                <div class="notification-card notification-type-post unread">
+                    <div class="notification-unread-indicator"></div>
+                    <div class="notification-avatar">
+                        <img src="Imagens/ferrari.jpg" alt="Lucas">
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <strong class="notification-name">Lucas</strong>
+                            <span class="notification-time">2h</span>
+                        </div>
+                        <div class="notification-action-text">
+                            <i class="fas fa-edit notification-icon"></i>
+                            postou um novo post
+                        </div>
+                        <div class="notification-preview">
+                            Mais uma batida no mesmo ponto da avenida! Quando será que resolvem?
+                        </div>
+                    </div>
+                    <div class="notification-controls">
+                        <button class="notification-btn-mark" aria-label="Marcar como lido" title="Marcar como lido">
+                            <i class="fas fa-check"></i>
+                        </button>
+                        <button class="notification-menu" aria-label="Mais opções" title="Mais opções">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Notification 2: Comment (Unread) -->
+                <div class="notification-card notification-type-comment unread">
+                    <div class="notification-unread-indicator"></div>
+                    <div class="notification-avatar">
+                        <img src="Imagens/image-removebg-preview (1).png" alt="Ana">
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <strong class="notification-name">Ana</strong>
+                            <span class="notification-time">4h</span>
+                        </div>
+                        <div class="notification-action-text">
+                            <i class="fas fa-comment notification-icon"></i>
+                            comentou no seu post
+                        </div>
+                        <div class="notification-preview">
+                            "Verdade, eu também passei por ali ontem. Perigoso demais!"
+                        </div>
+                    </div>
+                    <div class="notification-controls">
+                        <button class="notification-btn-mark" aria-label="Marcar como lido">
+                            <i class="fas fa-check"></i>
+                        </button>
+                        <button class="notification-menu" aria-label="Mais opções">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Notification 3: Like (Unread) -->
+                <div class="notification-card notification-type-like unread">
+                    <div class="notification-unread-indicator"></div>
+                    <div class="notification-avatar">
+                        <img src="Imagens/sdd.jpg" alt="Eduarda">
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <strong class="notification-name">Eduarda</strong>
+                            <span class="notification-time">6h</span>
+                        </div>
+                        <div class="notification-action-text">
+                            <i class="fas fa-thumbs-up notification-icon"></i>
+                            curtiu seu post
+                        </div>
+                        <div class="notification-preview">
+                            Post sobre cruzamento sem semáforo
+                        </div>
+                    </div>
+                    <div class="notification-controls">
+                        <button class="notification-btn-mark" aria-label="Marcar como lido">
+                            <i class="fas fa-check"></i>
+                        </button>
+                        <button class="notification-menu" aria-label="Mais opções">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Notification 4: New Follower (Read) -->
+                <div class="notification-card notification-type-follow read">
+                    <div class="notification-unread-indicator"></div>
+                    <div class="notification-avatar">
+                        <img src="Imagens/mulher-lidiane-jones-bumble.webp" alt="Paula">
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <strong class="notification-name">Paula</strong>
+                            <span class="notification-time">1d</span>
+                        </div>
+                        <div class="notification-action-text">
+                            <i class="fas fa-user-plus notification-icon"></i>
+                            começou a seguir você
+                        </div>
+                        <div class="notification-preview">
+                            Veja o perfil de Paula e suas contribuições
+                        </div>
+                    </div>
+                    <div class="notification-controls">
+                        <button class="notification-btn-mark" aria-label="Marcar como lido">
+                            <i class="fas fa-check"></i>
+                        </button>
+                        <button class="notification-menu" aria-label="Mais opções">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Notification 5: Reply (Read) -->
+                <div class="notification-card notification-type-reply read">
+                    <div class="notification-unread-indicator"></div>
+                    <div class="notification-avatar">
+                        <img src="Imagens/image-removebg-preview (1).png" alt="Julio">
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <strong class="notification-name">Julio</strong>
+                            <span class="notification-time">1d</span>
+                        </div>
+                        <div class="notification-action-text">
+                            <i class="fas fa-reply notification-icon"></i>
+                            respondeu seu comentário
+                        </div>
+                        <div class="notification-preview">
+                            "Concordo! A prefeitura deveria melhorar urgente."
+                        </div>
+                    </div>
+                    <div class="notification-controls">
+                        <button class="notification-btn-mark" aria-label="Marcar como lido">
+                            <i class="fas fa-check"></i>
+                        </button>
+                        <button class="notification-menu" aria-label="Mais opções">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Notification 6: Report/Alert (Read) -->
+                <div class="notification-card notification-type-alert read">
+                    <div class="notification-unread-indicator"></div>
+                    <div class="notification-avatar">
+                        <img src="Imagens/pexels-photo-2379004.jpeg" alt="Roberto">
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <strong class="notification-name">Roberto</strong>
+                            <span class="notification-time">2d</span>
+                        </div>
+                        <div class="notification-action-text">
+                            <i class="fas fa-flag notification-icon"></i>
+                            postou uma denúncia de obra
+                        </div>
+                        <div class="notification-preview">
+                            Via principal interditada por reforma. Desviar pela avenida lateral.
+                        </div>
+                    </div>
+                    <div class="notification-controls">
+                        <button class="notification-btn-mark" aria-label="Marcar como lido">
+                            <i class="fas fa-check"></i>
+                        </button>
+                        <button class="notification-menu" aria-label="Mais opções">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Notification 7: New Feature (Read) -->
+                <div class="notification-card notification-type-feature read">
+                    <div class="notification-unread-indicator"></div>
+                    <div class="notification-avatar">
+                        <i class="fas fa-cog" style="font-size: 1.5rem; color: #ffc107;"></i>
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <strong class="notification-name">Safe Drive</strong>
+                            <span class="notification-time">3d</span>
+                        </div>
+                        <div class="notification-action-text">
+                            <i class="fas fa-star notification-icon"></i>
+                            novo recurso disponível
+                        </div>
+                        <div class="notification-preview">
+                            Compartilhe suas rotas seguras com amigos e comunidade!
+                        </div>
+                    </div>
+                    <div class="notification-controls">
+                        <button class="notification-btn-mark" aria-label="Marcar como lido">
+                            <i class="fas fa-check"></i>
+                        </button>
+                        <button class="notification-menu" aria-label="Mais opções">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Notification 8: Speed Warning (Read) -->
+                <div class="notification-card notification-type-warning read">
+                    <div class="notification-unread-indicator"></div>
+                    <div class="notification-avatar">
+                        <i class="fas fa-speedometer-alt" style="font-size: 1.5rem; color: #ff7043;"></i>
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <strong class="notification-name">Sistema Safe Drive</strong>
+                            <span class="notification-time">5d</span>
+                        </div>
+                        <div class="notification-action-text">
+                            <i class="fas fa-exclamation-triangle notification-icon"></i>
+                            alerta de velocidade detectada
+                        </div>
+                        <div class="notification-preview">
+                            Velocidade excessiva detectada na Avenida Paulista (95 km/h em zona 60)
+                        </div>
+                    </div>
+                    <div class="notification-controls">
+                        <button class="notification-btn-mark" aria-label="Marcar como lido">
+                            <i class="fas fa-check"></i>
+                        </button>
+                        <button class="notification-menu" aria-label="Mais opções">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Safe Drive</div>
+            <div class="footer-links">
+                <a href="#">Sobre</a>
+                <a href="#">Contato</a>
+                <a href="#">Termos de Uso</a>
+                <a href="#">Política de Privacidade</a>
+                <a href="#">Ajuda</a>
+            </div>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="copyright">
+                © 2023 Safe Drive. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script for mobile menu and accessibility mode -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modo_acessibilidade = localStorage.getItem('modo_acessibilidade') === 'true';
+            if (modo_acessibilidade) {
+                document.body.classList.add('modo-acessibilidade');
+            }
+
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navHeader = document.querySelector('.nav-header');
+            
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    navHeader.classList.toggle('active');
+                    const isExpanded = navHeader.classList.contains('active');
+                    this.setAttribute('aria-expanded', isExpanded);
+                    
+                    const icon = this.querySelector('i');
+                    if (isExpanded) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                        addOverlay();
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                        removeOverlay();
+                    }
+                });
+                
+                function addOverlay() {
+                    const overlay = document.createElement('div');
+                    overlay.className = 'menu-overlay';
+                    overlay.style.cssText = `
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background: rgba(0,0,0,0.3);
+                        z-index: 999;
+                    `;
+                    overlay.addEventListener('click', function() {
+                        navHeader.classList.remove('active');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                        document.body.removeChild(this);
+                    });
+                    document.body.appendChild(overlay);
+                }
+                
+                function removeOverlay() {
+                    const overlay = document.querySelector('.menu-overlay');
+                    if (overlay) {
+                        document.body.removeChild(overlay);
+                    }
+                }
+                
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > 768) {
+                        navHeader.classList.remove('active');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                        removeOverlay();
+                    }
+                });
+            }
+        });
+    </script>
+
+    <!-- Notifications Interactivity -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mark notification as read when clicking the checkmark button
+            const markButtons = document.querySelectorAll('.notification-btn-mark');
+            
+            markButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const card = this.closest('.notification-card');
+                    
+                    if (card.classList.contains('unread')) {
+                        card.classList.remove('unread');
+                        card.classList.add('read');
+                        
+                        // Optional: add animation
+                        this.style.animation = 'none';
+                        setTimeout(() => {
+                            this.style.animation = '';
+                        }, 10);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
