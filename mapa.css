@@ -314,4 +314,332 @@ body {
     }
 }
 
+/* ========================================
+   RESPONSIVIDADE FASE 2: MOBILE-FIRST
+   ======================================== */
+
+/* ========================================
+   DESKTOP (1200px+) - PADRÃO
+   ======================================== */
+@media (min-width: 1200px) {
+    .search-card {
+        width: 240px;
+    }
+
+    .search-box input {
+        max-width: 150px;
+        font-size: 12px;
+    }
+
+    .floating-posts-container {
+        width: 350px;
+        right: 20px;
+        top: 20px;
+        gap: 25px;
+        padding: 20px 10px 40px 15px;
+    }
+
+    #btn-voltar {
+        bottom: 35px;
+        right: 35px;
+        font-size: 16px;
+        padding: 12px 26px;
+    }
+}
+
+/* ========================================
+   TABLET GRANDE (1024px - 1199px)
+   ======================================== */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .search-card {
+        width: 235px;
+    }
+
+    .search-box input {
+        max-width: 140px;
+        font-size: 11.5px;
+    }
+
+    .floating-posts-container {
+        width: 330px;
+        right: 18px;
+        top: 18px;
+        gap: 22px;
+        padding: 18px 8px 35px 12px;
+    }
+
+    .floating-post-card .member-description {
+        font-size: 10.5px;
+    }
+
+    #btn-voltar {
+        bottom: 32px;
+        right: 32px;
+        font-size: 15px;
+        padding: 11px 24px;
+    }
+}
+
+/* ========================================
+   TABLET (768px - 1023px)
+   ======================================== */
+@media (max-width: 1023px) and (min-width: 768px) {
+    .search-card {
+        width: 220px;
+        padding: 11px;
+    }
+
+    .search-box {
+        padding: 5px;
+    }
+
+    .search-box input {
+        max-width: 130px;
+        font-size: 11px;
+    }
+
+    .icon-left, .icon-right {
+        width: 15px;
+    }
+
+    .recent-title {
+        margin-top: 12px;
+        font-size: 13px;
+    }
+
+    .recent-item {
+        padding: 10px;
+        border-radius: 12px;
+        margin-top: 8px;
+    }
+
+    .recent-item img {
+        width: 20px;
+    }
+
+    .recent-item .subtitle {
+        font-size: 10px;
+    }
+
+    .floating-posts-container {
+        display: none;
+    }
+
+    #btn-voltar {
+        bottom: 25px;
+        right: 25px;
+        font-size: 14px;
+        padding: 10px 22px;
+    }
+}
+
+/* ========================================
+   MOBILE GRANDE (480px - 767px)
+   ======================================== */
+@media (max-width: 767px) and (min-width: 480px) {
+    body {
+        overflow-y: auto;
+    }
+
+    .search-card {
+        width: 90%;
+        max-width: 240px;
+        position: fixed;
+        top: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 500;
+        padding: 10px;
+    }
+
+    .search-box {
+        padding: 5px;
+    }
+
+    .search-box input {
+        max-width: 120px;
+        font-size: 10px;
+    }
+
+    .icon-left, .icon-right {
+        width: 14px;
+    }
+
+    .recent-title {
+        margin-top: 10px;
+        font-size: 12px;
+    }
+
+    .recent-item {
+        padding: 9px;
+        border-radius: 10px;
+        margin-top: 7px;
+    }
+
+    .recent-item img {
+        width: 18px;
+    }
+
+    .recent-item .subtitle {
+        font-size: 9px;
+    }
+
+    #map {
+        margin-top: 0;
+    }
+
+    .floating-posts-container {
+        display: none;
+    }
+
+    #btn-voltar {
+        bottom: 20px;
+        right: 20px;
+        font-size: 13px;
+        padding: 9px 18px;
+        border-radius: 10px;
+    }
+}
+
+/* ========================================
+   MOBILE PEQUENO (320px - 479px)
+   ======================================== */
+@media (max-width: 479px) {
+    body {
+        overflow-y: auto;
+    }
+
+    .search-card {
+        width: calc(100% - 20px);
+        position: fixed;
+        top: 60px;
+        left: 10px;
+        right: 10px;
+        z-index: 500;
+        padding: 9px;
+        border-radius: 16px;
+    }
+
+    .search-box {
+        padding: 5px;
+        border-radius: 10px;
+    }
+
+    .search-box input {
+        max-width: 100px;
+        font-size: 10px;
+    }
+
+    .icon-left, .icon-right {
+        width: 13px;
+        opacity: 0.7;
+    }
+
+    .recent-title {
+        margin-top: 10px;
+        font-size: 11px;
+        font-weight: 600;
+    }
+
+    .recent-item {
+        padding: 8px;
+        border-radius: 8px;
+        margin-top: 6px;
+    }
+
+    .recent-item img {
+        width: 16px;
+    }
+
+    .recent-item-left {
+        gap: 8px;
+    }
+
+    .recent-item .subtitle {
+        font-size: 8px;
+    }
+
+    #map {
+        margin-top: 0;
+        height: calc(100vh - 60px);
+        top: 60px;
+    }
+
+    .floating-posts-container {
+        display: none;
+    }
+
+    #btn-voltar {
+        bottom: 15px;
+        right: 15px;
+        font-size: 12px;
+        padding: 8px 16px;
+        border-radius: 8px;
+    }
+
+    #btn-voltar:hover {
+        transform: scale(1.03);
+    }
+}
+
+/* ========================================
+   EXTRA SMALL (max 319px)
+   ======================================== */
+@media (max-width: 319px) {
+    .search-card {
+        width: calc(100% - 16px);
+        left: 8px;
+        right: 8px;
+        top: 55px;
+        padding: 8px;
+    }
+
+    .search-box {
+        padding: 4px;
+    }
+
+    .search-box input {
+        max-width: 80px;
+        font-size: 9px;
+    }
+
+    .icon-left, .icon-right {
+        width: 12px;
+    }
+
+    .recent-title {
+        margin-top: 8px;
+        font-size: 10px;
+    }
+
+    .recent-item {
+        padding: 7px;
+        margin-top: 5px;
+    }
+
+    .recent-item img {
+        width: 15px;
+    }
+
+    .recent-item-left {
+        gap: 6px;
+    }
+
+    .recent-item .subtitle {
+        font-size: 7px;
+    }
+
+    #map {
+        top: 55px;
+        height: calc(100vh - 55px);
+    }
+
+    #btn-voltar {
+        bottom: 12px;
+        right: 12px;
+        font-size: 11px;
+        padding: 7px 14px;
+    }
+}
+
 

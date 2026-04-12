@@ -395,6 +395,408 @@
     }
 }
 
+/* ========================================
+   RESPONSIVIDADE FASE 2: EXPANDED BREAKPOINTS
+   ======================================== */
+
+/* DESKTOP (1200px+) */
+@media (min-width: 1200px) {
+    .profile-bio-container {
+        padding: 20px 40px;
+        gap: 24px;
+    }
+
+    .profile-avatar {
+        width: 150px;
+        height: 150px;
+        min-width: 150px;
+    }
+
+    .profile-name {
+        font-size: 1.8em;
+    }
+
+    .profile-stats {
+        padding: 20px 40px;
+        gap: 40px;
+    }
+
+    .profile-posts-grid {
+        grid-template-columns: repeat(3, 1fr);
+        padding: 0 40px 40px 40px;
+        gap: 16px;
+        max-width: 1000px;
+    }
+
+    .posts-grid-title {
+        margin: 30px 0 25px 0;
+        font-size: 1.2em;
+    }
+}
+
+/* TABLET GRANDE (1024px - 1199px) */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .profile-bio-container {
+        padding: 20px 35px;
+        gap: 22px;
+    }
+
+    .profile-avatar {
+        width: 140px;
+        height: 140px;
+        min-width: 140px;
+    }
+
+    .profile-name {
+        font-size: 1.6em;
+    }
+
+    .profile-bio {
+        max-width: 380px;
+    }
+
+    .profile-stats {
+        padding: 18px 35px;
+        gap: 35px;
+    }
+
+    .stat-number {
+        font-size: 1.5em;
+    }
+
+    .profile-posts-grid {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 35px 35px 35px;
+        gap: 14px;
+    }
+
+    .posts-grid-title {
+        margin: 28px 0 22px 0;
+        font-size: 1.15em;
+    }
+}
+
+/* TABLET (768px - 1023px) */
+@media (max-width: 1023px) and (min-width: 768px) {
+    .profile-header {
+        height: 180px;
+        margin-bottom: -60px;
+    }
+
+    .profile-bio-container {
+        padding: 22px 28px;
+        gap: 20px;
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .profile-avatar {
+        width: 130px;
+        height: 130px;
+        min-width: 130px;
+    }
+
+    .profile-info {
+        padding-top: 5px;
+    }
+
+    .profile-name {
+        font-size: 1.5em;
+    }
+
+    .profile-badge {
+        font-size: 0.8rem;
+    }
+
+    .profile-bio {
+        max-width: 100%;
+        font-size: 0.92em;
+    }
+
+    .action-buttons {
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .action-buttons .btn-primary,
+    .action-buttons .btn-secondary {
+        padding: 8px 18px;
+        font-size: 0.85em;
+    }
+
+    .profile-stats {
+        padding: 18px 28px;
+        gap: 25px;
+    }
+
+    .stat-number {
+        font-size: 1.45em;
+    }
+
+    .stat-label {
+        font-size: 0.82em;
+    }
+
+    .profile-posts-grid {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 28px 28px 28px;
+        gap: 12px;
+    }
+
+    .posts-grid-title {
+        margin: 24px 0 18px 0;
+        font-size: 1.1em;
+    }
+}
+
+/* MOBILE GRANDE (480px - 767px) */
+@media (max-width: 767px) and (min-width: 480px) {
+    .profile-header {
+        height: 165px;
+        margin-bottom: -52px;
+    }
+
+    .profile-bio-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 18px;
+        gap: 12px;
+    }
+
+    .profile-avatar {
+        width: 115px;
+        height: 115px;
+        min-width: 115px;
+    }
+
+    .profile-name {
+        font-size: 1.35em;
+        margin: 8px 0 4px 0;
+    }
+
+    .profile-badge {
+        font-size: 0.78em;
+        padding: 5px 12px;
+        margin-top: 4px;
+    }
+
+    .profile-bio {
+        max-width: 100%;
+        font-size: 0.88em;
+        line-height: 1.4;
+        margin: 6px 0 0 0;
+    }
+
+    .action-buttons {
+        width: 100%;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 10px;
+    }
+
+    .action-buttons .btn-primary,
+    .action-buttons .btn-secondary {
+        flex: 1;
+        max-width: 140px;
+        padding: 8px 14px;
+        font-size: 0.85em;
+    }
+
+    .profile-stats {
+        padding: 14px 18px;
+        gap: 18px;
+    }
+
+    .stat-number {
+        font-size: 1.35em;
+    }
+
+    .stat-label {
+        font-size: 0.78em;
+    }
+
+    .profile-posts-grid {
+        grid-template-columns: repeat(1, 1fr);
+        padding: 0 15px 15px 15px;
+        gap: 10px;
+    }
+
+    .post-thumbnail {
+        aspect-ratio: 1;
+    }
+
+    .posts-grid-title {
+        margin: 18px 0 12px 0;
+        font-size: 1.05em;
+    }
+}
+
+/* MOBILE PEQUENO (320px - 479px) */
+@media (max-width: 479px) {
+    .profile-header {
+        height: 150px;
+        margin-bottom: -48px;
+    }
+
+    .profile-bio-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 16px;
+        gap: 10px;
+    }
+
+    .profile-avatar {
+        width: 100px;
+        height: 100px;
+        min-width: 100px;
+        border: 3px solid #FFA000;
+    }
+
+    .profile-name {
+        font-size: 1.2em;
+        margin: 6px 0 2px 0;
+        font-weight: 700;
+    }
+
+    .profile-badge {
+        font-size: 0.75rem;
+        padding: 4px 10px;
+        margin-top: 3px;
+    }
+
+    .profile-bio {
+        max-width: 100%;
+        font-size: 0.85em;
+        line-height: 1.35;
+        margin: 4px 0 0 0;
+    }
+
+    .action-buttons {
+        width: 100%;
+        flex-direction: column;
+        gap: 6px;
+        margin-top: 8px;
+    }
+
+    .action-buttons .btn-primary,
+    .action-buttons .btn-secondary {
+        font-size: 0.8em;
+        padding: 6px 12px;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .profile-stats {
+        padding: 12px 15px;
+        gap: 15px;
+    }
+
+    .stat-item {
+        flex: 1;
+    }
+
+    .stat-number {
+        font-size: 1.25em;
+    }
+
+    .stat-label {
+        font-size: 0.75em;
+    }
+
+    .profile-posts-grid {
+        grid-template-columns: 1fr;
+        padding: 0 12px 12px 12px;
+        gap: 8px;
+    }
+
+    .posts-grid-title {
+        margin: 15px 0 10px 0;
+        font-size: 1em;
+        padding-bottom: 10px;
+    }
+
+    .post-thumbnail {
+        border-radius: 10px;
+    }
+
+    .post-thumbnail-text i {
+        font-size: 2.2rem;
+    }
+
+    .post-thumbnail-text p {
+        font-size: 0.9rem;
+    }
+}
+
+/* EXTRA SMALL (max 319px) */
+@media (max-width: 319px) {
+    .profile-header {
+        height: 140px;
+        margin-bottom: -44px;
+    }
+
+    .profile-bio-container {
+        padding: 14px;
+        gap: 8px;
+    }
+
+    .profile-avatar {
+        width: 90px;
+        height: 90px;
+        min-width: 90px;
+    }
+
+    .profile-name {
+        font-size: 1.1em;
+    }
+
+    .profile-badge {
+        font-size: 0.7em;
+        padding: 3px 8px;
+    }
+
+    .profile-bio {
+        font-size: 0.8em;
+    }
+
+    .action-buttons {
+        gap: 5px;
+        margin-top: 6px;
+    }
+
+    .action-buttons .btn-primary,
+    .action-buttons .btn-secondary {
+        font-size: 0.75em;
+        padding: 5px 10px;
+    }
+
+    .profile-stats {
+        padding: 10px 12px;
+        gap: 12px;
+    }
+
+    .stat-number {
+        font-size: 1.2em;
+    }
+
+    .stat-label {
+        font-size: 0.7em;
+    }
+
+    .profile-posts-grid {
+        padding: 0 10px 10px 10px;
+        gap: 6px;
+    }
+
+    .posts-grid-title {
+        margin: 12px 0 8px 0;
+        font-size: 0.95em;
+    }
+}
+
 /* ============================================
    ACCESSIBILITY MODE
    ============================================ */

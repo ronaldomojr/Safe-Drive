@@ -250,6 +250,542 @@
     }
 }
 
+/* ========================================
+   RESPONSIVIDADE FASE 1: MOBILE-FIRST
+   ======================================== */
+
+/* ========================================
+   DESKTOP (1200px+) - PADRÃO
+   ======================================== */
+@media (min-width: 1200px) {
+    .post-container {
+        max-width: 650px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    .post-content {
+        padding: 30px;
+    }
+
+    .post-content .post-image-container img {
+        max-height: 350px;
+    }
+}
+
+/* ========================================
+   TABLET GRANDE (1024px - 1199px)
+   ======================================== */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .post-container {
+        max-width: 630px;
+        margin: 35px auto;
+        padding: 0 20px;
+    }
+
+    .post-content {
+        padding: 28px;
+    }
+
+    .post-content .post-image-container img {
+        max-height: 330px;
+    }
+
+    .comments-section {
+        margin-top: 35px;
+        padding-top: 28px;
+    }
+
+    .comment-author {
+        font-size: 0.93rem;
+    }
+}
+
+/* ========================================
+   TABLET (768px - 1023px) - BREAKPOINT PRINCIPAL
+   ======================================== */
+@media (max-width: 1023px) and (min-width: 768px) {
+    .post-container {
+        max-width: 100%;
+        margin: 30px auto;
+        padding: 0 20px;
+    }
+
+    .post-fullscreen {
+        border-radius: 10px;
+        box-shadow: 0 3px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    .post-breadcrumb {
+        padding: 14px 20px;
+        font-size: 0.95em;
+    }
+
+    .post-content {
+        padding: 24px;
+    }
+
+    .post-content .post-image-container {
+        margin: 18px -24px -24px -24px;
+        width: calc(100% + 48px);
+    }
+
+    .post-content .post-image-container img {
+        max-height: 320px;
+    }
+
+    .member-header {
+        padding: 12px;
+    }
+
+    .member-info {
+        gap: 10px;
+    }
+
+    .member-name {
+        font-size: 0.95em;
+    }
+
+    .member-description {
+        font-size: 0.9em;
+        padding: 12px;
+    }
+
+    .post-actions {
+        padding: 12px;
+    }
+
+    .action-btn {
+        padding: 8px 10px;
+        font-size: 0.9em;
+    }
+
+    .comments-section {
+        margin-top: 32px;
+        padding-top: 24px;
+    }
+
+    .comments-header {
+        font-size: 1.2em;
+        margin-bottom: 18px;
+    }
+
+    .comment {
+        padding: 14px 0;
+    }
+
+    .comment-author {
+        font-size: 0.93rem;
+    }
+
+    .comment-text {
+        font-size: 0.9em;
+    }
+
+    .comments-placeholder {
+        padding: 30px 18px;
+        border-radius: 6px;
+    }
+}
+
+/* ========================================
+   MOBILE GRANDE (480px - 767px)
+   ======================================== */
+@media (max-width: 767px) and (min-width: 480px) {
+    .post-container {
+        max-width: 100%;
+        margin: 25px auto;
+        padding: 0 15px;
+    }
+
+    .post-fullscreen {
+        border-radius: 8px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .post-breadcrumb {
+        padding: 12px 15px;
+        font-size: 0.93em;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .post-breadcrumb a {
+        gap: 4px;
+    }
+
+    .post-breadcrumb i {
+        font-size: 1em;
+    }
+
+    .post-content {
+        padding: 18px;
+    }
+
+    .post-content .post-image-container {
+        margin: 15px -18px -18px -18px;
+        width: calc(100% + 36px);
+    }
+
+    .post-content .post-image-container img {
+        max-height: 280px;
+    }
+
+    .member-header {
+        padding: 12px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .member-info {
+        width: 100%;
+        gap: 8px;
+    }
+
+    .member-details {
+        gap: 2px;
+    }
+
+    .member-name {
+        font-size: 0.95em;
+    }
+
+    .member-time {
+        font-size: 0.8em;
+    }
+
+    .member-status {
+        font-size: 0.8em;
+        align-self: flex-start;
+    }
+
+    .member-description {
+        font-size: 0.9em;
+        padding: 10px;
+        line-height: 1.4;
+    }
+
+    .post-actions {
+        padding: 10px;
+    }
+
+    .action-btn {
+        padding: 8px 8px;
+        font-size: 0.85em;
+        gap: 3px;
+    }
+
+    .action-btn i {
+        font-size: 0.9em;
+    }
+
+    .comments-section {
+        margin-top: 28px;
+        padding-top: 18px;
+    }
+
+    .comments-header {
+        font-size: 1.15em;
+        margin-bottom: 16px;
+    }
+
+    .comment {
+        gap: 10px;
+        padding: 12px 0;
+    }
+
+    .comment-avatar {
+        width: 40px;
+        height: 40px;
+    }
+
+    .comment-author {
+        font-size: 0.9rem;
+    }
+
+    .comment-time {
+        font-size: 0.78rem;
+    }
+
+    .comment-text {
+        font-size: 0.88em;
+        line-height: 1.4;
+    }
+
+    .comments-placeholder {
+        padding: 25px 15px;
+        border-radius: 6px;
+    }
+
+    .comments-placeholder p {
+        font-size: 0.95em;
+    }
+
+    .comments-placeholder .comment-icon {
+        font-size: 2.3em;
+        margin-bottom: 12px;
+    }
+}
+
+/* ========================================
+   MOBILE PEQUENO (320px - 479px)
+   ======================================== */
+@media (max-width: 479px) {
+    .post-container {
+        max-width: 100%;
+        margin: 20px auto;
+        padding: 0 12px;
+    }
+
+    .post-fullscreen {
+        border-radius: 6px;
+        box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .post-breadcrumb {
+        padding: 10px 12px;
+        font-size: 0.9em;
+    }
+
+    .post-breadcrumb a {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .post-breadcrumb i {
+        font-size: 0.95em;
+    }
+
+    .post-content {
+        padding: 14px;
+    }
+
+    .post-content .post-image-container {
+        margin: 12px -14px -14px -14px;
+        width: calc(100% + 28px);
+        max-height: 250px;
+        padding: 0;
+    }
+
+    .post-content .post-image-container img {
+        max-height: 250px;
+        border-radius: 0;
+    }
+
+    .member-header {
+        padding: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .member-info {
+        width: 100%;
+        gap: 8px;
+    }
+
+    .member-details {
+        gap: 1px;
+    }
+
+    .member-name {
+        font-size: 0.95em;
+        font-weight: 700;
+    }
+
+    .member-time {
+        font-size: 0.78em;
+    }
+
+    .member-status {
+        font-size: 0.75em;
+        padding: 3px 8px;
+        align-self: flex-start;
+    }
+
+    .member-description {
+        font-size: 0.88em;
+        padding: 10px;
+        line-height: 1.4;
+    }
+
+    .post-actions {
+        padding: 8px 10px;
+    }
+
+    .action-btn {
+        padding: 6px 6px;
+        font-size: 0.8em;
+        gap: 3px;
+    }
+
+    .action-btn i {
+        font-size: 0.85em;
+    }
+
+    .comments-section {
+        margin-top: 24px;
+        padding-top: 16px;
+    }
+
+    .comments-header {
+        font-size: 1.1em;
+        margin-bottom: 14px;
+    }
+
+    .comment {
+        gap: 8px;
+        padding: 10px 0;
+    }
+
+    .comment-avatar {
+        width: 38px;
+        height: 38px;
+    }
+
+    .comment-content {
+        gap: 4px;
+    }
+
+    .comment-header {
+        gap: 6px;
+    }
+
+    .comment-author {
+        font-size: 0.88rem;
+    }
+
+    .comment-time {
+        font-size: 0.75rem;
+    }
+
+    .comment-text {
+        font-size: 0.85em;
+        line-height: 1.4;
+        margin: 0;
+    }
+
+    .comments-placeholder {
+        padding: 20px 12px;
+        border-radius: 5px;
+    }
+
+    .comments-placeholder p {
+        font-size: 0.92em;
+    }
+
+    .comments-placeholder .comment-icon {
+        font-size: 2.2em;
+        margin-bottom: 10px;
+    }
+}
+
+/* ========================================
+   EXTRA SMALL (max 319px)
+   ======================================== */
+@media (max-width: 319px) {
+    .post-container {
+        padding: 0 10px;
+        margin: 15px auto;
+    }
+
+    .post-fullscreen {
+        border-radius: 5px;
+    }
+
+    .post-breadcrumb {
+        padding: 8px 10px;
+        font-size: 0.85em;
+    }
+
+    .post-content {
+        padding: 12px;
+    }
+
+    .post-content .post-image-container {
+        margin: 10px -12px -12px -12px;
+        width: calc(100% + 24px);
+    }
+
+    .post-content .post-image-container img {
+        max-height: 220px;
+    }
+
+    .member-header {
+        padding: 8px;
+    }
+
+    .member-name {
+        font-size: 0.9em;
+    }
+
+    .member-time {
+        font-size: 0.75em;
+    }
+
+    .member-description {
+        padding: 8px;
+        font-size: 0.85em;
+    }
+
+    .post-actions {
+        padding: 6px 8px;
+    }
+
+    .action-btn {
+        padding: 5px 4px;
+        font-size: 0.75em;
+    }
+
+    .comments-section {
+        margin-top: 20px;
+        padding-top: 12px;
+    }
+
+    .comments-header {
+        font-size: 1.05em;
+        margin-bottom: 12px;
+    }
+
+    .comment {
+        gap: 6px;
+        padding: 8px 0;
+    }
+
+    .comment-avatar {
+        width: 36px;
+        height: 36px;
+    }
+
+    .comment-author {
+        font-size: 0.85rem;
+    }
+
+    .comment-time {
+        font-size: 0.72rem;
+    }
+
+    .comment-text {
+        font-size: 0.82em;
+    }
+
+    .comments-placeholder {
+        padding: 18px 10px;
+        border-radius: 4px;
+    }
+
+    .comments-placeholder p {
+        font-size: 0.9em;
+    }
+
+    .comments-placeholder .comment-icon {
+        font-size: 2em;
+        margin-bottom: 8px;
+    }
+}
+
 /* Accessibility Mode */
 body.modo-acessibilidade .post-fullscreen {
     background: #000000 !important;

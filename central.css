@@ -326,6 +326,48 @@ ul {
     box-shadow: 0 6px 18px rgba(255, 255, 255, 0.3);
 }
 
+/* Estilos para menu mobile aberto */
+.nav-header.active {
+    color: white !important;
+}
+
+.nav-header.active *,
+.nav-header.active a,
+.nav-header.active span,
+.nav-header.active i,
+.nav-header.active .nav-text,
+.nav-header.active .mobile-icon {
+    color: white !important;
+}
+
+.nav-header.active .nav-link,
+.nav-header.active .nav-link i,
+.nav-header.active .nav-link .mobile-icon,
+.nav-header.active .nav-link .nav-text {
+    color: white !important;
+}
+
+.nav-header.active .btn-postar,
+.nav-header.active .btn-postar i,
+.nav-header.active .btn-postar .mobile-icon,
+.nav-header.active .btn-postar .nav-text {
+    color: white !important;
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.nav-header.active .btn-entrar,
+.nav-header.active .btn-entrar i,
+.nav-header.active .btn-entrar .mobile-icon,
+.nav-header.active .btn-entrar .nav-text {
+    color: white !important;
+    background-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.nav-header.active .notification-bell,
+.nav-header.active .notification-bell i {
+    color: white !important;
+}
+
 .avatar-placeholder {
     width: 45px;
     height: 45px;
@@ -562,10 +604,12 @@ footer {
         padding: 12px 15px;
         border-radius: 4px;
         background-color: rgba(255, 255, 255, 0.1);
+        color: white;
     }
     
     .nav-header a:hover {
         background-color: rgba(255, 255, 255, 0.2);
+        color: white;
     }
     
     .mobile-icon {
@@ -581,6 +625,7 @@ footer {
     
     .btn-postar {
         background-color: rgba(255, 255, 255, 0.2);
+        color: white;
     }
     
     .btn-entrar {
@@ -1264,5 +1309,621 @@ footer {
 
     .drawer-card-action {
         font-size: 0.8rem;
+    }
+}
+
+/* ========================================
+   RESPONSIVIDADE FASE 1: MOBILE-FIRST
+   ======================================== */
+
+/* ========================================
+   DESKTOP (1200px+) - PADRÃO
+   ======================================== */
+@media (min-width: 1200px) {
+    .community-grid {
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .logo img {
+        height: 50px;
+    }
+
+    .header-safe-drive {
+        padding: 15px 30px;
+    }
+}
+
+/* ========================================
+   TABLET GRANDE (1024px - 1199px)
+   ======================================== */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .community-grid {
+        max-width: 480px;
+    }
+
+    .header-safe-drive {
+        padding: 14px 25px;
+    }
+
+    .logo img {
+        height: 48px;
+    }
+
+    .logo h1 {
+        font-size: 1.4em;
+    }
+
+    .nav-header a {
+        font-size: 0.88em;
+        padding: 8px 12px;
+    }
+}
+
+/* ========================================
+   TABLET (768px - 1023px) - BREAKPOINT PRINCIPAL
+   ======================================== */
+@media (max-width: 1023px) and (min-width: 768px) {
+    /* Header adjustments */
+    .header-safe-drive {
+        padding: 12px 20px;
+    }
+
+    .logo img {
+        height: 45px;
+    }
+
+    .logo h1 {
+        font-size: 1.3em;
+    }
+
+    /* Navigation adjustments */
+    .nav-header {
+        display: flex;
+        gap: 8px;
+    }
+
+    .nav-header a {
+        font-size: 0.85em;
+        padding: 8px 10px;
+        margin-left: 10px;
+    }
+
+    .mobile-menu-btn {
+        display: none;
+    }
+
+    /* Secondary navigation */
+    .nav-secondary ul {
+        padding: 0 15px;
+        flex-wrap: nowrap;
+    }
+
+    .nav-secondary li {
+        padding: 0 10px;
+    }
+
+    .nav-secondary li a {
+        font-size: 0.9em;
+        padding: 8px 0;
+    }
+
+    /* Content grid */
+    .community-grid {
+        max-width: 100%;
+        padding: 0 20px;
+        gap: 15px;
+    }
+
+    .member-card {
+        width: 100%;
+    }
+
+    .post-image-container {
+        max-height: 350px;
+    }
+
+    .post-image-container img {
+        height: 350px;
+    }
+
+    /* Main content wrapper */
+    .main-content-wrapper {
+        padding: 0 15px;
+        margin: 15px auto;
+    }
+
+    /* Typography */
+    .content-area h2 {
+        font-size: 1.6em;
+        margin-bottom: 18px;
+    }
+
+    .member-name {
+        font-size: 0.95em;
+    }
+
+    .member-description {
+        font-size: 0.9em;
+    }
+
+    /* Notification drawer */
+    .notification-drawer {
+        width: calc(100vw - 40px);
+        max-height: 70vh;
+    }
+
+    .notification-drawer-content {
+        max-height: calc(70vh - 70px);
+    }
+
+    .drawer-notification-card {
+        min-height: 75px;
+    }
+}
+
+/* ========================================
+   MOBILE GRANDE (480px - 767px)
+   ======================================== */
+@media (max-width: 767px) and (min-width: 480px) {
+    /* Header */
+    .header-safe-drive {
+        padding: 12px 15px;
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .logo {
+        flex: 1;
+        justify-content: space-between;
+    }
+
+    .logo img {
+        height: 42px;
+    }
+
+    .logo h1 {
+        font-size: 1.2em;
+    }
+
+    /* Navigation */
+    .nav-header {
+        display: none;
+        position: fixed;
+        top: 65px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background-color: #FFA000;
+        z-index: 1000;
+        padding: 12px;
+        gap: 8px;
+        max-height: calc(100vh - 65px);
+        overflow-y: auto;
+    }
+
+    .nav-header.active {
+        display: flex;
+    }
+
+    .nav-header a {
+        padding: 12px 15px;
+        font-size: 0.95em;
+        text-align: left;
+        width: 100%;
+        border-radius: 6px;
+        background-color: rgba(255, 255, 255, 0.1);
+        margin-left: 0;
+        color: white;
+    }
+
+    .nav-header a:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: white;
+    }
+
+    .mobile-menu-btn {
+        display: block !important;
+    }
+
+    /* Secondary navigation */
+    .nav-secondary {
+        margin-top: 0;
+    }
+
+    .nav-secondary ul {
+        padding: 0 10px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-secondary li {
+        padding: 0 8px;
+        flex-shrink: 0;
+    }
+
+    .nav-secondary li a {
+        font-size: 0.85em;
+        padding: 8px 4px;
+    }
+
+    /* Content grid */
+    .community-grid {
+        max-width: 100%;
+        padding: 0 15px;
+        gap: 12px;
+    }
+
+    .member-card {
+        width: 100%;
+    }
+
+    .post-image-container {
+        max-height: 300px;
+    }
+
+    .post-image-container img {
+        height: 300px;
+    }
+
+    .member-header {
+        padding: 12px;
+    }
+
+    .member-status {
+        font-size: 0.8em;
+    }
+
+    /* Main content */
+    .main-content-wrapper {
+        padding: 0 12px;
+        margin: 12px auto;
+    }
+
+    .content-area h2 {
+        font-size: 1.5em;
+    }
+
+    /* Typography */
+    .member-name {
+        font-size: 0.95em;
+    }
+
+    .member-description {
+        font-size: 0.9em;
+    }
+
+    .action-btn {
+        padding: 8px 10px;
+        font-size: 0.85em;
+    }
+
+    /* Notification drawer */
+    .notification-drawer {
+        width: calc(100vw - 30px);
+        top: 60px;
+    }
+
+    .notification-drawer.open {
+        max-height: 75vh;
+    }
+
+    .notification-drawer-content {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .drawer-notification-card {
+        min-height: 70px;
+    }
+}
+
+/* ========================================
+   MOBILE PEQUENO (320px - 479px)
+   ======================================== */
+@media (max-width: 479px) {
+    /* Header */
+    .header-safe-drive {
+        padding: 10px 12px;
+    }
+
+    .logo {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .logo img {
+        height: 38px;
+    }
+
+    .logo h1 {
+        font-size: 1.1em;
+        font-weight: 700;
+    }
+
+    /* Navigation */
+    .nav-header {
+        display: none;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background-color: #FFA000;
+        z-index: 1000;
+        padding: 10px;
+        gap: 6px;
+        max-height: calc(100vh - 60px);
+        overflow-y: auto;
+    }
+
+    .nav-header.active {
+        display: flex;
+    }
+
+    .nav-header a {
+        padding: 10px 12px;
+        font-size: 0.9em;
+        width: 100%;
+        border-radius: 4px;
+        background-color: rgba(255, 255, 255, 0.1);
+        margin-left: 0;
+        text-align: left;
+        color: white;
+    }
+
+    .nav-header a:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: white;
+    }
+
+    .mobile-menu-btn {
+        display: block !important;
+        font-size: 1.3em;
+    }
+
+    .btn-postar, .btn-entrar {
+        padding: 8px 6px !important;
+        font-size: 0.85em;
+    }
+
+    .btn-entrar {
+        padding: 8px 12px !important;
+    }
+
+    .nav-text {
+        display: none;
+    }
+
+    .mobile-icon {
+        display: inline !important;
+    }
+
+    /* Secondary navigation - always horizontal scrollable */
+    .nav-secondary {
+        padding: 0;
+        margin: 0;
+    }
+
+    .nav-secondary ul {
+        padding: 0 8px;
+        gap: 0;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .nav-secondary ul::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-secondary li {
+        padding: 0 6px;
+        flex-shrink: 0;
+    }
+
+    .nav-secondary li a {
+        font-size: 0.8em;
+        padding: 8px 2px;
+        white-space: nowrap;
+    }
+
+    .nav-secondary li a i {
+        margin-right: 3px;
+        font-size: 0.85em;
+    }
+
+    /* Content grid */
+    .community-grid {
+        max-width: 100%;
+        padding: 0 12px;
+        gap: 10px;
+    }
+
+    .member-card {
+        width: 100%;
+    }
+
+    .post-image-container {
+        max-height: 250px;
+    }
+
+    .post-image-container img {
+        height: 250px;
+    }
+
+    .member-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .member-info {
+        width: 100%;
+    }
+
+    .member-status {
+        font-size: 0.75em;
+        padding: 3px 8px;
+        align-self: flex-start;
+    }
+
+    .member-description {
+        padding: 10px;
+        font-size: 0.88em;
+        line-height: 1.4;
+    }
+
+    /* Actions */
+    .post-actions {
+        padding: 8px 10px;
+    }
+
+    .action-btn {
+        padding: 6px 8px;
+        font-size: 0.8em;
+        gap: 3px;
+    }
+
+    .action-btn i {
+        font-size: 0.85em;
+    }
+
+    /* Main content */
+    .main-content-wrapper {
+        padding: 0 10px;
+        margin: 10px auto;
+    }
+
+    .content-area h2 {
+        font-size: 1.3em;
+        margin-bottom: 12px;
+    }
+
+    /* Typography */
+    .member-name {
+        font-size: 0.95em;
+    }
+
+    .member-time {
+        font-size: 0.75em;
+    }
+
+    /* Notification drawer */
+    .notification-drawer {
+        width: calc(100vw - 20px);
+        top: 56px;
+    }
+
+    .notification-drawer.open {
+        max-height: 80vh;
+    }
+
+    .notification-drawer-header {
+        padding: 12px 14px;
+    }
+
+    .notification-drawer-content {
+        padding: 8px;
+        gap: 8px;
+        max-height: calc(80vh - 60px);
+    }
+
+    .drawer-notification-card {
+        border-radius: 8px;
+        padding: 9px;
+        min-height: 65px;
+    }
+
+    .drawer-card-avatar {
+        width: 38px;
+        height: 38px;
+    }
+
+    .drawer-card-name {
+        font-size: 0.9em;
+    }
+
+    .drawer-card-action {
+        font-size: 0.75em;
+    }
+
+    /* Footer */
+    .footer-links {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    footer {
+        padding: 15px 10px;
+    }
+}
+
+/* ========================================
+   EXTRA SMALL (max 320px)
+   ======================================== */
+@media (max-width: 319px) {
+    .header-safe-drive {
+        padding: 8px 10px;
+    }
+
+    .logo img {
+        height: 36px;
+    }
+
+    .logo h1 {
+        font-size: 1em;
+        font-weight: 700;
+    }
+
+    .mobile-menu-btn {
+        font-size: 1.2em;
+        padding: 6px;
+    }
+
+    .nav-secondary li a {
+        font-size: 0.75em;
+        padding: 6px 2px;
+    }
+
+    .community-grid {
+        padding: 0 10px;
+    }
+
+    .post-image-container {
+        max-height: 220px;
+    }
+
+    .post-image-container img {
+        height: 220px;
+    }
+
+    .main-content-wrapper {
+        padding: 0 8px;
+    }
+
+    .content-area h2 {
+        font-size: 1.2em;
+    }
+
+    .member-header {
+        padding: 8px;
+    }
+
+    .member-description {
+        padding: 8px;
+        font-size: 0.85em;
+    }
+
+    .notification-drawer {
+        width: calc(100vw - 16px);
+    }
+
+    footer {
+        padding: 12px 8px;
+        font-size: 0.9em;
     }
 }
