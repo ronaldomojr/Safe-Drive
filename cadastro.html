@@ -18,7 +18,7 @@
                 <p class="credenciais">Insira suas informações para seu cadastro</p>
             </section>
 
-            <form id="formCadastro">
+            <form id="formCadastro" novalidate>
 
                 <div class="campo">
                     <label>Nome</label>
@@ -32,6 +32,7 @@
                         id="email"
                         placeholder="Digite seu e-mail"
                         required>
+                    <p class="mensagem-erro" id="erroEmail">Email inválido</p>
                 </div>
 
                 <div class="campo">
@@ -43,15 +44,8 @@
                         id="senha"
                         placeholder="Digite sua senha"
                         required>
+                    <p class="mensagem-erro" id="erroSenha">Senha deve ter 8+ caracteres, letra maiúscula, número e caractere especial</p>
                 </div>
-
-                <p id="erroEmail" style="color:red; display:none;">
-                    Insira um e-mail válido.
-                </p>
-
-                <p id="erroSenha" style="color:red; display:none;">
-                    A senha deve ter no mínimo 8 caracteres, uma letra maiúscula e um caractere especial.
-                </p>
 
                 <button type="submit" class="botlogin">Inscreva-se</button>
 
@@ -86,27 +80,36 @@
         const erroEmail = document.getElementById("erroEmail");
         const erroSenha = document.getElementById("erroSenha");
 
+        emailInput.addEventListener('input', function() {
+            this.classList.remove('erro');
+            erroEmail.classList.remove('show');
+        });
+
+        senhaInput.addEventListener('input', function() {
+            this.classList.remove('erro');
+            erroSenha.classList.remove('show');
+        });
+
         form.addEventListener("submit", function (event) {
             event.preventDefault();
 
-            const email = emailInput.value;
+            const email = emailInput.value.trim();
             const senha = senhaInput.value;
 
             const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             const senhaForte = /^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
 
-            erroEmail.style.display = "none";
-            erroSenha.style.display = "none";
-
             let valido = true;
 
             if (!emailValido.test(email)) {
-                erroEmail.style.display = "block";
+                emailInput.classList.add('erro');
+                erroEmail.classList.add('show');
                 valido = false;
             }
 
             if (!senhaForte.test(senha)) {
-                erroSenha.style.display = "block";
+                senhaInput.classList.add('erro');
+                erroSenha.classList.add('show');
                 valido = false;
             }
 

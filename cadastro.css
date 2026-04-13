@@ -115,6 +115,28 @@
     border-color: #888;
 }
 
+.campo input.erro {
+    border-color: #e74c3c;
+    background-color: #fff5f5;
+}
+
+.campo input.erro:focus {
+    border-color: #e74c3c;
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
+
+.mensagem-erro {
+    color: #e74c3c;
+    font-size: 13px;
+    margin-top: 6px;
+    display: none;
+    font-weight: 500;
+}
+
+.mensagem-erro.show {
+    display: block;
+}
+
 .botlogin {
     display: block;
     width: 100%;

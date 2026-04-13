@@ -51,14 +51,6 @@ const SearchControl = L.Control.extend({
 
 map.addControl(new SearchControl({ position: "topleft" }));
 
-
-document.getElementById("btn-voltar").addEventListener("click", () => {
-    // Coloque aqui o que você quiser:
-    // window.location.href = "index.html";
-    // history.back();
-    alert("Voltando...");
-});
-
 // Dados de localizações com batidas e obras
 const locations = {
     1: {

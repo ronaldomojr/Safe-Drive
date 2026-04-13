@@ -17,10 +17,11 @@
                 <p class="credenciais">Insira suas credenciais para acessar sua conta</p>
             </section>
 
-            <form id="loginForm">
+            <form id="loginForm" novalidate>
                 <div class="campo">
                     <label>Endereço de email</label>
-                    <input type="email" id="email" placeholder="Digite seu e-mail" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required>
+                    <input type="email" id="email" placeholder="Digite seu e-mail" required>
+                    <p class="mensagem-erro" id="erroEmail">Email inválido</p>
                 </div>
 
                 <div class="campo">
@@ -29,9 +30,7 @@
                         <a href="#" class="esqueci">Esqueci minha senha</a>
                     </div>
                     <input type="password" id="senha" placeholder="Digite aqui sua senha" required>
-                    <div class="requisitos-senha">
-                        
-                    </div>
+                    <p class="mensagem-erro" id="erroSenha">Senha inválida</p>
                 </div>
 
                 <section class="lembre-se">
@@ -66,64 +65,49 @@
     </div>
 
     <script>
-        // Validação da senha forte
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            const senha = document.getElementById('senha').value;
-            const email = document.getElementById('email').value;
-            
-            // Expressão regular para senha forte
-            const regexSenhaForte = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
-            
-            // Validação básica do email
-            const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            
-            // Verificar se o email é válido
-            if (!regexEmail.test(email)) {
-                alert('Por favor, insira um endereço de email válido.');
-                return;
-            }
-            
-            // Verificar se a senha atende aos requisitos
-            if (!regexSenhaForte.test(senha)) {
-                alert('A senha deve ter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma minúscula, um número e um caractere especial (!@#$%^&*).');
-                return;
-            }
-            
-            // Se passar na validação, redirecionar
-            window.location.href = 'p_safedrive.html';
+        const loginForm = document.getElementById('loginForm');
+        const emailInput = document.getElementById('email');
+        const senhaInput = document.getElementById('senha');
+        const erroEmailEl = document.getElementById('erroEmail');
+        const erroSenhaEl = document.getElementById('erroSenha');
+
+        const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const regexSenhaForte = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+
+        emailInput.addEventListener('input', function() {
+            this.classList.remove('erro');
+            erroEmailEl.classList.remove('show');
         });
 
-        // Validação em tempo real da senha
-        document.getElementById('senha').addEventListener('input', function() {
-            const senha = this.value;
-            
-            // Verificar cada requisito
-            const temTamanho = senha.length >= 8;
-            const temMaiuscula = /[A-Z]/.test(senha);
-            const temMinuscula = /[a-z]/.test(senha);
-            const temNumero = /\d/.test(senha);
-            const temEspecial = /[!@#$%^&*]/.test(senha);
-            
-            // Atualizar visualização dos requisitos
-            atualizarRequisito('req-tamanho', temTamanho, 'Pelo menos 8 caracteres');
-            atualizarRequisito('req-maiuscula', temMaiuscula, 'Uma letra maiúscula');
-            atualizarRequisito('req-minuscula', temMinuscula, 'Uma letra minúscula');
-            atualizarRequisito('req-numero', temNumero, 'Um número');
-            atualizarRequisito('req-especial', temEspecial, 'Um caractere especial (!@#$%^&*)');
+        senhaInput.addEventListener('input', function() {
+            this.classList.remove('erro');
+            erroSenhaEl.classList.remove('show');
         });
-        
-        function atualizarRequisito(id, condicao, texto) {
-            const elemento = document.getElementById(id);
-            if (condicao) {
-                elemento.innerHTML = '✓ ' + texto;
-                elemento.style.color = '#28a745';
-            } else {
-                elemento.innerHTML = '✗ ' + texto;
-                elemento.style.color = '#dc3545';
+
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const email = emailInput.value.trim();
+            const senha = senhaInput.value;
+            
+            let valido = true;
+
+            if (!regexEmail.test(email)) {
+                emailInput.classList.add('erro');
+                erroEmailEl.classList.add('show');
+                valido = false;
             }
-        }
+
+            if (!regexSenhaForte.test(senha)) {
+                senhaInput.classList.add('erro');
+                erroSenhaEl.classList.add('show');
+                valido = false;
+            }
+
+            if (valido) {
+                window.location.href = 'p_safedrive.html';
+            }
+        });
     </script>
 </body>
 
