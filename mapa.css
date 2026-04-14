@@ -287,11 +287,7 @@ body {
     }
 }
 
-@media (max-width: 950px) {
-    .floating-posts-container {
-        display: none;
-    }
-}
+
 
 /* ========================================
    RESPONSIVIDADE FASE 2: MOBILE-FIRST
@@ -353,7 +349,7 @@ body {
 }
 
 /* ========================================
-   TABLET (768px - 1023px)
+   TABLET (768px - 1023px) - ESQUERDA COMPACTO
    ======================================== */
 @media (max-width: 1023px) and (min-width: 768px) {
     .search-card {
@@ -394,12 +390,46 @@ body {
     }
 
     .floating-posts-container {
-        display: none;
+        position: fixed;
+        left: 10px;
+        right: auto;
+        top: 400px;
+        width: 300px;
+        max-height: 50vh;
+        gap: 15px;
+        padding: 20px 12px 12px 12px;
+        background: transparent;
+        z-index: 999;
+    }
+
+    .floating-post-card {
+        padding: 12px;
+    }
+
+    .floating-post-card .member-header {
+        padding: 12px 14px;
+    }
+
+    .floating-post-card .member-name {
+        font-size: 15px;
+    }
+
+    .floating-post-card .member-time {
+        font-size: 12px;
+    }
+
+    .floating-post-card .member-description {
+        font-size: 13px;
+        padding: 0 14px;
+    }
+
+    .floating-post-card .post-image-container {
+        height: 200px;
     }
 }
 
 /* ========================================
-   MOBILE GRANDE (480px - 767px)
+   MOBILE GRANDE (480px - 767px) - ESQUERDA COMPACTO
    ======================================== */
 @media (max-width: 767px) and (min-width: 480px) {
     body {
@@ -454,12 +484,46 @@ body {
     }
 
     .floating-posts-container {
-        display: none;
+        position: fixed;
+        left: calc(50% - 150px);
+        right: auto;
+        top: 400px;
+        width: 280px;
+        max-height: 55vh;
+        gap: 14px;
+        padding: 18px 12px 12px 12px;
+        background: transparent;
+        z-index: 999;
+    }
+
+    .floating-post-card {
+        padding: 12px;
+    }
+
+    .floating-post-card .member-header {
+        padding: 12px 14px;
+    }
+
+    .floating-post-card .member-name {
+        font-size: 15px;
+    }
+
+    .floating-post-card .member-time {
+        font-size: 12px;
+    }
+
+    .floating-post-card .member-description {
+        font-size: 13px;
+        padding: 0 14px;
+    }
+
+    .floating-post-card .post-image-container {
+        height: 190px;
     }
 }
 
 /* ========================================
-   MOBILE PEQUENO (320px - 479px)
+   MOBILE PEQUENO (320px - 479px) - ESQUERDA COMPACTO
    ======================================== */
 @media (max-width: 479px) {
     body {
@@ -523,12 +587,46 @@ body {
     }
 
     .floating-posts-container {
-        display: none;
+        position: fixed;
+        left: 0px;
+        right: auto;
+        top: 400px;
+        width: 240px;
+        max-height: 55vh;
+        gap: 12px;
+        padding: 15px 10px 10px 10px;
+        background: transparent;
+        z-index: 999;
+    }
+
+    .floating-post-card {
+        padding: 11px;
+    }
+
+    .floating-post-card .member-header {
+        padding: 11px 13px;
+    }
+
+    .floating-post-card .member-name {
+        font-size: 14px;
+    }
+
+    .floating-post-card .member-time {
+        font-size: 11px;
+    }
+
+    .floating-post-card .member-description {
+        font-size: 12px;
+        padding: 0 13px;
+    }
+
+    .floating-post-card .post-image-container {
+        height: 160px;
     }
 }
 
 /* ========================================
-   EXTRA SMALL (max 319px)
+   EXTRA SMALL (max 319px) - ESQUERDA COMPACTO
    ======================================== */
 @media (max-width: 319px) {
     .search-card {
@@ -577,6 +675,44 @@ body {
     #map {
         top: 55px;
         height: calc(100vh - 55px);
+    }
+
+    .floating-posts-container {
+        position: fixed;
+        left: 0px;
+        right: auto;
+        top: 400px;
+        width: 200px;
+        max-height: 55vh;
+        gap: 10px;
+        padding: 12px 8px 10px 8px;
+        background: transparent;
+        z-index: 999;
+    }
+
+    .floating-post-card {
+        padding: 10px;
+    }
+
+    .floating-post-card .member-header {
+        padding: 10px 12px;
+    }
+
+    .floating-post-card .member-name {
+        font-size: 13px;
+    }
+
+    .floating-post-card .member-time {
+        font-size: 10px;
+    }
+
+    .floating-post-card .member-description {
+        font-size: 11px;
+        padding: 0 12px;
+    }
+
+    .floating-post-card .post-image-container {
+        height: 130px;
     }
 }
 
