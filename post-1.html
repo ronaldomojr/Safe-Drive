@@ -9,38 +9,25 @@
     <link rel="stylesheet" href="post.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="shortcut icon" href="favicon.ico/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="header.css">
 </head>
 
 <body>
-    <header class="header-safe-drive">
-        <div class="logo">
-            <a href="p_safedrive.html" aria-label="Página inicial do Safe Drive">
-                <img src="Imagens/image-removebg-preview (1).png" alt="Logo Safe Drive" width="50" height="50">
+        <header class="site-header">
+        <div class="site-header-inner">
+            <a href="p_safedrive.html" class="site-logo">
+                <img src="Imagens/image-removebg-preview (1).png" alt="Safe Drive">
+                <span>Safe Drive</span>
             </a>
-            <a href="p_safedrive.html">
-                <h1>Safe Drive</h1>
-            </a>
+            <button class="site-nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="site-nav" aria-label="Navegação principal">
+                <a href="mapa.html">Mapa ao vivo</a>
+                <a href="central.html">Comunidade</a>
+                <a href="index.html" class="site-nav-btn">Entrar</a>
+            </nav>
         </div>
-        
-        <!-- Botão do menu hambúrguer para mobile -->
-        <button class="mobile-menu-btn" aria-label="Abrir menu" aria-expanded="false">
-            <i class="fas fa-bars"></i>
-        </button>
-        
-        <nav class="nav-header" aria-label="Navegação principal">
-            <a href="mapa.html" class="nav-link">
-                <i class="fas fa-map-marker-alt mobile-icon"></i>
-                <span class="nav-text">Mapa ao vivo</span>
-            </a>
-            <a href="#" class="btn-postar nav-link">
-                <i class="fas fa-plus-circle mobile-icon"></i>
-                <span class="nav-text">Postar</span>
-            </a>
-            <a href="index.html" class="btn-entrar nav-link">
-                <i class="fas fa-sign-in-alt mobile-icon"></i>
-                <span class="nav-text">Entrar</span>
-            </a>
-        </nav>
     </header>
 
     <nav class="nav-secondary" aria-label="Navegação secundária">
@@ -253,6 +240,7 @@
             }
         });
     </script>
+    <script src="header.js"></script>
 </body>
 
 </html>

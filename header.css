@@ -1,0 +1,127 @@
+/* ============================================================
+   HEADER PADRÃO DO SAFE DRIVE
+   Fonte única de verdade — usado igual em todas as páginas
+   (página principal e central da comunidade).
+   ============================================================ */
+
+.site-header {
+    background-color: #FFA000;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    position: relative;
+    z-index: 500;
+}
+
+.site-header-inner {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+}
+
+.site-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
+.site-logo img {
+    height: 34px;
+    width: auto;
+}
+
+.site-nav {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.site-nav a {
+    color: #fff !important;
+    text-decoration: none !important;
+    font-size: 0.95em;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.site-nav a:hover {
+    color: #FFEE58 !important;
+}
+
+.site-nav .site-nav-btn {
+    background-color: #FFEE58;
+    color: #333 !important;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.site-nav .site-nav-btn:hover {
+    background-color: #FDD835;
+    color: #333 !important;
+}
+
+/* Botão hambúrguer (aparece só no mobile) */
+.site-nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 42px;
+    height: 38px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.site-nav-toggle span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: #fff;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+/* ----------------- Responsivo ----------------- */
+@media (max-width: 768px) {
+    .site-nav-toggle {
+        display: flex;
+    }
+
+    .site-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: #FFA000;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .site-nav.open {
+        max-height: 320px;
+    }
+
+    .site-nav a {
+        padding: 14px 24px;
+        border-top: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .site-nav .site-nav-btn {
+        border-radius: 0;
+        text-align: center;
+    }
+}

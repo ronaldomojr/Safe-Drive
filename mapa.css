@@ -716,4 +716,164 @@ body {
     }
 }
 
+/* ===========================================================
+   POP-UP DE ENDEREÇO (API ViaCEP) — tema âmbar Safe Drive
+   =========================================================== */
+
+.endereco-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+.endereco-popup {
+    width: 320px;
+    max-width: 90vw;
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+    animation: endereco-surge 0.18s ease-out;
+}
+
+@keyframes endereco-surge {
+    from { transform: scale(0.92); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
+.endereco-popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #FFA000;
+    padding: 14px 16px;
+}
+
+.endereco-titulo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.endereco-logo {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+}
+
+.endereco-titulo-texto {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.endereco-marca {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.endereco-sub {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.endereco-fechar {
+    border: none;
+    background: transparent;
+    font-size: 24px;
+    line-height: 1;
+    color: #fff;
+    cursor: pointer;
+    padding: 0 4px;
+    transition: opacity 0.15s;
+}
+
+.endereco-fechar:hover {
+    opacity: 0.7;
+}
+
+.endereco-corpo {
+    padding: 18px 16px;
+}
+
+.endereco-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #555555;
+    margin: 10px 0 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.endereco-label:first-child {
+    margin-top: 0;
+}
+
+.endereco-input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #e2e2e2;
+    background: #F7F7F7;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 13px;
+    font-family: 'Roboto', Arial, sans-serif;
+    color: #333333;
+    margin-bottom: 7px;
+    outline: none;
+    transition: border-color 0.15s, background 0.15s;
+}
+
+.endereco-input::placeholder {
+    color: #aaa;
+}
+
+.endereco-input:focus {
+    border-color: #FFA000;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(255, 160, 0, 0.15);
+}
+
+.endereco-linha {
+    display: flex;
+    gap: 7px;
+}
+
+.endereco-linha .endereco-input {
+    flex: 1;
+}
+
+.endereco-uf {
+    max-width: 72px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.endereco-salvar {
+    width: 100%;
+    margin-top: 14px;
+    border: none;
+    background: #E69100;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'Roboto', Arial, sans-serif;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.endereco-salvar:hover {
+    background: #C67C00;
+}
+
 

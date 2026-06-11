@@ -8,23 +8,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="shortcut icon" href="favicon.ico/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="header.css">
 </head>
     
 <body>
-    <header class="main-header">
-        <div class="container header-content">
-            <h1 class="logo">
-                <img src="img/logo-removebg-preview.png" alt="Safe Drive Logo">Safe Drive
-            </h1>
-            
-            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
-                <i class="fas fa-bars"></i>
+        <header class="site-header">
+        <div class="site-header-inner">
+            <a href="p_safedrive.html" class="site-logo">
+                <img src="Imagens/image-removebg-preview (1).png" alt="Safe Drive">
+                <span>Safe Drive</span>
+            </a>
+            <button class="site-nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+                <span></span><span></span><span></span>
             </button>
-            
-            <nav class="nav-top">
-                <a href="mapa.html"><i class="fas fa-map-marker-alt"></i> Mapa ao vivo</a>
-                <a href="#"><i class="fas fa-download"></i> Baixar</a>
-                <a href="index.html"><button class="btn-header-entry"><i class="fas fa-sign-in-alt"></i> Entrar</button></a>
+            <nav class="site-nav" aria-label="Navegação principal">
+                <a href="mapa.html">Mapa ao vivo</a>
+                <a href="central.html">Comunidade</a>
+                <a href="index.html" class="site-nav-btn">Entrar</a>
             </nav>
         </div>
     </header>
@@ -232,5 +232,6 @@
     </script>
 
     <script src="menu-hamburguer.js"></script>
+    <script src="header.js"></script>
 </body>
 </html>

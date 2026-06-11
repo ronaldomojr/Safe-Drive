@@ -706,6 +706,7 @@ body.modo-acessibilidade .btn-acessibilidade {
 }
 
 body.modo-acessibilidade .main-header,
+body.modo-acessibilidade .site-header,
 body.modo-acessibilidade .cta-final {
     background-color: #000000 !important;
     border: 2px solid #ffffff !important;
