@@ -9,6 +9,7 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
     position: relative;
     z-index: 500;
+    font-family: 'Roboto', Arial, sans-serif;
 }
 
 .site-header-inner {
@@ -31,6 +32,14 @@
     text-decoration: none !important;
 }
 
+/* Cor branca forçada (vence regras globais "a:link/:visited" das páginas) */
+.site-header .site-logo,
+.site-header .site-logo:link,
+.site-header .site-logo:visited,
+.site-header .site-logo span {
+    color: #fff !important;
+}
+
 .site-logo img {
     height: 34px;
     width: auto;
@@ -50,11 +59,21 @@
     transition: color 0.2s;
 }
 
-.site-nav a:hover {
+/* Cor branca forçada nos links (vence "a:link/:visited" globais das páginas) */
+.site-header .site-nav a,
+.site-header .site-nav a:link,
+.site-header .site-nav a:visited {
+    color: #fff !important;
+}
+
+.site-nav a:hover,
+.site-header .site-nav a:hover {
     color: #FFEE58 !important;
 }
 
-.site-nav .site-nav-btn {
+.site-nav .site-nav-btn,
+.site-header .site-nav .site-nav-btn:link,
+.site-header .site-nav .site-nav-btn:visited {
     background-color: #FFEE58;
     color: #333 !important;
     padding: 8px 18px;

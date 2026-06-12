@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safe Drive - Novo Post</title>
+    <link rel="stylesheet" href="header.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico/favicon.ico" type="image/x-icon">
+
+    <!-- React + ReactDOM + Babel via CDN (sem build, funciona no GitHub Pages) -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background: #f5f6f8;
+            color: #333;
+        }
+
+        .np-wrap { max-width: 960px; margin: 0 auto; padding: 28px 16px 60px; }
+
+        .np-title { text-align: center; color: #E69100; font-size: 1.9em; margin-bottom: 6px; }
+        .np-subtitle { text-align: center; color: #777; margin-bottom: 26px; font-size: 0.95em; }
+
+        .np-layout { display: flex; gap: 22px; align-items: flex-start; flex-wrap: wrap; }
+
+        /* Formulário */
+        .form-card {
+            flex: 1 1 320px;
+            background: #fff;
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 16px;
+        }
+
+        .form-card h2 { font-size: 1.1em; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+
+        .campo { margin-bottom: 12px; }
+        .campo label {
+            display: block; font-size: 12px; font-weight: 700; text-transform: uppercase;
+            color: #666; margin-bottom: 5px; letter-spacing: 0.3px;
+        }
+        .campo input, .campo select, .campo textarea {
+            width: 100%; border: 1px solid #e0e0e0; background: #f8f8f8; border-radius: 8px;
+            padding: 10px 12px; font-size: 13px; font-family: inherit; color: #333; outline: none;
+            transition: border-color 0.15s, background 0.15s;
+        }
+        .campo input:focus, .campo select:focus, .campo textarea:focus {
+            border-color: #FFA000; background: #fff; box-shadow: 0 0 0 3px rgba(255, 160, 0, 0.15);
+        }
+        .campo textarea { resize: vertical; min-height: 70px; }
+        .linha { display: flex; gap: 8px; }
+        .linha .campo { flex: 1; }
+        .campo-uf { max-width: 80px; }
+        .cep-status { font-size: 11px; color: #E69100; margin-top: 3px; height: 14px; }
+
+        .btn-publicar {
+            width: 100%; margin-top: 6px; border: none; background: #E69100; color: #fff;
+            font-size: 14px; font-weight: 700; font-family: inherit; padding: 12px;
+            border-radius: 8px; cursor: pointer; transition: background 0.2s;
+        }
+        .btn-publicar:hover { background: #C67C00; }
+
+        /* Upload de imagem */
+        .upload-area { display: flex; align-items: center; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
+        .upload-btn {
+            display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
+            background: #fff; border: 1px dashed #E69100; color: #C67C00;
+            font-size: 12.5px; font-weight: 600; padding: 8px 14px; border-radius: 8px;
+            transition: background 0.15s;
+        }
+        .upload-btn:hover { background: #fff7ec; }
+        .upload-dica { font-size: 11px; color: #999; }
+        .upload-remover {
+            background: none; border: none; color: #e74c3c; font-size: 12px;
+            font-weight: 600; cursor: pointer; padding: 4px;
+        }
+        .upload-ok { display: inline-block; margin-top: 6px; font-size: 12px; color: #27ae60; font-weight: 600; }
+
+        /* Coluna do mural */
+        .mural-col { flex: 1.4 1 360px; }
+        .mural-titulo { font-size: 14px; font-weight: 700; color: #555; margin: 4px 0 12px; text-transform: uppercase; letter-spacing: 0.3px; }
+        .previa-tag { font-size: 11px; background: #FFF3CD; color: #8a6100; padding: 2px 8px; border-radius: 20px; margin-left: 8px; }
+
+        /* Card de post (no estilo da Central) */
+        .post-card {
+            background: #fff; border-radius: 12px; padding: 16px; margin-bottom: 14px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07); animation: surge 0.2s ease-out;
+        }
+        .post-card.previa { border: 2px dashed #FFC85B; box-shadow: none; background: #fffdf7; }
+        @keyframes surge { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+
+        .pc-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+        .pc-user { display: flex; align-items: center; gap: 10px; }
+        .pc-avatar {
+            width: 44px; height: 44px; border-radius: 50%; background: #FFA000; color: #fff;
+            display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 18px; flex-shrink: 0;
+        }
+        .pc-nome { font-weight: 600; color: #333; line-height: 1.1; }
+        .pc-tempo { font-size: 12px; color: #999; }
+        .pc-badge { font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 600; white-space: nowrap; }
+        .pc-texto { font-size: 14px; color: #444; line-height: 1.5; margin: 6px 0 10px; white-space: pre-wrap; }
+        .pc-img { width: 100%; border-radius: 10px; display: block; margin-bottom: 10px; max-height: 280px; object-fit: cover; }
+        .pc-local { font-size: 12.5px; color: #777; display: flex; align-items: center; gap: 6px; }
+
+        @media (max-width: 760px) { .form-card { position: static; } }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="site-header-inner">
+            <a href="p_safedrive.html" class="site-logo">
+                <img src="Imagens/image-removebg-preview (1).png" alt="Safe Drive">
+                <span>Safe Drive</span>
+            </a>
+            <button class="site-nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="site-nav" aria-label="Navegação principal">
+                <a href="mapa.html">Mapa ao vivo</a>
+                <a href="central.html">Comunidade</a>
+                <a href="index.html" class="site-nav-btn">Entrar</a>
+            </nav>
+        </div>
+    </header>
+
+    <div id="root"></div>
+
+    <!-- Aplicação React (JSX compilado pelo Babel no navegador) -->
+    <script type="text/babel">
+        const { useState, useMemo } = React;
+
+        // Categorias (badge) com as mesmas cores da Central
+        const STATUS = {
+            'Motorista Veterano':     { bg: '#fff3cd', cor: '#8a6100' },
+            'Recém habilitado(a)':    { bg: '#fde8c8', cor: '#9a5b00' },
+            'Motorista de aplicativo':{ bg: '#d4edda', cor: '#155724' },
+            'Motociclista':           { bg: '#efefef', cor: '#555555' },
+            'Novo(a) usuário(a)':     { bg: '#fde8c8', cor: '#9a5b00' }
+        };
+        const LISTA_STATUS = Object.keys(STATUS);
+
+        const inicial = (nome) => (nome.trim()[0] || '?').toUpperCase();
+
+        // Posts iniciais (vindos da Central, para o mural já começar com vida)
+        const POSTS_INICIAIS = [
+            { id: 1, autor: 'Lucas', status: 'Motorista Veterano', tempo: '34hr',
+              texto: 'Mais uma batida no mesmo ponto! Quando será que vão sinalizar melhor essa curva? 🚗💥',
+              local: 'Aterrado, Volta Redonda - RJ', img: 'Imagens/batida.webp' },
+            { id: 2, autor: 'Ana', status: 'Recém habilitado(a)', tempo: '59s',
+              texto: 'Acidente na pista molhada - cuidado com a aquaplanagem, pessoal! 🌧️⚠️',
+              local: 'Retiro, Volta Redonda - RJ', img: '' }
+        ];
+
+        const FORM_VAZIO = {
+            autor: '', status: 'Motorista Veterano', texto: '',
+            cep: '', bairro: '', cidade: '', uf: '', img: ''
+        };
+
+        // Card de post reutilizável (preview e mural usam o mesmo)
+        function PostCard({ post, previa }) {
+            const st = STATUS[post.status] || STATUS['Motociclista'];
+            const local = [post.bairro, post.cidade].filter(Boolean).join(', ')
+                + (post.uf ? ' - ' + post.uf : '');
+            const localFinal = post.local || local;
+            return (
+                <div className={'post-card' + (previa ? ' previa' : '')}>
+                    <div className="pc-header">
+                        <div className="pc-user">
+                            <div className="pc-avatar">{inicial(post.autor || '?')}</div>
+                            <div>
+                                <div className="pc-nome">{post.autor || 'Seu nome'}</div>
+                                <div className="pc-tempo">{post.tempo || 'agora'}</div>
+                            </div>
+                        </div>
+                        <span className="pc-badge" style={{ background: st.bg, color: st.cor }}>{post.status}</span>
+                    </div>
+                    <div className="pc-texto">{post.texto || 'Escreva o que está acontecendo...'}</div>
+                    {post.img ? <img className="pc-img" src={post.img} alt="Imagem do post"
+                        onError={(e) => { e.target.style.display = 'none'; }} /> : null}
+                    {localFinal ? <div className="pc-local">📍 {localFinal}</div> : null}
+                </div>
+            );
+        }
+
+        function App() {
+            const [posts, setPosts] = useState(POSTS_INICIAIS);
+            const [form, setForm] = useState(FORM_VAZIO);
+            const [statusCep, setStatusCep] = useState('');
+
+            const atualizar = (campo, valor) => setForm(f => ({ ...f, [campo]: valor }));
+
+            // Upload de imagem do dispositivo (JPG, JPEG, PNG) → vira o post
+            function onArquivo(e) {
+                const arquivo = e.target.files[0];
+                if (!arquivo) return;
+                const tiposOk = ['image/jpeg', 'image/png'];
+                if (!tiposOk.includes(arquivo.type)) {
+                    alert('Envie uma imagem nos formatos JPG, JPEG ou PNG.');
+                    e.target.value = '';
+                    return;
+                }
+                const leitor = new FileReader();
+                leitor.onload = (ev) => atualizar('img', ev.target.result);
+                leitor.readAsDataURL(arquivo);
+            }
+
+            // API ViaCEP — preenche a localização do post a partir do CEP
+            async function buscarCep(valor) {
+                const cep = valor.replace(/\D/g, '');
+                if (cep.length !== 8) return;
+                setStatusCep('Buscando localização...');
+                try {
+                    const resp = await fetch('https://viacep.com.br/ws/' + cep + '/json/');
+                    const dados = await resp.json();
+                    if (dados.erro) { setStatusCep('CEP não encontrado.'); return; }
+                    setForm(f => ({ ...f, bairro: dados.bairro, cidade: dados.localidade, uf: dados.uf }));
+                    setStatusCep('Localização preenchida ✓');
+                } catch (e) {
+                    setStatusCep('Erro ao consultar o CEP.');
+                }
+            }
+
+            function publicar(e) {
+                e.preventDefault();
+                if (!form.autor.trim() || !form.texto.trim()) {
+                    alert('Preencha seu nome e o texto do post.');
+                    return;
+                }
+                const local = [form.bairro, form.cidade].filter(Boolean).join(', ')
+                    + (form.uf ? ' - ' + form.uf : '');
+                const novo = {
+                    id: Date.now(), autor: form.autor, status: form.status, texto: form.texto,
+                    tempo: 'agora', local: local, img: form.img.trim()
+                };
+                setPosts(prev => [novo, ...prev]);
+                setForm(FORM_VAZIO);
+                setStatusCep('');
+            }
+
+            return (
+                <div className="np-wrap">
+                    <h1 className="np-title">Novo Post</h1>
+                    <p className="np-subtitle">Publique na comunidade — a localização é preenchida pelo CEP (API ViaCEP).</p>
+
+                    <div className="np-layout">
+                        {/* Formulário */}
+                        <form className="form-card" onSubmit={publicar}>
+                            <h2>✍️ Criar publicação</h2>
+
+                            <div className="campo">
+                                <label>Seu nome</label>
+                                <input type="text" value={form.autor} placeholder="Ex.: Maria"
+                                    onChange={e => atualizar('autor', e.target.value)} />
+                            </div>
+
+                            <div className="campo">
+                                <label>Categoria</label>
+                                <select value={form.status} onChange={e => atualizar('status', e.target.value)}>
+                                    {LISTA_STATUS.map(s => <option key={s} value={s}>{s}</option>)}
+                                </select>
+                            </div>
+
+                            <div className="campo">
+                                <label>O que está acontecendo?</label>
+                                <textarea value={form.texto} placeholder="Conte para a comunidade..."
+                                    onChange={e => atualizar('texto', e.target.value)}></textarea>
+                            </div>
+
+                            <div className="campo">
+                                <label>CEP do local</label>
+                                <input type="text" value={form.cep} placeholder="Digite o CEP" maxLength="9"
+                                    onChange={e => atualizar('cep', e.target.value)}
+                                    onBlur={e => buscarCep(e.target.value)} />
+                                <div className="cep-status">{statusCep}</div>
+                            </div>
+
+                            <div className="linha">
+                                <div className="campo">
+                                    <label>Bairro</label>
+                                    <input type="text" value={form.bairro} placeholder="Bairro"
+                                        onChange={e => atualizar('bairro', e.target.value)} />
+                                </div>
+                                <div className="campo">
+                                    <label>Cidade</label>
+                                    <input type="text" value={form.cidade} placeholder="Cidade"
+                                        onChange={e => atualizar('cidade', e.target.value)} />
+                                </div>
+                                <div className="campo campo-uf">
+                                    <label>UF</label>
+                                    <input type="text" value={form.uf} placeholder="UF" maxLength="2"
+                                        onChange={e => atualizar('uf', e.target.value)} />
+                                </div>
+                            </div>
+
+                            <div className="campo">
+                                <label>Imagem do post (opcional)</label>
+                                <input type="text"
+                                    value={form.img.startsWith('data:') ? '' : form.img}
+                                    placeholder="Cole uma URL: https://... ou Imagens/foto.jpg"
+                                    onChange={e => atualizar('img', e.target.value)} />
+                                <div className="upload-area">
+                                    <label className="upload-btn">
+                                        📁 Enviar do dispositivo
+                                        <input type="file" accept="image/jpeg,image/png,.jpg,.jpeg,.png"
+                                            onChange={onArquivo} hidden />
+                                    </label>
+                                    {form.img.startsWith('data:')
+                                        ? <button type="button" className="upload-remover"
+                                              onClick={() => atualizar('img', '')}>✕ remover</button>
+                                        : <span className="upload-dica">JPG, JPEG ou PNG</span>}
+                                </div>
+                                {form.img.startsWith('data:') ? <span className="upload-ok">✓ Imagem carregada</span> : null}
+                            </div>
+
+                            <button type="submit" className="btn-publicar">Publicar na comunidade</button>
+                        </form>
+
+                        {/* Mural */}
+                        <div className="mural-col">
+                            <div className="mural-titulo">Prévia <span className="previa-tag">como vai aparecer</span></div>
+                            <PostCard post={form} previa={true} />
+
+                            <div className="mural-titulo" style={{ marginTop: '22px' }}>Mural da comunidade</div>
+                            {posts.map(p => <PostCard key={p.id} post={p} previa={false} />)}
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+
+    <script src="header.js"></script>
+</body>
+
+</html>

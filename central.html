@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="shortcut icon" href="favicon.ico/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="header.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -76,7 +77,55 @@
         <div class="content-area">
             <h1 class="page-title">Central da Comunidade</h1>
 
+            <div style="text-align:center; margin-bottom:22px;">
+                <a href="react.html" style="display:inline-block; background:#E69100; color:#fff; font-weight:700; padding:11px 22px; border-radius:8px; text-decoration:none; box-shadow:0 4px 14px rgba(230,145,0,0.3);">
+                    <i class="fas fa-plus-circle"></i> Novo post
+                </a>
+            </div>
+
             <div class="community-grid">
+                <!-- Marcos (post com vídeo) -->
+                <article class="member-card" data-post-id="7" role="button" tabindex="0" style="cursor: pointer;">
+                    <div class="member-header">
+                        <div class="member-info">
+                            <div class="avatar-placeholder" role="img" aria-label="Foto de perfil do Marcos">
+                                <img src="Imagens/pexels-photo-2379004.jpeg" alt="Foto do usuário Marcos">
+                            </div>
+                            <div class="member-details">
+                                <div class="member-name">Marcos</div>
+                                <div class="member-time" aria-label="Postado há 2 horas">2hr</div>
+                            </div>
+                        </div>
+                        <div class="member-status status-veteran" aria-label="Motorista Veterano">Motorista Veterano</div>
+                    </div>
+                    <div class="member-divider"></div>
+                    <div class="member-description">
+                        Olha o vídeo dessa batida feia! Redobrem a atenção nessa via, pessoal. 🚗💥
+                    </div>
+                    <div class="post-video-container">
+                        <iframe src="https://www.youtube.com/embed/OAFWcAzFA98?start=9"
+                            title="Vídeo de batida no trânsito"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="post-actions" role="group" aria-label="Ações do post">
+                        <button class="action-btn" aria-label="Curtir post">
+                            <i class="far fa-thumbs-up"></i>
+                            <span class="action-text">Like</span>
+                        </button>
+                        <button class="action-btn" aria-label="Comentar no post">
+                            <i class="far fa-comment"></i>
+                            <span class="action-text">Comment</span>
+                        </button>
+                        <button class="action-btn" aria-label="Compartilhar post">
+                            <i class="far fa-share-square"></i>
+                            <span class="action-text">Share</span>
+                        </button>
+                    </div>
+                </article>
+
                 <!-- Lucas -->
                 <article class="member-card" data-post-id="1" role="button" tabindex="0" style="cursor: pointer;">
                     <div class="member-header">
@@ -463,6 +512,7 @@
     </script>
 
     <script src="header.js"></script>
+    <script src="veracidade.js"></script>
 </body>
 
 </html>

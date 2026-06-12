@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Safe Drive - Post da Paula</title>
+    <title>Safe Drive - Post do Marcos</title>
     <link rel="stylesheet" href="central.css">
     <link rel="stylesheet" href="post.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -64,37 +64,44 @@
                     </a>
                 </div>
 
-                <!-- Paula Post -->
+                <!-- Marcos Post -->
                 <article class="member-card fullscreen">
                     <div class="post-content">
                         <div class="member-header">
                             <div class="member-info">
-                                <div class="avatar-placeholder" role="img" aria-label="Foto de perfil da Paula">
-                                    <img src="Imagens/mulher-lidiane-jones-bumble.webp" alt="Foto do usuário Paula">
+                                <div class="avatar-placeholder" role="img" aria-label="Foto de perfil do Marcos">
+                                    <img src="Imagens/pexels-photo-2379004.jpeg" alt="Foto do usuário Marcos">
                                 </div>
                                 <div class="member-details">
-                                    <div class="member-name">Paula</div>
-                                    <div class="member-time" aria-label="Postado há 4 horas">4h</div>
+                                    <div class="member-name">Marcos</div>
+                                    <div class="member-time" aria-label="Postado há 2 horas">2hr</div>
                                 </div>
                             </div>
-                            <div class="member-status status-new" aria-label="Novo(a) Usuario(a)">Novo(a) Usuario(a)</div>
+                            <div class="member-status status-veteran" aria-label="Motorista Veterano">Motorista Veterano</div>
                         </div>
                         <div class="member-divider"></div>
                         <div class="member-description">
-                            Celular no volante pode esperar. Sua vida, não! 📵❤️
-                            <a href="#" class="hashtag" aria-label="Hashtag Trânsito Seguro">#TransitoSeguro</a>
+                            Olha o vídeo dessa batida feia! Redobrem a atenção nessa via, pessoal. 🚗💥
+                        </div>
+                        <div class="post-video-container">
+                            <iframe src="https://www.youtube.com/embed/OAFWcAzFA98?start=9"
+                                title="Vídeo de batida no trânsito"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen></iframe>
                         </div>
                         <div class="post-actions" role="group" aria-label="Ações do post">
                             <button class="action-btn" aria-label="Curtir post">
-                                <i class="far fa-thumbs-up"></i> 
+                                <i class="far fa-thumbs-up"></i>
                                 <span class="action-text">Like</span>
                             </button>
                             <button class="action-btn" aria-label="Comentar no post">
-                                <i class="far fa-comment"></i> 
+                                <i class="far fa-comment"></i>
                                 <span class="action-text">Comment</span>
                             </button>
                             <button class="action-btn" aria-label="Compartilhar post">
-                                <i class="far fa-share-square"></i> 
+                                <i class="far fa-share-square"></i>
                                 <span class="action-text">Share</span>
                             </button>
                         </div>
@@ -107,11 +114,48 @@
                         <i class="fas fa-comments"></i>
                         Comentários
                     </h2>
-                    <div class="comments-placeholder">
-                        <div class="comment-icon">
-                            <i class="fas fa-comments"></i>
+                    <div class="comments-list">
+                        <!-- Comentário 1 -->
+                        <div class="comment">
+                            <div class="comment-avatar">
+                                <img src="Imagens/ferrari.jpg" alt="Foto do Lucas">
+                            </div>
+                            <div class="comment-content">
+                                <div class="comment-header">
+                                    <span class="comment-author">Lucas</span>
+                                    <span class="comment-time">1h</span>
+                                </div>
+                                <p class="comment-text">Que susto! Ainda bem que registraram. Esse trecho precisa de redutor de velocidade urgente.</p>
+                            </div>
                         </div>
-                        <p>Esta seção de comentários em breve estará disponível</p>
+
+                        <!-- Comentário 2 -->
+                        <div class="comment">
+                            <div class="comment-avatar">
+                                <img src="Imagens/sdd.jpg" alt="Foto da Eduarda">
+                            </div>
+                            <div class="comment-content">
+                                <div class="comment-header">
+                                    <span class="comment-author">Eduarda</span>
+                                    <span class="comment-time">40m</span>
+                                </div>
+                                <p class="comment-text">Obrigada por compartilhar o vídeo, Marcos. Vou evitar essa via no horário de pico.</p>
+                            </div>
+                        </div>
+
+                        <!-- Comentário 3 -->
+                        <div class="comment">
+                            <div class="comment-avatar">
+                                <img src="Imagens/mulher-lidiane-jones-bumble.webp" alt="Foto da Paula">
+                            </div>
+                            <div class="comment-content">
+                                <div class="comment-header">
+                                    <span class="comment-author">Paula</span>
+                                    <span class="comment-time">20m</span>
+                                </div>
+                                <p class="comment-text">Imagens assim ajudam a conscientizar. Dirijam com cuidado, pessoal! ❤️</p>
+                            </div>
+                        </div>
                     </div>
                 </section>
             </div>
@@ -140,62 +184,6 @@
         </div>
     </footer>
 
-    <script>
-        // Script para o menu hambúrguer responsivo
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const navHeader = document.querySelector('.nav-header');
-            
-            if (mobileMenuBtn) {
-                mobileMenuBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    navHeader.classList.toggle('active');
-                    const isExpanded = navHeader.classList.contains('active');
-                    this.setAttribute('aria-expanded', isExpanded);
-                    
-                    const icon = this.querySelector('i');
-                    if (isExpanded) {
-                        icon.classList.remove('fa-bars');
-                        icon.classList.add('fa-times');
-                        addOverlay();
-                    } else {
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
-                        removeOverlay();
-                    }
-                });
-                
-                function addOverlay() {
-                    const overlay = document.createElement('div');
-                    overlay.className = 'menu-overlay';
-                    overlay.style.cssText = `
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background: rgba(0, 0, 0, 0.5);
-                        z-index: 98;
-                    `;
-                    document.body.appendChild(overlay);
-                    
-                    overlay.addEventListener('click', function() {
-                        navHeader.classList.remove('active');
-                        mobileMenuBtn.setAttribute('aria-expanded', false);
-                        const icon = mobileMenuBtn.querySelector('i');
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
-                        removeOverlay();
-                    });
-                }
-                
-                function removeOverlay() {
-                    const overlay = document.querySelector('.menu-overlay');
-                    if (overlay) overlay.remove();
-                }
-            }
-        });
-    </script>
     <script src="header.js"></script>
 </body>
 

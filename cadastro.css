@@ -137,6 +137,34 @@
     display: block;
 }
 
+.senha-topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.senha-topo label {
+    margin-bottom: 0;
+}
+
+.btn-gerar {
+    border: none;
+    background: transparent;
+    color: #E69100;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: 4px;
+    transition: color 0.15s;
+}
+
+.btn-gerar:hover {
+    color: #C67C00;
+    text-decoration: underline;
+}
+
 .botlogin {
     display: block;
     width: 100%;
@@ -693,4 +721,49 @@
         padding: 8px;
         font-size: 11px;
     }
+}
+/* ===== Olhinho para mostrar/ocultar a senha ===== */
+.senha-wrapper {
+    position: relative;
+}
+
+.senha-wrapper input {
+    width: 100%;
+    padding-right: 44px;
+}
+
+.toggle-senha {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    line-height: 0;
+    color: #888;
+}
+
+.toggle-senha:hover {
+    color: #555;
+}
+
+.toggle-senha svg {
+    width: 20px;
+    height: 20px;
+}
+
+.toggle-senha .icon-olho-fechado {
+    display: none;
+}
+
+.toggle-senha.mostrando .icon-olho {
+    display: none;
+}
+
+.toggle-senha.mostrando .icon-olho-fechado {
+    display: block;
 }
