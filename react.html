@@ -9,10 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="favicon.ico/favicon.ico" type="image/x-icon">
 
-    <!-- React + ReactDOM + Babel via CDN (sem build, funciona no GitHub Pages) -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- React 18 via CDN (versões fixas, sem Babel — máxima compatibilidade) -->
+    <script crossorigin src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -135,210 +134,198 @@
 
     <div id="root"></div>
 
-    <!-- Aplicação React (JSX compilado pelo Babel no navegador) -->
-    <script type="text/babel">
-        const { useState, useMemo } = React;
+    <!-- Aplicação React (sem Babel: usa React.createElement) -->
+    <script>
+        (function () {
+            const { useState } = React;
+            const h = React.createElement;
 
-        // Categorias (badge) com as mesmas cores da Central
-        const STATUS = {
-            'Motorista Veterano':     { bg: '#fff3cd', cor: '#8a6100' },
-            'Recém habilitado(a)':    { bg: '#fde8c8', cor: '#9a5b00' },
-            'Motorista de aplicativo':{ bg: '#d4edda', cor: '#155724' },
-            'Motociclista':           { bg: '#efefef', cor: '#555555' },
-            'Novo(a) usuário(a)':     { bg: '#fde8c8', cor: '#9a5b00' }
-        };
-        const LISTA_STATUS = Object.keys(STATUS);
+            // Categorias (badge) com as mesmas cores da Central
+            const STATUS = {
+                'Motorista Veterano':      { bg: '#fff3cd', cor: '#8a6100' },
+                'Recém habilitado(a)':     { bg: '#fde8c8', cor: '#9a5b00' },
+                'Motorista de aplicativo': { bg: '#d4edda', cor: '#155724' },
+                'Motociclista':            { bg: '#efefef', cor: '#555555' },
+                'Novo(a) usuário(a)':      { bg: '#fde8c8', cor: '#9a5b00' }
+            };
+            const LISTA_STATUS = Object.keys(STATUS);
 
-        const inicial = (nome) => (nome.trim()[0] || '?').toUpperCase();
+            const inicial = (nome) => (String(nome).trim()[0] || '?').toUpperCase();
 
-        // Posts iniciais (vindos da Central, para o mural já começar com vida)
-        const POSTS_INICIAIS = [
-            { id: 1, autor: 'Lucas', status: 'Motorista Veterano', tempo: '34hr',
-              texto: 'Mais uma batida no mesmo ponto! Quando será que vão sinalizar melhor essa curva? 🚗💥',
-              local: 'Aterrado, Volta Redonda - RJ', img: 'Imagens/batida.webp' },
-            { id: 2, autor: 'Ana', status: 'Recém habilitado(a)', tempo: '59s',
-              texto: 'Acidente na pista molhada - cuidado com a aquaplanagem, pessoal! 🌧️⚠️',
-              local: 'Retiro, Volta Redonda - RJ', img: '' }
-        ];
+            const POSTS_INICIAIS = [
+                { id: 1, autor: 'Lucas', status: 'Motorista Veterano', tempo: '34hr',
+                  texto: 'Mais uma batida no mesmo ponto! Quando será que vão sinalizar melhor essa curva? 🚗💥',
+                  local: 'Aterrado, Volta Redonda - RJ', img: 'Imagens/batida.webp' },
+                { id: 2, autor: 'Ana', status: 'Recém habilitado(a)', tempo: '59s',
+                  texto: 'Acidente na pista molhada - cuidado com a aquaplanagem, pessoal! 🌧️⚠️',
+                  local: 'Retiro, Volta Redonda - RJ', img: '' }
+            ];
 
-        const FORM_VAZIO = {
-            autor: '', status: 'Motorista Veterano', texto: '',
-            cep: '', bairro: '', cidade: '', uf: '', img: ''
-        };
+            const FORM_VAZIO = {
+                autor: '', status: 'Motorista Veterano', texto: '',
+                cep: '', bairro: '', cidade: '', uf: '', img: ''
+            };
 
-        // Card de post reutilizável (preview e mural usam o mesmo)
-        function PostCard({ post, previa }) {
-            const st = STATUS[post.status] || STATUS['Motociclista'];
-            const local = [post.bairro, post.cidade].filter(Boolean).join(', ')
-                + (post.uf ? ' - ' + post.uf : '');
-            const localFinal = post.local || local;
-            return (
-                <div className={'post-card' + (previa ? ' previa' : '')}>
-                    <div className="pc-header">
-                        <div className="pc-user">
-                            <div className="pc-avatar">{inicial(post.autor || '?')}</div>
-                            <div>
-                                <div className="pc-nome">{post.autor || 'Seu nome'}</div>
-                                <div className="pc-tempo">{post.tempo || 'agora'}</div>
-                            </div>
-                        </div>
-                        <span className="pc-badge" style={{ background: st.bg, color: st.cor }}>{post.status}</span>
-                    </div>
-                    <div className="pc-texto">{post.texto || 'Escreva o que está acontecendo...'}</div>
-                    {post.img ? <img className="pc-img" src={post.img} alt="Imagem do post"
-                        onError={(e) => { e.target.style.display = 'none'; }} /> : null}
-                    {localFinal ? <div className="pc-local">📍 {localFinal}</div> : null}
-                </div>
-            );
-        }
-
-        function App() {
-            const [posts, setPosts] = useState(POSTS_INICIAIS);
-            const [form, setForm] = useState(FORM_VAZIO);
-            const [statusCep, setStatusCep] = useState('');
-
-            const atualizar = (campo, valor) => setForm(f => ({ ...f, [campo]: valor }));
-
-            // Upload de imagem do dispositivo (JPG, JPEG, PNG) → vira o post
-            function onArquivo(e) {
-                const arquivo = e.target.files[0];
-                if (!arquivo) return;
-                const tiposOk = ['image/jpeg', 'image/png'];
-                if (!tiposOk.includes(arquivo.type)) {
-                    alert('Envie uma imagem nos formatos JPG, JPEG ou PNG.');
-                    e.target.value = '';
-                    return;
-                }
-                const leitor = new FileReader();
-                leitor.onload = (ev) => atualizar('img', ev.target.result);
-                leitor.readAsDataURL(arquivo);
+            // Campo de input rotulado (helper)
+            function campo(label, props) {
+                return h('div', { className: 'campo' }, h('label', null, label), h('input', props));
             }
 
-            // API ViaCEP — preenche a localização do post a partir do CEP
-            async function buscarCep(valor) {
-                const cep = valor.replace(/\D/g, '');
-                if (cep.length !== 8) return;
-                setStatusCep('Buscando localização...');
-                try {
-                    const resp = await fetch('https://viacep.com.br/ws/' + cep + '/json/');
-                    const dados = await resp.json();
-                    if (dados.erro) { setStatusCep('CEP não encontrado.'); return; }
-                    setForm(f => ({ ...f, bairro: dados.bairro, cidade: dados.localidade, uf: dados.uf }));
-                    setStatusCep('Localização preenchida ✓');
-                } catch (e) {
-                    setStatusCep('Erro ao consultar o CEP.');
-                }
+            // Card de post (preview e mural usam o mesmo)
+            function PostCard(post, previa, key) {
+                const st = STATUS[post.status] || STATUS['Motociclista'];
+                const local = [post.bairro, post.cidade].filter(Boolean).join(', ') + (post.uf ? ' - ' + post.uf : '');
+                const localFinal = post.local || local;
+
+                return h('div', { className: 'post-card' + (previa ? ' previa' : ''), key: key },
+                    h('div', { className: 'pc-header' },
+                        h('div', { className: 'pc-user' },
+                            h('div', { className: 'pc-avatar' }, inicial(post.autor || '?')),
+                            h('div', null,
+                                h('div', { className: 'pc-nome' }, post.autor || 'Seu nome'),
+                                h('div', { className: 'pc-tempo' }, post.tempo || 'agora')
+                            )
+                        ),
+                        h('span', { className: 'pc-badge', style: { background: st.bg, color: st.cor } }, post.status)
+                    ),
+                    h('div', { className: 'pc-texto' }, post.texto || 'Escreva o que está acontecendo...'),
+                    post.img ? h('img', { className: 'pc-img', src: post.img, alt: 'Imagem do post',
+                        onError: function (e) { e.target.style.display = 'none'; } }) : null,
+                    localFinal ? h('div', { className: 'pc-local' }, '📍 ' + localFinal) : null
+                );
             }
 
-            function publicar(e) {
-                e.preventDefault();
-                if (!form.autor.trim() || !form.texto.trim()) {
-                    alert('Preencha seu nome e o texto do post.');
-                    return;
+            function App() {
+                const [posts, setPosts] = useState(POSTS_INICIAIS);
+                const [form, setForm] = useState(FORM_VAZIO);
+                const [statusCep, setStatusCep] = useState('');
+
+                const atualizar = (c, v) => setForm(f => Object.assign({}, f, { [c]: v }));
+
+                // Upload de imagem (JPG, JPEG, PNG)
+                function onArquivo(e) {
+                    const arquivo = e.target.files[0];
+                    if (!arquivo) return;
+                    if (['image/jpeg', 'image/png'].indexOf(arquivo.type) === -1) {
+                        alert('Envie uma imagem nos formatos JPG, JPEG ou PNG.');
+                        e.target.value = '';
+                        return;
+                    }
+                    const leitor = new FileReader();
+                    leitor.onload = (ev) => atualizar('img', ev.target.result);
+                    leitor.readAsDataURL(arquivo);
                 }
-                const local = [form.bairro, form.cidade].filter(Boolean).join(', ')
-                    + (form.uf ? ' - ' + form.uf : '');
-                const novo = {
-                    id: Date.now(), autor: form.autor, status: form.status, texto: form.texto,
-                    tempo: 'agora', local: local, img: form.img.trim()
-                };
-                setPosts(prev => [novo, ...prev]);
-                setForm(FORM_VAZIO);
-                setStatusCep('');
+
+                // API ViaCEP
+                function buscarCep(valor) {
+                    const cep = valor.replace(/\D/g, '');
+                    if (cep.length !== 8) return;
+                    setStatusCep('Buscando localização...');
+                    fetch('https://viacep.com.br/ws/' + cep + '/json/')
+                        .then(r => r.json())
+                        .then(d => {
+                            if (d.erro) { setStatusCep('CEP não encontrado.'); return; }
+                            setForm(f => Object.assign({}, f, { bairro: d.bairro, cidade: d.localidade, uf: d.uf }));
+                            setStatusCep('Localização preenchida ✓');
+                        })
+                        .catch(() => setStatusCep('Erro ao consultar o CEP.'));
+                }
+
+                function publicar(e) {
+                    e.preventDefault();
+                    if (!form.autor.trim() || !form.texto.trim()) {
+                        alert('Preencha seu nome e o texto do post.');
+                        return;
+                    }
+                    const local = [form.bairro, form.cidade].filter(Boolean).join(', ') + (form.uf ? ' - ' + form.uf : '');
+                    const novo = { id: Date.now(), autor: form.autor, status: form.status, texto: form.texto,
+                        tempo: 'agora', local: local, img: form.img.trim() };
+                    setPosts(prev => [novo].concat(prev));
+                    setForm(FORM_VAZIO);
+                    setStatusCep('');
+                }
+
+                const ehUpload = form.img.indexOf('data:') === 0;
+
+                return h('div', { className: 'np-wrap' },
+                    h('h1', { className: 'np-title' }, 'Novo Post'),
+                    h('p', { className: 'np-subtitle' }, 'Publique na comunidade — a localização é preenchida pelo CEP (API ViaCEP).'),
+
+                    h('div', { className: 'np-layout' },
+                        // Formulário
+                        h('form', { className: 'form-card', onSubmit: publicar },
+                            h('h2', null, '✍️ Criar publicação'),
+                            campo('Seu nome', { type: 'text', value: form.autor, placeholder: 'Ex.: Maria',
+                                onChange: e => atualizar('autor', e.target.value) }),
+
+                            h('div', { className: 'campo' },
+                                h('label', null, 'Categoria'),
+                                h('select', { value: form.status, onChange: e => atualizar('status', e.target.value) },
+                                    LISTA_STATUS.map(s => h('option', { key: s, value: s }, s))
+                                )
+                            ),
+
+                            h('div', { className: 'campo' },
+                                h('label', null, 'O que está acontecendo?'),
+                                h('textarea', { value: form.texto, placeholder: 'Conte para a comunidade...',
+                                    onChange: e => atualizar('texto', e.target.value) })
+                            ),
+
+                            h('div', { className: 'campo' },
+                                h('label', null, 'CEP do local'),
+                                h('input', { type: 'text', value: form.cep, placeholder: 'Digite o CEP', maxLength: 9,
+                                    onChange: e => atualizar('cep', e.target.value),
+                                    onBlur: e => buscarCep(e.target.value) }),
+                                h('div', { className: 'cep-status' }, statusCep)
+                            ),
+
+                            h('div', { className: 'linha' },
+                                campo('Bairro', { type: 'text', value: form.bairro, placeholder: 'Bairro',
+                                    onChange: e => atualizar('bairro', e.target.value) }),
+                                campo('Cidade', { type: 'text', value: form.cidade, placeholder: 'Cidade',
+                                    onChange: e => atualizar('cidade', e.target.value) }),
+                                h('div', { className: 'campo campo-uf' },
+                                    h('label', null, 'UF'),
+                                    h('input', { type: 'text', value: form.uf, placeholder: 'UF', maxLength: 2,
+                                        onChange: e => atualizar('uf', e.target.value) })
+                                )
+                            ),
+
+                            h('div', { className: 'campo' },
+                                h('label', null, 'Imagem do post (opcional)'),
+                                h('input', { type: 'text', value: ehUpload ? '' : form.img,
+                                    placeholder: 'Cole uma URL: https://... ou Imagens/foto.jpg',
+                                    onChange: e => atualizar('img', e.target.value) }),
+                                h('div', { className: 'upload-area' },
+                                    h('label', { className: 'upload-btn' }, '📁 Enviar do dispositivo',
+                                        h('input', { type: 'file', accept: 'image/jpeg,image/png,.jpg,.jpeg,.png',
+                                            onChange: onArquivo, hidden: true })
+                                    ),
+                                    ehUpload
+                                        ? h('button', { type: 'button', className: 'upload-remover',
+                                            onClick: () => atualizar('img', '') }, '✕ remover')
+                                        : h('span', { className: 'upload-dica' }, 'JPG, JPEG ou PNG')
+                                ),
+                                ehUpload ? h('span', { className: 'upload-ok' }, '✓ Imagem carregada') : null
+                            ),
+
+                            h('button', { type: 'submit', className: 'btn-publicar' }, 'Publicar na comunidade')
+                        ),
+
+                        // Mural
+                        h('div', { className: 'mural-col' },
+                            h('div', { className: 'mural-titulo' }, 'Prévia ',
+                                h('span', { className: 'previa-tag' }, 'como vai aparecer')),
+                            PostCard(form, true),
+                            h('div', { className: 'mural-titulo', style: { marginTop: '22px' } }, 'Mural da comunidade'),
+                            posts.map(p => PostCard(p, false, p.id))
+                        )
+                    )
+                );
             }
 
-            return (
-                <div className="np-wrap">
-                    <h1 className="np-title">Novo Post</h1>
-                    <p className="np-subtitle">Publique na comunidade — a localização é preenchida pelo CEP (API ViaCEP).</p>
-
-                    <div className="np-layout">
-                        {/* Formulário */}
-                        <form className="form-card" onSubmit={publicar}>
-                            <h2>✍️ Criar publicação</h2>
-
-                            <div className="campo">
-                                <label>Seu nome</label>
-                                <input type="text" value={form.autor} placeholder="Ex.: Maria"
-                                    onChange={e => atualizar('autor', e.target.value)} />
-                            </div>
-
-                            <div className="campo">
-                                <label>Categoria</label>
-                                <select value={form.status} onChange={e => atualizar('status', e.target.value)}>
-                                    {LISTA_STATUS.map(s => <option key={s} value={s}>{s}</option>)}
-                                </select>
-                            </div>
-
-                            <div className="campo">
-                                <label>O que está acontecendo?</label>
-                                <textarea value={form.texto} placeholder="Conte para a comunidade..."
-                                    onChange={e => atualizar('texto', e.target.value)}></textarea>
-                            </div>
-
-                            <div className="campo">
-                                <label>CEP do local</label>
-                                <input type="text" value={form.cep} placeholder="Digite o CEP" maxLength="9"
-                                    onChange={e => atualizar('cep', e.target.value)}
-                                    onBlur={e => buscarCep(e.target.value)} />
-                                <div className="cep-status">{statusCep}</div>
-                            </div>
-
-                            <div className="linha">
-                                <div className="campo">
-                                    <label>Bairro</label>
-                                    <input type="text" value={form.bairro} placeholder="Bairro"
-                                        onChange={e => atualizar('bairro', e.target.value)} />
-                                </div>
-                                <div className="campo">
-                                    <label>Cidade</label>
-                                    <input type="text" value={form.cidade} placeholder="Cidade"
-                                        onChange={e => atualizar('cidade', e.target.value)} />
-                                </div>
-                                <div className="campo campo-uf">
-                                    <label>UF</label>
-                                    <input type="text" value={form.uf} placeholder="UF" maxLength="2"
-                                        onChange={e => atualizar('uf', e.target.value)} />
-                                </div>
-                            </div>
-
-                            <div className="campo">
-                                <label>Imagem do post (opcional)</label>
-                                <input type="text"
-                                    value={form.img.startsWith('data:') ? '' : form.img}
-                                    placeholder="Cole uma URL: https://... ou Imagens/foto.jpg"
-                                    onChange={e => atualizar('img', e.target.value)} />
-                                <div className="upload-area">
-                                    <label className="upload-btn">
-                                        📁 Enviar do dispositivo
-                                        <input type="file" accept="image/jpeg,image/png,.jpg,.jpeg,.png"
-                                            onChange={onArquivo} hidden />
-                                    </label>
-                                    {form.img.startsWith('data:')
-                                        ? <button type="button" className="upload-remover"
-                                              onClick={() => atualizar('img', '')}>✕ remover</button>
-                                        : <span className="upload-dica">JPG, JPEG ou PNG</span>}
-                                </div>
-                                {form.img.startsWith('data:') ? <span className="upload-ok">✓ Imagem carregada</span> : null}
-                            </div>
-
-                            <button type="submit" className="btn-publicar">Publicar na comunidade</button>
-                        </form>
-
-                        {/* Mural */}
-                        <div className="mural-col">
-                            <div className="mural-titulo">Prévia <span className="previa-tag">como vai aparecer</span></div>
-                            <PostCard post={form} previa={true} />
-
-                            <div className="mural-titulo" style={{ marginTop: '22px' }}>Mural da comunidade</div>
-                            {posts.map(p => <PostCard key={p.id} post={p} previa={false} />)}
-                        </div>
-                    </div>
-                </div>
-            );
-        }
-
-        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+            ReactDOM.createRoot(document.getElementById('root')).render(h(App));
+        })();
     </script>
 
     <script src="header.js"></script>
