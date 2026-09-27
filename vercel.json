@@ -1,5 +1,9 @@
 {
   "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/index.js?route=/api/$1"
+    },
     { "source": "/mvc", "destination": "/api/index?route=/mvc" },
     { "source": "/login", "destination": "/api/index?route=/login" },
     { "source": "/cadastro", "destination": "/api/index?route=/cadastro" },
