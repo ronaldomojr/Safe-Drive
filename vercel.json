@@ -1,21 +1,20 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
-    {
-      "source": "/api/:path*",
-      "destination": "/api/index"
-    },
     { "source": "/mvc", "destination": "/api/index?route=/mvc" },
-    { "source": "/login", "destination": "/api/index?route=/login" },
-    { "source": "/cadastro", "destination": "/api/index?route=/cadastro" },
-    { "source": "/central", "destination": "/api/index?route=/central" },
-    { "source": "/comunidade", "destination": "/api/index?route=/comunidade" },
-    { "source": "/mapa", "destination": "/api/index?route=/mapa" },
-    { "source": "/procurar", "destination": "/api/index?route=/procurar" },
-    { "source": "/notificacoes", "destination": "/api/index?route=/notificacoes" },
-    { "source": "/perfil", "destination": "/api/index?route=/perfil" },
-    { "source": "/posts/novo", "destination": "/api/index?route=/posts/novo" },
+    { "source": "/api", "destination": "/api/index?route=/api" },
+    { "source": "/api/alertas", "destination": "/api/index?route=/api/alertas" },
+    { "source": "/api/posts", "destination": "/api/index?route=/api/posts" },
     { "source": "/alertas", "destination": "/api/index?route=/alertas" },
-    { "source": "/posts", "destination": "/api/index?route=/posts" }
+    { "source": "/posts", "destination": "/api/index?route=/posts" },
+    { "source": "/login", "destination": "/index.html" },
+    { "source": "/cadastro", "destination": "/cadastro.html" },
+    { "source": "/central", "destination": "/central.html" },
+    { "source": "/comunidade", "destination": "/central.html" },
+    { "source": "/mapa", "destination": "/mapa.html" },
+    { "source": "/procurar", "destination": "/procurar.html" },
+    { "source": "/notificacoes", "destination": "/notificacoes.html" },
+    { "source": "/perfil", "destination": "/lucas-perfil.html" },
+    { "source": "/posts/novo", "destination": "/react.html" }
   ]
 }
