@@ -64,6 +64,13 @@ async function readRequestBody(req) {
 async function router(req, res, { publicDir }) {
   const url = new URL(req.url, 'http://localhost');
 
+  if (req.method === 'GET' && url.pathname === '/api') {
+    return sendJson(res, 200, {
+      message: 'Safe Drive API',
+      endpoints: ['/api/alertas', '/api/posts']
+    });
+  }
+
   // Rotas de View: cada rota aponta para uma tela, sem conter regra de negócio.
   if (req.method === 'GET' && url.pathname === '/mvc') return home(req, res);
   const viewRoutes = {

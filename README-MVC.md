@@ -12,7 +12,7 @@ Abra `http://localhost:3000/mvc`.
 
 ## Deploy na Vercel
 
-O arquivo `api/index.js` é o entrypoint serverless e `vercel.json` encaminha as rotas MVC para ele. O `server.js` continua sendo usado apenas no ambiente local. A versão do Node está fixada em `24.x`, alinhada à configuração do projeto na Vercel.
+O arquivo `api/index.js` é o entrypoint serverless e `vercel.json` encaminha as rotas MVC para ele. A regra `/api/:path*` envia toda rota de API para `/api/index`, e o handler recompõe o caminho original. O `server.js` continua sendo usado apenas no ambiente local. A versão do Node está fixada em `24.x`, alinhada à configuração do projeto na Vercel.
 
 ## Estrutura
 
