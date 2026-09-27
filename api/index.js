@@ -1,4 +1,9 @@
 const { router } = require('../routes');
+const path = require('node:path');
+
+// A função pode ser executada com outro diretório de trabalho na Vercel;
+// use a raiz do projeto a partir deste arquivo para localizar o HTML e assets.
+const projectRoot = path.resolve(__dirname, '..');
 
 // Entry point serverless da Vercel. O servidor local continua usando server.js.
 module.exports = async function vercelHandler(req, res) {
@@ -15,5 +20,5 @@ module.exports = async function vercelHandler(req, res) {
     req.url = `${route}${incomingUrl.search ? incomingUrl.search : ''}`;
   }
 
-  return router(req, res, { publicDir: process.cwd() });
+  return router(req, res, { publicDir: projectRoot });
 };
