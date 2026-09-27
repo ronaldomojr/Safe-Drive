@@ -18,6 +18,10 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-server.listen(PORT, () => {
-  console.log(`Safe Drive MVC rodando em http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  server.listen(PORT, () => {
+    console.log(`Safe Drive MVC rodando em http://localhost:${PORT}`);
+  });
+}
+
+module.exports = server;

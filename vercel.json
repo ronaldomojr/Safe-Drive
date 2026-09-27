@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    { "source": "/mvc", "destination": "/api/index?route=/mvc" },
+    { "source": "/login", "destination": "/api/index?route=/login" },
+    { "source": "/cadastro", "destination": "/api/index?route=/cadastro" },
+    { "source": "/central", "destination": "/api/index?route=/central" },
+    { "source": "/comunidade", "destination": "/api/index?route=/comunidade" },
+    { "source": "/mapa", "destination": "/api/index?route=/mapa" },
+    { "source": "/procurar", "destination": "/api/index?route=/procurar" },
+    { "source": "/notificacoes", "destination": "/api/index?route=/notificacoes" },
+    { "source": "/perfil", "destination": "/api/index?route=/perfil" },
+    { "source": "/posts/novo", "destination": "/api/index?route=/posts/novo" },
+    { "source": "/alertas", "destination": "/api/index?route=/alertas" },
+    { "source": "/posts", "destination": "/api/index?route=/posts" }
+  ]
+}

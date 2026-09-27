@@ -2,13 +2,17 @@
 
 ## Executar
 
-Requer Node.js 18 ou superior. Não há dependências externas para instalar.
+Requer Node.js 22 ou superior. Não há dependências externas para instalar.
 
 ```bash
 npm start
 ```
 
 Abra `http://localhost:3000/mvc`.
+
+## Deploy na Vercel
+
+O arquivo `api/index.js` é o entrypoint serverless e `vercel.json` encaminha as rotas MVC para ele. O `server.js` continua sendo usado apenas no ambiente local. A versão do Node está fixada em `22.x`, compatível com as versões disponíveis na Vercel.
 
 ## Estrutura
 
