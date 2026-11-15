@@ -47,3 +47,23 @@ Authorization: Bearer {{token}}
 ### Excluir usuário por ID
 DELETE {{baseUrl}}/api/usuarios/2
 Authorization: Bearer {{token}}
+
+### Listar alertas persistidos (relacionamento usuarios 1 -> N alertas)
+GET {{baseUrl}}/api/alertas
+
+### Criar alerta para o usuário autenticado
+POST {{baseUrl}}/api/alertas
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "titulo": "Acidente na avenida",
+  "categoria": "acidente",
+  "descricao": "Faixa da direita parcialmente bloqueada.",
+  "cep": "27255-000",
+  "localizacao": "Avenida Brasil, 1200"
+}
+
+### Excluir alerta do próprio usuário (ou como administrador)
+DELETE {{baseUrl}}/api/alertas/1
+Authorization: Bearer {{token}}

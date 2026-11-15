@@ -11,6 +11,22 @@
     <link rel="shortcut icon" href="favicon.ico/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="header.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .alertas-box { max-width: 760px; margin: 0 auto 28px; padding: 20px; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+        .alertas-box h2 { color: #E69100; margin-bottom: 14px; }
+        .alertas-form { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .alertas-form input, .alertas-form select, .alertas-form textarea { width: 100%; padding: 9px; border: 1px solid #ddd; border-radius: 6px; font: inherit; }
+        .alertas-form textarea, .alertas-form .campo-largo { grid-column: 1 / -1; }
+        .alertas-form textarea { min-height: 70px; resize: vertical; }
+        .alertas-form button { grid-column: 1 / -1; padding: 10px; border: 0; border-radius: 6px; background: #E69100; color: #fff; font-weight: 700; cursor: pointer; }
+        .alertas-aviso { min-height: 20px; margin-top: 8px; color: #9a5b00; }
+        .alertas-lista { display: grid; gap: 10px; margin-top: 16px; }
+        .alerta-card { padding: 13px; border-left: 4px solid #E69100; background: #fffaf0; border-radius: 5px; }
+        .alerta-card h3 { margin-bottom: 5px; color: #333; }
+        .alerta-card p { margin: 4px 0; color: #555; }
+        .alerta-meta { color: #888; font-size: .85rem; }
+        @media (max-width: 600px) { .alertas-form { grid-template-columns: 1fr; } .alertas-form textarea, .alertas-form .campo-largo { grid-column: auto; } }
+    </style>
 </head>
 
 <body>
@@ -82,6 +98,25 @@
                     <i class="fas fa-plus-circle"></i> Novo post
                 </a>
             </div>
+
+            <section class="alertas-box" aria-labelledby="tituloAlertas">
+                <h2 id="tituloAlertas">Alertas da comunidade</h2>
+                <form id="formAlerta" class="alertas-form">
+                    <input id="alertaTitulo" maxlength="150" placeholder="Título do alerta" required>
+                    <select id="alertaCategoria">
+                        <option value="transito">Trânsito</option>
+                        <option value="acidente">Acidente</option>
+                        <option value="obra">Obra</option>
+                        <option value="perigo">Perigo</option>
+                    </select>
+                    <textarea id="alertaDescricao" class="campo-largo" maxlength="5000" placeholder="Descreva o que aconteceu" required></textarea>
+                    <input id="alertaLocalizacao" class="campo-largo" maxlength="200" placeholder="Localização" required>
+                    <input id="alertaCep" maxlength="10" placeholder="CEP (opcional)">
+                    <button type="submit">Publicar alerta</button>
+                </form>
+                <p id="alertasAviso" class="alertas-aviso" role="status"></p>
+                <div id="alertasLista" class="alertas-lista"><p>Carregando alertas...</p></div>
+            </section>
 
             <div class="community-grid">
                 <!-- Marcos (post com vídeo) -->
@@ -420,6 +455,78 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
+            const token = localStorage.getItem('safeDriveToken');
+            const formAlerta = document.getElementById('formAlerta');
+            const alertasLista = document.getElementById('alertasLista');
+            const alertasAviso = document.getElementById('alertasAviso');
+            const alertasFallback = [
+                { titulo: 'Atenção no trânsito', categoria: 'transito', descricao: 'Redobre a atenção nas vias movimentadas.', localizacao: 'Safe Drive', autor_nome: 'Safe Drive' },
+                { titulo: 'Obra na via', categoria: 'obra', descricao: 'Verifique rotas alternativas antes de sair.', localizacao: 'Comunidade Safe Drive', autor_nome: 'Safe Drive' }
+            ];
+
+            function escapar(texto) {
+                const div = document.createElement('div');
+                div.textContent = texto ?? '';
+                return div.innerHTML;
+            }
+
+            function renderAlertas(alertas) {
+                alertasLista.innerHTML = alertas.length ? alertas.map((alerta) => `
+                    <article class="alerta-card">
+                        <h3>${escapar(alerta.titulo)}</h3>
+                        <p>${escapar(alerta.descricao)}</p>
+                        <p class="alerta-meta">${escapar(alerta.categoria)} · ${escapar(alerta.localizacao)} · por ${escapar(alerta.autor_nome || 'Usuário')}</p>
+                    </article>
+                `).join('') : '<p>Nenhum alerta persistido ainda.</p>';
+            }
+
+            async function carregarAlertas() {
+                try {
+                    const resposta = await fetch('/api/alertas');
+                    const dados = await resposta.json();
+                    if (!resposta.ok) throw new Error(dados.erro || 'Não foi possível carregar os alertas.');
+                    const alertas = dados.data || [];
+                    renderAlertas(alertas.length ? alertas : alertasFallback);
+                    if (!alertas.length) alertasAviso.textContent = 'Ainda não há alertas persistidos. Exibindo alertas iniciais.';
+                } catch (erro) {
+                    renderAlertas(alertasFallback);
+                    alertasAviso.textContent = 'Exibindo alertas iniciais enquanto o banco não responde.';
+                }
+            }
+
+            formAlerta.addEventListener('submit', async (evento) => {
+                evento.preventDefault();
+                if (!token) {
+                    window.location.href = 'index.html';
+                    return;
+                }
+                const corpo = {
+                    titulo: document.getElementById('alertaTitulo').value.trim(),
+                    categoria: document.getElementById('alertaCategoria').value,
+                    descricao: document.getElementById('alertaDescricao').value.trim(),
+                    cep: document.getElementById('alertaCep').value.trim(),
+                    localizacao: document.getElementById('alertaLocalizacao').value.trim()
+                };
+                try {
+                    const resposta = await fetch('/api/alertas', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+                        body: JSON.stringify(corpo)
+                    });
+                    const dados = await resposta.json();
+                    if (!resposta.ok) {
+                        alertasAviso.textContent = dados.erro || 'Não foi possível publicar o alerta.';
+                        return;
+                    }
+                    formAlerta.reset();
+                    alertasAviso.textContent = 'Alerta publicado com sucesso.';
+                    carregarAlertas();
+                } catch {
+                    alertasAviso.textContent = 'Não foi possível conectar à API de alertas.';
+                }
+            });
+
+            carregarAlertas();
             renderNotifications();
             updateBadge();
             const bell = document.querySelector('.notification-bell');

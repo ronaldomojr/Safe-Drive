@@ -27,7 +27,7 @@ npm run vercel:dev
 
 Os HTML, CSS, JavaScript, imagens e ícones são publicados pelo diretório `public/`. A Vercel entrega esses arquivos pela CDN e encaminha apenas `/api/*` para a função Express `api/[...route].js`. O `package.json` fixa Node.js em `24.x`, versão aceita pela Vercel.
 
-Para conferir a publicação, abra o endereço gerado e também `/api`, `/api/alertas` e `/api/posts`. A API usa PostgreSQL e cria automaticamente a tabela `usuarios` e o administrador inicial na primeira operação.
+Para conferir a publicação, abra o endereço gerado e também `/api/status`, `/api/alertas` e `/api/posts`. A API usa PostgreSQL e cria automaticamente as tabelas `usuarios` e `alertas` e o administrador inicial na primeira operação.
 
 ## Estrutura
 
@@ -36,6 +36,9 @@ api/[...route].js      # entrada Express da Vercel para /api/*
 src/app.js             # configuração do Express, CORS e endpoints auxiliares
 src/models/            # acesso ao PostgreSQL
 src/config/database.js # pool e inicialização do banco
+src/routes/alertaRoutes.js
+src/controllers/alertaController.js
+src/models/alertaModel.js
 src/services/          # bcrypt e JWT
 src/controllers/       # casos de uso REST de usuários
 src/middlewares/       # autenticação Bearer Token
@@ -52,7 +55,11 @@ O administrador inicial é `admin@safedrive.com` com a senha `Admin@123`. A senh
 - `POST /api/usuarios` cadastra um usuário e retorna `201`, sem expor senha.
 - `GET /api/usuarios` lista usuários sem expor senha.
 - `GET /api/usuarios/:id`, `PUT /api/usuarios/:id` e `DELETE /api/usuarios/:id` exigem `Authorization: Bearer <token>`.
-- `GET /api/status`, `GET/POST /api/alertas` e `GET/POST /api/posts` permanecem disponíveis para demonstração.
+- `GET /api/alertas` lista alertas persistidos com o nome do autor.
+- `POST /api/alertas` exige token e vincula o alerta ao usuário autenticado.
+- `DELETE /api/alertas/:id` exige token e só permite o autor ou um administrador.
+- `GET /api/status` e `GET/POST /api/posts` permanecem disponíveis para demonstração.
 
 - O painel visual do CRUD está em `/usuarios.html` após login ou cadastro.
 - Os usuários são persistidos no PostgreSQL conectado pela variável de ambiente do banco.
+- O relacionamento `usuarios (1) -> (N) alertas` usa `alertas.usuario_id` como chave estrangeira para `usuarios.id`, com `ON DELETE CASCADE`.

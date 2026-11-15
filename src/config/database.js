@@ -33,6 +33,19 @@ async function inicializar() {
      ON CONFLICT (email) DO NOTHING`,
     ['Administrador Safe Drive', 'admin@safedrive.com', senhaHash, 'admin']
   );
+
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS alertas (
+      id SERIAL PRIMARY KEY,
+      usuario_id INTEGER NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
+      titulo VARCHAR(150) NOT NULL,
+      categoria VARCHAR(50) NOT NULL DEFAULT 'transito',
+      descricao TEXT NOT NULL,
+      cep VARCHAR(10),
+      localizacao VARCHAR(200) NOT NULL,
+      criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+  `);
 }
 
 async function initDatabase() {
