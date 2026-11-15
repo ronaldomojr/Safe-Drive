@@ -3,10 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "Safe Drive com arquitetura MVC e dados simulados em memória",
-  "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node --watch server.js",
     "vercel:dev": "vercel dev"
   },
   "engines": {

@@ -4,13 +4,7 @@
 
 Requer Node.js 24.x. Não há dependências de aplicação para instalar.
 
-```bash
-npm start
-```
-
-Abra `http://localhost:3000/` ou `http://localhost:3000/mvc`.
-
-Para reproduzir localmente o roteamento da Vercel, instale o CLI uma vez e use:
+Para executar localmente com o mesmo roteamento da Vercel, instale o CLI uma vez e use:
 
 ```bash
 npm install --global vercel
@@ -24,20 +18,18 @@ npm run vercel:dev
 3. Mantenha o preset como **Other**. Não configure comando de build nem diretório de saída.
 4. Clique em **Deploy**. Ao concluir, a Vercel exibirá o endereço público `https://<nome-do-projeto>.vercel.app`.
 
-Os HTML, CSS, JavaScript, imagens e ícones são publicados como arquivos estáticos. As URLs amigáveis de páginas e API são configuradas em `vercel.json`; a função Node.js em `api/index.js` encaminha as chamadas para o mesmo roteador usado pelo servidor local (`server.js`). O `package.json` fixa Node.js em `24.x`, versão aceita pela Vercel.
+Os HTML, CSS, JavaScript, imagens e ícones são publicados pelo diretório `public/`. As URLs amigáveis e a API são configuradas em `vercel.json`; as funções Node.js ficam separadas em `api/alertas.js`, `api/mvc.js`, `api/posts.js` e `api/status.js`. O `package.json` fixa Node.js em `24.x`, versão aceita pela Vercel.
 
 Para conferir a publicação, abra o endereço gerado e também `/api`, `/api/alertas` e `/api/posts`. A API e os Models deste protótipo armazenam dados em memória; gravações não são persistidas entre execuções de funções ou novos deploys. Para uso real, conecte os Models a um banco de dados hospedado.
 
 ## Estrutura
 
 ```text
-server.js              # inicialização do servidor HTTP
-routes/                # roteamento e entrega de arquivos estáticos
-controllers/           # entrada HTTP, validação e coordenação dos casos de uso
+api/                   # funções serverless da Vercel
+controllers/           # validação e coordenação dos casos de uso
 models/                # mock data e operações sobre os dados
-views/                 # geração da apresentação HTML
-public/                # ponto reservado para assets públicos da nova aplicação
-*.html, *.css, *.js    # protótipo legado, preservado durante a migração
+views/                 # geração da apresentação HTML da rota /mvc
+public/                # páginas, estilos, scripts, imagens e ícones publicados
 ```
 
 ## API de demonstração
