@@ -1,0 +1,879 @@
+
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    position: relative;
+}
+
+#map {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+}
+
+.search-card {
+    width: 240px;
+    background: #fff;
+    padding: 12px;
+    border-radius: 20px;
+    box-shadow: 0 6px 22px rgba(0,0,0,0.15);
+    font-family: Arial, sans-serif;
+}
+
+.search-box {
+    width: 100%;
+    background: #F7F7F7;
+    padding: 8px 12px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px ;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    flex: initial;
+    background: transparent;
+    font-size: 12px;
+    max-width: 150px;
+    overflow: hidden;
+}
+
+.icon-left, .icon-right {
+    width: 16px;
+    min-width: 16px;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.recent-title {
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+}
+
+.recent-item {
+    display: flex;
+    align-items: center;
+    background: #F5F5F5;
+    padding: 12px;
+    border-radius: 14px;
+    margin-top: 10px;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.recent-item-left {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.recent-item img {
+    width: 22px;
+}
+
+.recent-item .subtitle {
+    font-size: 11px;
+    color: #777;
+}
+
+.recent-item img {
+    filter: brightness(0) saturate(100%) invert(84%) sepia(58%)
+            saturate(917%) hue-rotate(359deg) brightness(101%)
+            contrast(102%);
+}
+
+/* Floating Posts Feed */
+.floating-posts-container {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    width: 350px;
+    max-height: 90vh;
+    overflow-y: scroll;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 20px 10px 40px 15px;
+    pointer-events: auto;
+    background: transparent;
+}
+
+.floating-posts-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.floating-posts-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.floating-posts-container::-webkit-scrollbar-thumb {
+    background: #AAA;
+    border-radius: 5px;
+}
+
+.floating-posts-container::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}
+
+.floating-post-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    pointer-events: auto;
+    min-height: auto;
+    flex-shrink: 0;
+}
+
+.floating-post-card:hover {
+    box-shadow: 0 8px 30px rgba(255, 160, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.floating-post-card .member-header {
+    padding: 10px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.floating-post-card .member-info {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    flex: 1;
+}
+
+.status-location-wrapper {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.floating-post-card .avatar-placeholder {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.floating-post-card .avatar-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.floating-post-card .member-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.floating-post-card .member-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+    margin: 0;
+}
+
+.floating-post-card .member-time {
+    font-size: 11px;
+    color: #999;
+    margin: 2px 0 0 0;
+}
+
+.floating-post-card .member-status {
+    font-size: 10px;
+    padding: 3px 6px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.location-indicator {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 2px 6px;
+    border-radius: 6px;
+}
+
+.location-indicator i {
+    font-size: 16px;
+    color: #FFA000;
+}
+
+.location-indicator:hover {
+    background: #FFF3E0;
+    transform: scale(1.15);
+}
+
+.location-indicator:hover i {
+    color: #E69100;
+}
+
+.floating-post-card .member-status.status-veteran {
+    background: #fff3e0;
+    color: #ff6f00;
+}
+
+.floating-post-card .member-status.status-new {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.floating-post-card .member-status.status-app {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.floating-post-card .member-divider {
+    height: 1px;
+    background: #f0f0f0;
+    margin: 8px 0;
+}
+
+.floating-post-card .member-description {
+    padding: 0 12px;
+    font-size: 12px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+
+.floating-post-card .post-image-container {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+}
+
+.floating-post-card .post-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .floating-posts-container {
+        width: 320px;
+        right: 15px;
+        top: 20px;
+        gap: 20px;
+        max-height: 90vh;
+    }
+    
+    .floating-post-card .member-description {
+        font-size: 11px;
+    }
+}
+
+
+
+/* ========================================
+   RESPONSIVIDADE FASE 2: MOBILE-FIRST
+   ======================================== */
+
+/* ========================================
+   DESKTOP (1200px+) - PADRÃO
+   ======================================== */
+@media (min-width: 1200px) {
+    .search-card {
+        width: 240px;
+    }
+
+    .search-box input {
+        max-width: 150px;
+        font-size: 12px;
+    }
+
+    .floating-posts-container {
+        width: 350px;
+        right: 20px;
+        top: 20px;
+        gap: 25px;
+        padding: 20px 10px 40px 15px;
+    }
+
+    #btn-voltar {
+        bottom: 35px;
+        right: 35px;
+        font-size: 16px;
+        padding: 12px 26px;
+    }
+}
+
+/* ========================================
+   TABLET GRANDE (1024px - 1199px)
+   ======================================== */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .search-card {
+        width: 235px;
+    }
+
+    .search-box input {
+        max-width: 140px;
+        font-size: 11.5px;
+    }
+
+    .floating-posts-container {
+        width: 330px;
+        right: 18px;
+        top: 18px;
+        gap: 22px;
+        padding: 18px 8px 35px 12px;
+    }
+
+    .floating-post-card .member-description {
+        font-size: 10.5px;
+    }
+}
+
+/* ========================================
+   TABLET (768px - 1023px) - ESQUERDA COMPACTO
+   ======================================== */
+@media (max-width: 1023px) and (min-width: 768px) {
+    .search-card {
+        width: 220px;
+        padding: 11px;
+    }
+
+    .search-box {
+        padding: 5px;
+    }
+
+    .search-box input {
+        max-width: 130px;
+        font-size: 11px;
+    }
+
+    .icon-left, .icon-right {
+        width: 15px;
+    }
+
+    .recent-title {
+        margin-top: 12px;
+        font-size: 13px;
+    }
+
+    .recent-item {
+        padding: 10px;
+        border-radius: 12px;
+        margin-top: 8px;
+    }
+
+    .recent-item img {
+        width: 20px;
+    }
+
+    .recent-item .subtitle {
+        font-size: 10px;
+    }
+
+    .floating-posts-container {
+        position: fixed;
+        left: 10px;
+        right: auto;
+        top: 400px;
+        width: 300px;
+        max-height: 50vh;
+        gap: 15px;
+        padding: 20px 12px 12px 12px;
+        background: transparent;
+        z-index: 999;
+    }
+
+    .floating-post-card {
+        padding: 12px;
+    }
+
+    .floating-post-card .member-header {
+        padding: 12px 14px;
+    }
+
+    .floating-post-card .member-name {
+        font-size: 15px;
+    }
+
+    .floating-post-card .member-time {
+        font-size: 12px;
+    }
+
+    .floating-post-card .member-description {
+        font-size: 13px;
+        padding: 0 14px;
+    }
+
+    .floating-post-card .post-image-container {
+        height: 200px;
+    }
+}
+
+/* ========================================
+   MOBILE GRANDE (480px - 767px) - ESQUERDA COMPACTO
+   ======================================== */
+@media (max-width: 767px) and (min-width: 480px) {
+    body {
+        overflow-y: auto;
+    }
+
+    .search-card {
+        width: 90%;
+        max-width: 240px;
+        position: fixed;
+        top: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 500;
+        padding: 10px;
+    }
+
+    .search-box {
+        padding: 5px;
+    }
+
+    .search-box input {
+        max-width: 120px;
+        font-size: 10px;
+    }
+
+    .icon-left, .icon-right {
+        width: 14px;
+    }
+
+    .recent-title {
+        margin-top: 10px;
+        font-size: 12px;
+    }
+
+    .recent-item {
+        padding: 9px;
+        border-radius: 10px;
+        margin-top: 7px;
+    }
+
+    .recent-item img {
+        width: 18px;
+    }
+
+    .recent-item .subtitle {
+        font-size: 9px;
+    }
+
+    #map {
+        margin-top: 0;
+    }
+
+    .floating-posts-container {
+        position: fixed;
+        left: calc(50% - 150px);
+        right: auto;
+        top: 400px;
+        width: 280px;
+        max-height: 55vh;
+        gap: 14px;
+        padding: 18px 12px 12px 12px;
+        background: transparent;
+        z-index: 999;
+    }
+
+    .floating-post-card {
+        padding: 12px;
+    }
+
+    .floating-post-card .member-header {
+        padding: 12px 14px;
+    }
+
+    .floating-post-card .member-name {
+        font-size: 15px;
+    }
+
+    .floating-post-card .member-time {
+        font-size: 12px;
+    }
+
+    .floating-post-card .member-description {
+        font-size: 13px;
+        padding: 0 14px;
+    }
+
+    .floating-post-card .post-image-container {
+        height: 190px;
+    }
+}
+
+/* ========================================
+   MOBILE PEQUENO (320px - 479px) - ESQUERDA COMPACTO
+   ======================================== */
+@media (max-width: 479px) {
+    body {
+        overflow-y: auto;
+    }
+
+    .search-card {
+        width: calc(100% - 20px);
+        position: fixed;
+        top: 60px;
+        left: 10px;
+        right: 10px;
+        z-index: 500;
+        padding: 9px;
+        border-radius: 16px;
+    }
+
+    .search-box {
+        padding: 5px;
+        border-radius: 10px;
+    }
+
+    .search-box input {
+        max-width: 100px;
+        font-size: 10px;
+    }
+
+    .icon-left, .icon-right {
+        width: 13px;
+        opacity: 0.7;
+    }
+
+    .recent-title {
+        margin-top: 10px;
+        font-size: 11px;
+        font-weight: 600;
+    }
+
+    .recent-item {
+        padding: 8px;
+        border-radius: 8px;
+        margin-top: 6px;
+    }
+
+    .recent-item img {
+        width: 16px;
+    }
+
+    .recent-item-left {
+        gap: 8px;
+    }
+
+    .recent-item .subtitle {
+        font-size: 8px;
+    }
+
+    #map {
+        margin-top: 0;
+        height: calc(100vh - 60px);
+        top: 60px;
+    }
+
+    .floating-posts-container {
+        position: fixed;
+        left: 0px;
+        right: auto;
+        top: 400px;
+        width: 240px;
+        max-height: 55vh;
+        gap: 12px;
+        padding: 15px 10px 10px 10px;
+        background: transparent;
+        z-index: 999;
+    }
+
+    .floating-post-card {
+        padding: 11px;
+    }
+
+    .floating-post-card .member-header {
+        padding: 11px 13px;
+    }
+
+    .floating-post-card .member-name {
+        font-size: 14px;
+    }
+
+    .floating-post-card .member-time {
+        font-size: 11px;
+    }
+
+    .floating-post-card .member-description {
+        font-size: 12px;
+        padding: 0 13px;
+    }
+
+    .floating-post-card .post-image-container {
+        height: 160px;
+    }
+}
+
+/* ========================================
+   EXTRA SMALL (max 319px) - ESQUERDA COMPACTO
+   ======================================== */
+@media (max-width: 319px) {
+    .search-card {
+        width: calc(100% - 16px);
+        left: 8px;
+        right: 8px;
+        top: 55px;
+        padding: 8px;
+    }
+
+    .search-box {
+        padding: 4px;
+    }
+
+    .search-box input {
+        max-width: 80px;
+        font-size: 9px;
+    }
+
+    .icon-left, .icon-right {
+        width: 12px;
+    }
+
+    .recent-title {
+        margin-top: 8px;
+        font-size: 10px;
+    }
+
+    .recent-item {
+        padding: 7px;
+        margin-top: 5px;
+    }
+
+    .recent-item img {
+        width: 15px;
+    }
+
+    .recent-item-left {
+        gap: 6px;
+    }
+
+    .recent-item .subtitle {
+        font-size: 7px;
+    }
+
+    #map {
+        top: 55px;
+        height: calc(100vh - 55px);
+    }
+
+    .floating-posts-container {
+        position: fixed;
+        left: 0px;
+        right: auto;
+        top: 400px;
+        width: 200px;
+        max-height: 55vh;
+        gap: 10px;
+        padding: 12px 8px 10px 8px;
+        background: transparent;
+        z-index: 999;
+    }
+
+    .floating-post-card {
+        padding: 10px;
+    }
+
+    .floating-post-card .member-header {
+        padding: 10px 12px;
+    }
+
+    .floating-post-card .member-name {
+        font-size: 13px;
+    }
+
+    .floating-post-card .member-time {
+        font-size: 10px;
+    }
+
+    .floating-post-card .member-description {
+        font-size: 11px;
+        padding: 0 12px;
+    }
+
+    .floating-post-card .post-image-container {
+        height: 130px;
+    }
+}
+
+/* ===========================================================
+   POP-UP DE ENDEREÇO (API ViaCEP) — tema âmbar Safe Drive
+   =========================================================== */
+
+.endereco-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+.endereco-popup {
+    width: 320px;
+    max-width: 90vw;
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+    animation: endereco-surge 0.18s ease-out;
+}
+
+@keyframes endereco-surge {
+    from { transform: scale(0.92); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
+.endereco-popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #FFA000;
+    padding: 14px 16px;
+}
+
+.endereco-titulo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.endereco-logo {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+}
+
+.endereco-titulo-texto {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.endereco-marca {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.endereco-sub {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.endereco-fechar {
+    border: none;
+    background: transparent;
+    font-size: 24px;
+    line-height: 1;
+    color: #fff;
+    cursor: pointer;
+    padding: 0 4px;
+    transition: opacity 0.15s;
+}
+
+.endereco-fechar:hover {
+    opacity: 0.7;
+}
+
+.endereco-corpo {
+    padding: 18px 16px;
+}
+
+.endereco-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #555555;
+    margin: 10px 0 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.endereco-label:first-child {
+    margin-top: 0;
+}
+
+.endereco-input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #e2e2e2;
+    background: #F7F7F7;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 13px;
+    font-family: 'Roboto', Arial, sans-serif;
+    color: #333333;
+    margin-bottom: 7px;
+    outline: none;
+    transition: border-color 0.15s, background 0.15s;
+}
+
+.endereco-input::placeholder {
+    color: #aaa;
+}
+
+.endereco-input:focus {
+    border-color: #FFA000;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(255, 160, 0, 0.15);
+}
+
+.endereco-linha {
+    display: flex;
+    gap: 7px;
+}
+
+.endereco-linha .endereco-input {
+    flex: 1;
+}
+
+.endereco-uf {
+    max-width: 72px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.endereco-salvar {
+    width: 100%;
+    margin-top: 14px;
+    border: none;
+    background: #E69100;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'Roboto', Arial, sans-serif;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.endereco-salvar:hover {
+    background: #C67C00;
+}
+
+

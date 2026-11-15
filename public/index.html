@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="shortcut icon" href="favicon/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="container">
+        <main class="conteudo">
+            <section>
+                <h1 class="bemvindo">Bem Vindo!</h1>
+                <p class="credenciais">Insira suas credenciais para acessar sua conta</p>
+            </section>
+
+            <form id="loginForm" novalidate>
+                <div class="campo">
+                    <label>Endereço de email</label>
+                    <input type="email" id="email" placeholder="Digite seu e-mail" required>
+                    <p class="mensagem-erro" id="erroEmail">Email inválido</p>
+                </div>
+
+                <div class="campo">
+                    <div class="senha-topo">
+                        <label>Senha</label>
+                        <a href="#" class="esqueci">Esqueci minha senha</a>
+                    </div>
+                    <div class="senha-wrapper">
+                        <input type="password" id="senha" placeholder="Digite aqui sua senha" required>
+                        <button type="button" class="toggle-senha" id="toggleSenha" aria-label="Mostrar senha">
+                            <svg class="icon-olho" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+                            <svg class="icon-olho-fechado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-7-11-7a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 7 11 7a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                        </button>
+                    </div>
+                    <p class="mensagem-erro" id="erroSenha">Senha inválida</p>
+                </div>
+
+                <section class="lembre-se">
+                    <input type="checkbox" id="lembrete" checked>
+                    <label for="lembrete">Lembre-se por 30 dias</label>
+                </section>
+
+                <section>
+                    <button type="submit" class="botlogin">Login</button>
+                </section>
+            </form>
+
+            <div class="divisor">Ou</div>
+
+            <section class="login-social">
+                <a href="google.html" class="social-btn" target="_blank">
+                    <img src="Imagens/google-logo.png" width="20" alt="Google">
+                    Entrar com Google
+                </a>
+                <a href="apple.html" class="social-btn" target="_blank">
+                    <img src="Imagens/apple.png" width="20" alt="Apple">
+                    Entrar com Apple
+                </a>
+            </section>
+
+            <p class="cadastro">Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+        </main>
+
+        <div class="imagem">
+            <img src="Imagens/image-removebg-preview (1).png" alt="Logo Safe Drive">
+        </div>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const emailInput = document.getElementById('email');
+        const senhaInput = document.getElementById('senha');
+        const erroEmailEl = document.getElementById('erroEmail');
+        const erroSenhaEl = document.getElementById('erroSenha');
+
+        const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const regexSenhaForte = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+
+        emailInput.addEventListener('input', function() {
+            this.classList.remove('erro');
+            erroEmailEl.classList.remove('show');
+        });
+
+        senhaInput.addEventListener('input', function() {
+            this.classList.remove('erro');
+            erroSenhaEl.classList.remove('show');
+        });
+
+        // Olhinho: mostrar / ocultar a senha
+        const toggleSenha = document.getElementById('toggleSenha');
+
+        toggleSenha.addEventListener('click', function () {
+            const mostrar = senhaInput.type === 'password';
+            senhaInput.type = mostrar ? 'text' : 'password';
+            this.classList.toggle('mostrando', mostrar);
+            this.setAttribute('aria-label', mostrar ? 'Ocultar senha' : 'Mostrar senha');
+        });
+
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const email = emailInput.value.trim();
+            const senha = senhaInput.value;
+            
+            let valido = true;
+
+            if (!regexEmail.test(email)) {
+                emailInput.classList.add('erro');
+                erroEmailEl.classList.add('show');
+                valido = false;
+            }
+
+            if (!regexSenhaForte.test(senha)) {
+                senhaInput.classList.add('erro');
+                erroSenhaEl.classList.add('show');
+                valido = false;
+            }
+
+            if (valido) {
+                window.location.href = 'p_safedrive.html';
+            }
+        });
+    </script>
+</body>
+
+</html>
