@@ -15,4 +15,11 @@ function autenticarToken(req, res, next) {
   }
 }
 
-module.exports = { autenticarToken };
+function autorizarAdmin(req, res, next) {
+  if (req.usuario?.perfil !== 'admin') {
+    return res.status(403).json({ erro: 'Acesso restrito a administradores.' });
+  }
+  return next();
+}
+
+module.exports = { autenticarToken, autorizarAdmin };

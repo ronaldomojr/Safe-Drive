@@ -51,14 +51,23 @@
   </main>
   <script>
     const token = localStorage.getItem('safeDriveToken');
-    const usuarioLogado = JSON.parse(localStorage.getItem('safeDriveUsuario') || 'null');
+    let usuarioLogado = null;
+    try {
+      usuarioLogado = JSON.parse(localStorage.getItem('safeDriveUsuario') || 'null');
+    } catch {
+      localStorage.removeItem('safeDriveUsuario');
+    }
     const cabecalhos = () => ({ 'Content-Type': 'application/json', Authorization: `Bearer ${token}` });
     const form = document.getElementById('formUsuario');
     const aviso = document.getElementById('aviso');
     const lista = document.getElementById('lista');
     let usuarios = [];
 
-    if (!token || !usuarioLogado) window.location.href = 'index.html';
+    if (!token || !usuarioLogado) {
+      window.location.href = 'index.html';
+    } else if (usuarioLogado.perfil !== 'admin') {
+      window.location.href = 'central.html';
+    }
     document.getElementById('boasVindas').textContent = `Sessão: ${usuarioLogado?.nome || ''}`;
 
     function mensagem(texto, sucesso = false) { aviso.textContent = texto; aviso.className = sucesso ? 'aviso sucesso' : 'aviso'; }
@@ -67,6 +76,12 @@
     async function carregarUsuarios() {
       const resposta = await fetch('/api/usuarios', { headers: cabecalhos() });
       const dados = await resposta.json();
+      if (resposta.status === 401 || resposta.status === 403) {
+        localStorage.removeItem('safeDriveToken');
+        localStorage.removeItem('safeDriveUsuario');
+        window.location.href = 'index.html';
+        return;
+      }
       if (!resposta.ok) return mensagem(dados.erro || 'Não foi possível carregar os usuários.');
       usuarios = dados.usuarios;
       lista.innerHTML = usuarios.length ? usuarios.map((usuario) => `<tr><td>${escapar(usuario.nome)}</td><td>${escapar(usuario.email)}</td><td>${escapar(usuario.perfil)}</td><td class="acoes"><button class="editar" data-id="${usuario.id}">Editar</button><button class="excluir" data-id="${usuario.id}">Excluir</button></td></tr>`).join('') : '<tr><td class="vazio" colspan="4">Nenhum usuário cadastrado.</td></tr>';

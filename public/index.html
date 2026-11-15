@@ -21,7 +21,7 @@
                 <div class="campo">
                     <label>Endereço de email</label>
                     <input type="email" id="email" placeholder="Digite seu e-mail" required>
-                    <p class="mensagem-erro" id="erroEmail">Email inválido</p>
+                    <p class="mensagem-erro" id="erroEmail">Informe seu e-mail.</p>
                 </div>
 
                 <div class="campo">
@@ -36,7 +36,7 @@
                             <svg class="icon-olho-fechado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-7-11-7a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 7 11 7a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
                         </button>
                     </div>
-                    <p class="mensagem-erro" id="erroSenha">Senha inválida</p>
+                    <p class="mensagem-erro" id="erroSenha">Informe sua senha.</p>
                 </div>
 
                 <section class="lembre-se">
@@ -77,9 +77,6 @@
         const erroEmailEl = document.getElementById('erroEmail');
         const erroSenhaEl = document.getElementById('erroSenha');
 
-        const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        const regexSenhaForte = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
-
         emailInput.addEventListener('input', function() {
             this.classList.remove('erro');
             erroEmailEl.classList.remove('show');
@@ -108,13 +105,13 @@
             
             let valido = true;
 
-            if (!regexEmail.test(email)) {
+            if (!email) {
                 emailInput.classList.add('erro');
                 erroEmailEl.classList.add('show');
                 valido = false;
             }
 
-            if (!regexSenhaForte.test(senha)) {
+            if (!senha) {
                 senhaInput.classList.add('erro');
                 erroSenhaEl.classList.add('show');
                 valido = false;
@@ -133,7 +130,7 @@
 
                 localStorage.setItem('safeDriveToken', dados.token);
                 localStorage.setItem('safeDriveUsuario', JSON.stringify(dados.usuario));
-                window.location.href = 'usuarios.html';
+                window.location.href = dados.usuario.perfil === 'admin' ? 'usuarios.html' : 'central.html';
             } catch (erro) {
                 senhaInput.classList.add('erro');
                 erroSenhaEl.textContent = erro.message;

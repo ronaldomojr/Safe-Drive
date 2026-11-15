@@ -193,7 +193,7 @@
 
                 localStorage.setItem('safeDriveToken', dadosLogin.token);
                 localStorage.setItem('safeDriveUsuario', JSON.stringify(dadosLogin.usuario));
-                window.location.href = 'usuarios.html';
+                window.location.href = dadosLogin.usuario.perfil === 'admin' ? 'usuarios.html' : 'central.html';
             } catch (erro) {
                 erroEmail.textContent = erro.message;
                 erroEmail.classList.add('show');
