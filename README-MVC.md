@@ -2,17 +2,31 @@
 
 ## Executar
 
-Requer Node.js 24 ou superior. Não há dependências externas para instalar.
+Requer Node.js 24.x. Não há dependências de aplicação para instalar.
 
 ```bash
 npm start
 ```
 
-Abra `http://localhost:3000/mvc`.
+Abra `http://localhost:3000/` ou `http://localhost:3000/mvc`.
+
+Para reproduzir localmente o roteamento da Vercel, instale o CLI uma vez e use:
+
+```bash
+npm install --global vercel
+npm run vercel:dev
+```
 
 ## Deploy na Vercel
 
-Importe a raiz do repositório como projeto na Vercel. Não é necessário configurar comando de build nem diretório de saída: os HTML, CSS, JavaScript, imagens e ícones na raiz são publicados como arquivos estáticos. O `vercel.json` cria URLs amigáveis para as páginas e encaminha apenas `/mvc`, `/api`, `/api/alertas`, `/api/posts`, `/alertas` e `/posts` para a função `api/index.js`. O `server.js` continua sendo usado no ambiente local. A versão do Node está fixada em `24.x`.
+1. Envie este repositório para o GitHub, GitLab ou Bitbucket.
+2. Entre em [vercel.com/new](https://vercel.com/new), importe o repositório e selecione a pasta raiz como diretório do projeto.
+3. Mantenha o preset como **Other**. Não configure comando de build nem diretório de saída.
+4. Clique em **Deploy**. Ao concluir, a Vercel exibirá o endereço público `https://<nome-do-projeto>.vercel.app`.
+
+Os HTML, CSS, JavaScript, imagens e ícones são publicados como arquivos estáticos. As URLs amigáveis de páginas e API são configuradas em `vercel.json`; a função Node.js em `api/index.js` encaminha as chamadas para o mesmo roteador usado pelo servidor local (`server.js`). O `package.json` fixa Node.js em `24.x`, versão aceita pela Vercel.
+
+Para conferir a publicação, abra o endereço gerado e também `/api`, `/api/alertas` e `/api/posts`. A API e os Models deste protótipo armazenam dados em memória; gravações não são persistidas entre execuções de funções ou novos deploys. Para uso real, conecte os Models a um banco de dados hospedado.
 
 ## Estrutura
 
