@@ -6,6 +6,7 @@
     }
   },
   "rewrites": [
+    { "source": "/", "destination": "/api/index?route=/" },
     { "source": "/mvc", "destination": "/api/index?route=/mvc" },
     { "source": "/api", "destination": "/api/index?route=/api" },
     { "source": "/api/alertas", "destination": "/api/index?route=/api/alertas" },
