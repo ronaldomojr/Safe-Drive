@@ -4,9 +4,16 @@
   "private": true,
   "description": "Safe Drive com arquitetura MVC e dados simulados em memória",
   "scripts": {
+    "start": "node server.js",
     "vercel:dev": "vercel dev"
   },
   "engines": {
     "node": "24.x"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "express": "^5.3.0",
+    "jsonwebtoken": "^9.0.3"
   }
 }

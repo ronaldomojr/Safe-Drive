@@ -100,7 +100,7 @@
             this.setAttribute('aria-label', mostrar ? 'Ocultar senha' : 'Mostrar senha');
         });
 
-        loginForm.addEventListener('submit', function(event) {
+        loginForm.addEventListener('submit', async function(event) {
             event.preventDefault();
             
             const email = emailInput.value.trim();
@@ -120,8 +120,24 @@
                 valido = false;
             }
 
-            if (valido) {
-                window.location.href = 'p_safedrive.html';
+            if (!valido) return;
+
+            try {
+                const resposta = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, senha })
+                });
+                const dados = await resposta.json();
+                if (!resposta.ok) throw new Error(dados.erro || 'Não foi possível entrar.');
+
+                localStorage.setItem('safeDriveToken', dados.token);
+                localStorage.setItem('safeDriveUsuario', JSON.stringify(dados.usuario));
+                window.location.href = 'usuarios.html';
+            } catch (erro) {
+                senhaInput.classList.add('erro');
+                erroSenhaEl.textContent = erro.message;
+                erroSenhaEl.classList.add('show');
             }
         });
     </script>

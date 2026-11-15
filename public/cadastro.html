@@ -148,9 +148,10 @@
             senhaInput.focus();
         });
 
-        form.addEventListener("submit", function (event) {
+        form.addEventListener("submit", async function (event) {
             event.preventDefault();
 
+            const nome = document.getElementById('nome').value.trim();
             const email = emailInput.value.trim();
             const senha = senhaInput.value;
 
@@ -173,8 +174,30 @@
 
             if (!valido) return;
 
-            // Cadastro válido → redireciona para login
-            window.location.href = "index.html";
+            try {
+                const cadastro = await fetch('/api/usuarios', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nome, email, senha })
+                });
+                const dadosCadastro = await cadastro.json();
+                if (!cadastro.ok) throw new Error(dadosCadastro.erro || 'Não foi possível concluir o cadastro.');
+
+                const login = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, senha })
+                });
+                const dadosLogin = await login.json();
+                if (!login.ok) throw new Error(dadosLogin.erro || 'Cadastro criado, mas não foi possível entrar.');
+
+                localStorage.setItem('safeDriveToken', dadosLogin.token);
+                localStorage.setItem('safeDriveUsuario', JSON.stringify(dadosLogin.usuario));
+                window.location.href = 'usuarios.html';
+            } catch (erro) {
+                erroEmail.textContent = erro.message;
+                erroEmail.classList.add('show');
+            }
         });
     </script>
 

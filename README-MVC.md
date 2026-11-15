@@ -4,7 +4,14 @@
 
 Requer Node.js 24.x. Não há dependências de aplicação para instalar.
 
-Para executar localmente com o mesmo roteamento da Vercel, instale o CLI uma vez e use:
+Para executar localmente:
+
+```bash
+npm install
+npm start
+```
+
+Abra `http://localhost:3000`. Para reproduzir localmente o roteamento da Vercel, instale o CLI uma vez e use:
 
 ```bash
 npm install --global vercel
@@ -18,27 +25,33 @@ npm run vercel:dev
 3. Mantenha o preset como **Other**. Não configure comando de build nem diretório de saída.
 4. Clique em **Deploy**. Ao concluir, a Vercel exibirá o endereço público `https://<nome-do-projeto>.vercel.app`.
 
-Os HTML, CSS, JavaScript, imagens e ícones são publicados pelo diretório `public/`. As URLs amigáveis e a API são configuradas em `vercel.json`; as funções Node.js ficam separadas em `api/alertas.js`, `api/mvc.js`, `api/posts.js` e `api/status.js`. O `package.json` fixa Node.js em `24.x`, versão aceita pela Vercel.
+Os HTML, CSS, JavaScript, imagens e ícones são publicados pelo diretório `public/`. A Vercel entrega esses arquivos pela CDN e encaminha apenas `/api/*` para a função Express `api/[...route].js`. O `package.json` fixa Node.js em `24.x`, versão aceita pela Vercel.
 
 Para conferir a publicação, abra o endereço gerado e também `/api`, `/api/alertas` e `/api/posts`. A API e os Models deste protótipo armazenam dados em memória; gravações não são persistidas entre execuções de funções ou novos deploys. Para uso real, conecte os Models a um banco de dados hospedado.
 
 ## Estrutura
 
 ```text
-api/                   # funções serverless da Vercel
-controllers/           # validação e coordenação dos casos de uso
-models/                # mock data e operações sobre os dados
-views/                 # geração da apresentação HTML da rota /mvc
+api/[...route].js      # entrada Express da Vercel para /api/*
+src/app.js             # configuração do Express, CORS e endpoints auxiliares
+src/models/            # persistência em memória
+src/services/          # bcrypt e JWT
+src/controllers/       # casos de uso REST de usuários
+src/middlewares/       # autenticação Bearer Token
+src/routes/            # rotas da API
 public/                # páginas, estilos, scripts, imagens e ícones publicados
+requests.http          # exemplos para REST Client ou Thunder Client
 ```
 
 ## API de demonstração
 
-- Rotas de View: `GET /login`, `GET /cadastro`, `GET /central`, `GET /comunidade`, `GET /mapa`, `GET /procurar`, `GET /notificacoes`, `GET /perfil` e `GET /posts/novo`.
-- `GET /alertas` lista alertas em memória; `GET /alertas?tipo=acidente` filtra por tipo.
-- `POST /alertas` cria um alerta em memória. Envie JSON ou formulário com `tipo`, `titulo`, `local`, `latitude` e `longitude`.
-- `GET /posts` lista posts; `GET /posts?q=termo` pesquisa posts.
-- `POST /posts` cria um post em memória. O campo obrigatório é `titulo`.
-- As rotas `/api/alertas` e `/api/posts` permanecem como aliases compatíveis.
+O administrador inicial é `admin@safedrive.com` com a senha `Admin@123`. A senha está armazenada apenas como hash bcrypt. Defina `JWT_SECRET` nas variáveis de ambiente da Vercel para trocar a chave padrão de desenvolvimento.
 
-Os dados são reiniciados quando o servidor é reiniciado. A substituição dos Models por um repositório/banco pode ser feita sem mover a lógica para as Views.
+- `POST /api/login` autentica e retorna um JWT válido por uma hora.
+- `POST /api/usuarios` cadastra um usuário e retorna `201`, sem expor senha.
+- `GET /api/usuarios` lista usuários sem expor senha.
+- `GET /api/usuarios/:id`, `PUT /api/usuarios/:id` e `DELETE /api/usuarios/:id` exigem `Authorization: Bearer <token>`.
+- `GET /api/status`, `GET/POST /api/alertas` e `GET/POST /api/posts` permanecem disponíveis para demonstração.
+
+- O painel visual do CRUD está em `/usuarios.html` após login ou cadastro.
+- Os dados são mantidos em memória e reiniciam com uma nova instância da função. Para produção, substitua o Model por um banco de dados hospedado.

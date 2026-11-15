@@ -1,0 +1,49 @@
+@baseUrl = http://localhost:3000
+@token = {{login.response.body.token}}
+
+### API e dados de demonstração
+GET {{baseUrl}}/api/status
+
+### Login do administrador inicial (senha: Admin@123)
+# @name login
+POST {{baseUrl}}/api/login
+Content-Type: application/json
+
+{
+  "email": "admin@safedrive.com",
+  "senha": "Admin@123"
+}
+
+### Criar usuário
+POST {{baseUrl}}/api/usuarios
+Content-Type: application/json
+
+{
+  "nome": "Ana Souza",
+  "email": "ana@example.com",
+  "senha": "Senha@123",
+  "perfil": "usuario"
+}
+
+### Listar usuários
+GET {{baseUrl}}/api/usuarios
+Authorization: Bearer {{token}}
+
+### Consultar usuário por ID
+GET {{baseUrl}}/api/usuarios/1
+Authorization: Bearer {{token}}
+
+### Atualizar usuário por ID
+PUT {{baseUrl}}/api/usuarios/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "nome": "Administrador Safe Drive",
+  "email": "admin@safedrive.com",
+  "perfil": "admin"
+}
+
+### Excluir usuário por ID
+DELETE {{baseUrl}}/api/usuarios/2
+Authorization: Bearer {{token}}

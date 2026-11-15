@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Usuários | Safe Drive</title>
+  <link rel="shortcut icon" href="favicon/favicon.ico" type="image/x-icon">
+  <style>
+    :root { color-scheme: light; --azul:#17375e; --laranja:#f59e0b; --fundo:#f4f7fb; --erro:#b42318; }
+    * { box-sizing:border-box; font-family:Arial, Helvetica, sans-serif; }
+    body { margin:0; min-height:100vh; background:var(--fundo); color:#172033; }
+    header { background:var(--azul); color:#fff; padding:20px max(24px, calc((100% - 1100px)/2)); display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    header h1 { font-size:1.35rem; margin:0; } header p { margin:5px 0 0; opacity:.8; font-size:.9rem; }
+    .sair { border:1px solid #fff; background:transparent; color:#fff; padding:9px 14px; border-radius:7px; cursor:pointer; }
+    main { max-width:1100px; margin:32px auto; padding:0 24px; display:grid; grid-template-columns:330px 1fr; gap:24px; }
+    section { background:#fff; border-radius:12px; box-shadow:0 8px 24px #17375e12; padding:24px; }
+    h2 { margin:0 0 18px; font-size:1.15rem; } label { display:block; font-size:.85rem; font-weight:bold; margin:12px 0 6px; }
+    input, select { width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:7px; font-size:.95rem; background:#fff; }
+    button { font:inherit; cursor:pointer; } .primario { width:100%; margin-top:18px; border:0; padding:11px; border-radius:7px; color:#fff; background:var(--azul); font-weight:bold; }
+    .secundario { width:100%; margin-top:10px; border:1px solid #94a3b8; padding:10px; border-radius:7px; color:#334155; background:#fff; }
+    .aviso { min-height:20px; font-size:.88rem; margin:14px 0 0; color:var(--erro); } .aviso.sucesso { color:#047857; }
+    table { width:100%; border-collapse:collapse; } th,td { text-align:left; padding:13px 9px; border-bottom:1px solid #e2e8f0; font-size:.92rem; }
+    th { color:#475569; font-size:.78rem; text-transform:uppercase; } .acoes { display:flex; gap:8px; }
+    .editar,.excluir { border:0; border-radius:6px; padding:7px 9px; font-size:.82rem; } .editar { background:#e0ecff; color:#174ea6; } .excluir { background:#fee4e2; color:#b42318; }
+    .vazio { color:#64748b; text-align:center; padding:24px; } @media (max-width:760px) { main { grid-template-columns:1fr; margin-top:20px; } table { display:block; overflow:auto; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div><h1>Safe Drive · Gestão de usuários</h1><p id="boasVindas">Carregando sessão...</p></div>
+    <button class="sair" id="sair">Sair</button>
+  </header>
+  <main>
+    <section>
+      <h2 id="tituloFormulario">Cadastrar usuário</h2>
+      <form id="formUsuario">
+        <input type="hidden" id="id">
+        <label for="nome">Nome</label><input id="nome" required minlength="3">
+        <label for="email">E-mail</label><input id="email" type="email" required>
+        <label for="perfil">Perfil</label><select id="perfil"><option value="usuario">Usuário</option><option value="admin">Administrador</option></select>
+        <label for="senha">Senha <span id="textoSenha">(obrigatória)</span></label><input id="senha" type="password" placeholder="Ex.: Senha@123">
+        <button class="primario" type="submit" id="salvar">Cadastrar</button>
+        <button class="secundario" type="button" id="cancelar" hidden>Cancelar edição</button>
+        <p class="aviso" id="aviso" role="status"></p>
+      </form>
+    </section>
+    <section>
+      <h2>Usuários cadastrados</h2>
+      <table><thead><tr><th>Nome</th><th>E-mail</th><th>Perfil</th><th>Ações</th></tr></thead><tbody id="lista"><tr><td class="vazio" colspan="4">Carregando...</td></tr></tbody></table>
+    </section>
+  </main>
+  <script>
+    const token = localStorage.getItem('safeDriveToken');
+    const usuarioLogado = JSON.parse(localStorage.getItem('safeDriveUsuario') || 'null');
+    const cabecalhos = () => ({ 'Content-Type': 'application/json', Authorization: `Bearer ${token}` });
+    const form = document.getElementById('formUsuario');
+    const aviso = document.getElementById('aviso');
+    const lista = document.getElementById('lista');
+    let usuarios = [];
+
+    if (!token || !usuarioLogado) window.location.href = 'index.html';
+    document.getElementById('boasVindas').textContent = `Sessão: ${usuarioLogado?.nome || ''}`;
+
+    function mensagem(texto, sucesso = false) { aviso.textContent = texto; aviso.className = sucesso ? 'aviso sucesso' : 'aviso'; }
+    function escapar(texto) { const div = document.createElement('div'); div.textContent = texto; return div.innerHTML; }
+
+    async function carregarUsuarios() {
+      const resposta = await fetch('/api/usuarios', { headers: cabecalhos() });
+      const dados = await resposta.json();
+      if (!resposta.ok) return mensagem(dados.erro || 'Não foi possível carregar os usuários.');
+      usuarios = dados.usuarios;
+      lista.innerHTML = usuarios.length ? usuarios.map((usuario) => `<tr><td>${escapar(usuario.nome)}</td><td>${escapar(usuario.email)}</td><td>${escapar(usuario.perfil)}</td><td class="acoes"><button class="editar" data-id="${usuario.id}">Editar</button><button class="excluir" data-id="${usuario.id}">Excluir</button></td></tr>`).join('') : '<tr><td class="vazio" colspan="4">Nenhum usuário cadastrado.</td></tr>';
+    }
+
+    function cancelarEdicao() {
+      form.reset(); document.getElementById('id').value = ''; document.getElementById('tituloFormulario').textContent = 'Cadastrar usuário'; document.getElementById('salvar').textContent = 'Cadastrar'; document.getElementById('textoSenha').textContent = '(obrigatória)'; document.getElementById('senha').required = true; document.getElementById('cancelar').hidden = true;
+    }
+
+    lista.addEventListener('click', async (evento) => {
+      const id = Number(evento.target.dataset.id); if (!id) return;
+      const usuario = usuarios.find((item) => item.id === id);
+      if (evento.target.classList.contains('editar')) {
+        document.getElementById('id').value = usuario.id; document.getElementById('nome').value = usuario.nome; document.getElementById('email').value = usuario.email; document.getElementById('perfil').value = usuario.perfil; document.getElementById('senha').value = ''; document.getElementById('senha').required = false; document.getElementById('tituloFormulario').textContent = 'Editar usuário'; document.getElementById('salvar').textContent = 'Salvar alterações'; document.getElementById('textoSenha').textContent = '(deixe em branco para manter)'; document.getElementById('cancelar').hidden = false; mensagem(''); window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      if (evento.target.classList.contains('excluir') && confirm(`Excluir ${usuario.nome}?`)) {
+        const resposta = await fetch(`/api/usuarios/${id}`, { method: 'DELETE', headers: cabecalhos() }); const dados = await resposta.json();
+        if (!resposta.ok) return mensagem(dados.erro || 'Não foi possível excluir.');
+        mensagem(dados.mensagem, true); carregarUsuarios();
+      }
+    });
+
+    form.addEventListener('submit', async (evento) => {
+      evento.preventDefault(); const id = document.getElementById('id').value;
+      const corpo = { nome: document.getElementById('nome').value.trim(), email: document.getElementById('email').value.trim(), perfil: document.getElementById('perfil').value, senha: document.getElementById('senha').value };
+      const resposta = await fetch(id ? `/api/usuarios/${id}` : '/api/usuarios', { method: id ? 'PUT' : 'POST', headers: cabecalhos(), body: JSON.stringify(corpo) }); const dados = await resposta.json();
+      if (!resposta.ok) return mensagem(dados.erro || 'Não foi possível salvar.');
+      mensagem(id ? 'Usuário atualizado com sucesso.' : 'Usuário cadastrado com sucesso.', true); cancelarEdicao(); carregarUsuarios();
+    });
+    document.getElementById('cancelar').addEventListener('click', cancelarEdicao);
+    document.getElementById('sair').addEventListener('click', () => { localStorage.removeItem('safeDriveToken'); localStorage.removeItem('safeDriveUsuario'); window.location.href = 'index.html'; });
+    carregarUsuarios();
+  </script>
+</body>
+</html>
