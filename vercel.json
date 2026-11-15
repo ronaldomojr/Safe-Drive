@@ -1,18 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "outputDirectory": "public",
   "rewrites": [
-    { "source": "/mvc", "destination": "/api/mvc" },
-    { "source": "/api", "destination": "/api/status" },
-    { "source": "/alertas", "destination": "/api/alertas" },
-    { "source": "/posts", "destination": "/api/posts" },
-    { "source": "/login", "destination": "/index.html" },
-    { "source": "/cadastro", "destination": "/cadastro.html" },
-    { "source": "/central", "destination": "/central.html" },
-    { "source": "/comunidade", "destination": "/central.html" },
-    { "source": "/mapa", "destination": "/mapa.html" },
-    { "source": "/procurar", "destination": "/procurar.html" },
-    { "source": "/notificacoes", "destination": "/notificacoes.html" },
-    { "source": "/perfil", "destination": "/lucas-perfil.html" },
-    { "source": "/posts/novo", "destination": "/react.html" }
+    { "source": "/api/(.*)", "destination": "/api/$1" }
   ]
 }
