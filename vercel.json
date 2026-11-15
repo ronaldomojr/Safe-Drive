@@ -1,19 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "functions": {
-    "api/index.js": {
-      "includeFiles": "**/*"
-    }
-  },
   "rewrites": [
-    { "source": "/", "destination": "/api/index?route=/" },
-    { "source": "/mvc", "destination": "/api/index?route=/mvc" },
-    { "source": "/api", "destination": "/api/index?route=/api" },
-    { "source": "/api/alertas", "destination": "/api/index?route=/api/alertas" },
-    { "source": "/api/posts", "destination": "/api/index?route=/api/posts" },
-    { "source": "/api/:path*", "destination": "/api/index?path=:path*" },
-    { "source": "/alertas", "destination": "/api/index?route=/alertas" },
-    { "source": "/posts", "destination": "/api/index?route=/posts" },
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/mvc", "destination": "/api/mvc" },
+    { "source": "/api", "destination": "/api/status" },
+    { "source": "/alertas", "destination": "/api/alertas" },
+    { "source": "/posts", "destination": "/api/posts" },
     { "source": "/login", "destination": "/index.html" },
     { "source": "/cadastro", "destination": "/cadastro.html" },
     { "source": "/central", "destination": "/central.html" },
