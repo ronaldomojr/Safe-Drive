@@ -2,7 +2,7 @@
 
 ## Executar
 
-Requer Node.js 24.x. Não há dependências de aplicação para instalar.
+Requer Node.js 24.x e PostgreSQL configurado em `DATABASE_URL`, `STORAGE_URL` ou `POSTGRES_URL`.
 
 Para executar localmente:
 
@@ -27,14 +27,15 @@ npm run vercel:dev
 
 Os HTML, CSS, JavaScript, imagens e ícones são publicados pelo diretório `public/`. A Vercel entrega esses arquivos pela CDN e encaminha apenas `/api/*` para a função Express `api/[...route].js`. O `package.json` fixa Node.js em `24.x`, versão aceita pela Vercel.
 
-Para conferir a publicação, abra o endereço gerado e também `/api`, `/api/alertas` e `/api/posts`. A API e os Models deste protótipo armazenam dados em memória; gravações não são persistidas entre execuções de funções ou novos deploys. Para uso real, conecte os Models a um banco de dados hospedado.
+Para conferir a publicação, abra o endereço gerado e também `/api`, `/api/alertas` e `/api/posts`. A API usa PostgreSQL e cria automaticamente a tabela `usuarios` e o administrador inicial na primeira operação.
 
 ## Estrutura
 
 ```text
 api/[...route].js      # entrada Express da Vercel para /api/*
 src/app.js             # configuração do Express, CORS e endpoints auxiliares
-src/models/            # persistência em memória
+src/models/            # acesso ao PostgreSQL
+src/config/database.js # pool e inicialização do banco
 src/services/          # bcrypt e JWT
 src/controllers/       # casos de uso REST de usuários
 src/middlewares/       # autenticação Bearer Token
@@ -54,4 +55,4 @@ O administrador inicial é `admin@safedrive.com` com a senha `Admin@123`. A senh
 - `GET /api/status`, `GET/POST /api/alertas` e `GET/POST /api/posts` permanecem disponíveis para demonstração.
 
 - O painel visual do CRUD está em `/usuarios.html` após login ou cadastro.
-- Os dados são mantidos em memória e reiniciam com uma nova instância da função. Para produção, substitua o Model por um banco de dados hospedado.
+- Os usuários são persistidos no PostgreSQL conectado pela variável de ambiente do banco.

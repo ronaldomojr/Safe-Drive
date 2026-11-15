@@ -1,48 +1,73 @@
-const usuarios = [
-  {
-    id: 1,
-    nome: 'Administrador Safe Drive',
-    email: 'admin@safedrive.com',
-    perfil: 'admin',
-    // Senha inicial: Admin@123 (hash bcrypt com 10 salt rounds).
-    senha: '$2b$10$ZhpcMe3k3lPGA0o4xbUe7.3oNpVgtJHoSEyi4IgGiT57q..X4p1xy'
-  }
-];
+const { pool, initDatabase } = require('../config/database');
 
-let proximoId = 2;
+const CAMPOS_PUBLICOS = 'id, nome, email, perfil, criado_em';
 
-function listar() {
-  return usuarios.map((usuario) => ({ ...usuario }));
+async function listar() {
+  await initDatabase();
+  const resultado = await pool.query(`SELECT ${CAMPOS_PUBLICOS} FROM usuarios ORDER BY id`);
+  return resultado.rows;
 }
 
-function buscarPorId(id) {
-  const usuario = usuarios.find((item) => item.id === Number(id));
-  return usuario ? { ...usuario } : null;
+async function buscarPorId(id) {
+  await initDatabase();
+  const resultado = await pool.query(
+    `SELECT ${CAMPOS_PUBLICOS} FROM usuarios WHERE id = $1`,
+    [id]
+  );
+  return resultado.rows[0] || null;
 }
 
-function buscarPorEmail(email) {
-  const usuario = usuarios.find((item) => item.email.toLowerCase() === String(email).toLowerCase());
-  return usuario ? { ...usuario } : null;
+async function buscarPorEmail(email, incluirSenha = false) {
+  await initDatabase();
+  const campos = incluirSenha ? `${CAMPOS_PUBLICOS}, senha_hash` : CAMPOS_PUBLICOS;
+  const resultado = await pool.query(
+    `SELECT ${campos} FROM usuarios WHERE LOWER(email) = LOWER($1)`,
+    [String(email).trim()]
+  );
+  return resultado.rows[0] || null;
 }
 
-function criar({ nome, email, senha, perfil = 'usuario' }) {
-  const usuario = { id: proximoId++, nome, email: email.toLowerCase(), senha, perfil };
-  usuarios.push(usuario);
-  return { ...usuario };
+async function criar({ nome, email, senha, perfil = 'usuario' }) {
+  await initDatabase();
+  const resultado = await pool.query(
+    `INSERT INTO usuarios (nome, email, senha_hash, perfil)
+     VALUES ($1, LOWER($2), $3, $4)
+     RETURNING ${CAMPOS_PUBLICOS}`,
+    [nome, email, senha, perfil]
+  );
+  return resultado.rows[0];
 }
 
-function atualizar(id, dados) {
-  const indice = usuarios.findIndex((item) => item.id === Number(id));
-  if (indice === -1) return null;
-
-  usuarios[indice] = { ...usuarios[indice], ...dados, id: usuarios[indice].id };
-  return { ...usuarios[indice] };
+async function atualizar(id, dados) {
+  await initDatabase();
+  const resultado = await pool.query(
+    `UPDATE usuarios
+     SET nome = $1,
+         email = LOWER($2),
+         senha_hash = COALESCE($3, senha_hash),
+         perfil = $4
+     WHERE id = $5
+     RETURNING ${CAMPOS_PUBLICOS}`,
+    [dados.nome, dados.email, dados.senha || null, dados.perfil, id]
+  );
+  return resultado.rows[0] || null;
 }
 
-function remover(id) {
-  const indice = usuarios.findIndex((item) => item.id === Number(id));
-  if (indice === -1) return null;
-  return { ...usuarios.splice(indice, 1)[0] };
+async function excluir(id) {
+  await initDatabase();
+  const resultado = await pool.query(
+    `DELETE FROM usuarios WHERE id = $1 RETURNING ${CAMPOS_PUBLICOS}`,
+    [id]
+  );
+  return resultado.rows[0] || null;
 }
 
-module.exports = { listar, buscarPorId, buscarPorEmail, criar, atualizar, remover };
+module.exports = {
+  listar,
+  buscarPorId,
+  buscarPorEmail,
+  criar,
+  atualizar,
+  excluir,
+  remover: excluir
+};
