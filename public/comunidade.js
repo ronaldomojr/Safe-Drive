@@ -21,7 +21,7 @@ const comunidade = {
     return foto;
   },
   mapa(id) {
-    const mapa = L.map(id).setView([-22.5087, -44.0938], 14);
+    const mapa = L.map(id).setView([-14.2, -51.9], 4);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'

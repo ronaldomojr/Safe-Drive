@@ -16,8 +16,11 @@ function mostrarIdentidade(dados) {
   document.querySelector('#identidade').hidden = false;
 }
 
-function mostrarPosts(posts) {
+function mostrarPosts(posts, editavel) {
   const grade = document.querySelector('#grade');
+  grade.replaceChildren();
+  const lista = document.querySelector('#listaExcluir');
+  lista.replaceChildren();
   for (const post of posts) {
     const link = comunidade.elemento('a', '', 'post-thumbnail');
     link.href = 'central.html#post-' + post.id;
@@ -34,7 +37,26 @@ function mostrarPosts(posts) {
       link.append(resumo);
     }
     grade.append(link);
+    if (editavel) {
+      const linha = comunidade.elemento('div', '', 'gerenciar-post');
+      const excluir = comunidade.elemento('button', 'Excluir');
+      excluir.type = 'button';
+      excluir.setAttribute('aria-label', 'Excluir ' + post.titulo);
+      excluir.onclick = async () => {
+        if (!window.confirm('Excluir “' + post.titulo + '”? O post, a foto, as curtidas e os comentários serão removidos.')) return;
+        excluir.disabled = true;
+        try {
+          const r = await fetch('/api/posts/' + post.id, { method:'DELETE', headers:autorizacao });
+          if (!r.ok && r.status !== 404) throw new Error(r.status === 401 || r.status === 403 ? 'Entre novamente para excluir.' : 'Falha ao excluir a publicação.');
+          localStorage.setItem('safeDrivePostExcluido', JSON.stringify({ id:post.id, hora:Date.now() }));
+          await carregar();
+        } catch (erro) { statusPerfil.textContent = erro.message; excluir.disabled = false; }
+      };
+      linha.append(comunidade.elemento('strong', post.titulo), excluir);
+      lista.append(linha);
+    }
   }
+  document.querySelector('#gerenciar').hidden = !editavel || !posts.length;
   document.querySelector('#contagem').textContent = posts.length + (posts.length === 1 ? ' publicação' : ' publicações');
   document.querySelector('#vazio').hidden = posts.length > 0;
   document.querySelector('#publicacoes').hidden = false;
@@ -55,7 +77,7 @@ async function carregar() {
     if (!r.ok) throw new Error(r.status === 404 ? 'Perfil não encontrado.' : 'Não foi possível carregar o perfil.');
     const dados = await r.json();
     mostrarIdentidade(dados.perfil);
-    mostrarPosts(dados.posts);
+    mostrarPosts(dados.posts, dados.editavel);
     editar.hidden = !dados.editavel;
     statusPerfil.textContent = '';
   } catch (erro) { statusPerfil.textContent = erro.message; }
@@ -100,6 +122,8 @@ editor.onsubmit = async event => {
     const resposta = await r.json();
     if (!r.ok) throw new Error(resposta.erro || 'Falha ao salvar o perfil.');
     mostrarIdentidade(resposta.perfil);
+    window.dispatchEvent(new CustomEvent('perfil-atualizado', { detail: resposta.perfil }));
+    localStorage.setItem('safeDrivePerfilAtualizado', String(Date.now()));
     fecharEditor();
     statusPerfil.textContent = 'Perfil atualizado.';
   } catch (erro) { retorno.textContent = erro.message; }

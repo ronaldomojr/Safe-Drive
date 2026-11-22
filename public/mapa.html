@@ -11,17 +11,19 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="mapa.css">
+    <link rel="stylesheet" href="header.css"><link rel="stylesheet" href="mapa.css">
 </head>
 <body>
 
     <div id="map"></div>
 
+    <div id="contaMapa"></div>
     <aside class="map-panel">
       <nav><a href="central.html">← Comunidade</a><a href="react.html">＋ Novo post</a></nav>
+      <button id="gpsMapa">Minha localização</button><p id="posicaoMapa" role="status"></p>
       <details id="painelMapa"><summary>Ocorrências no mapa</summary>
         <div id="listaMapa"></div><button id="atualizar">Atualizar</button>
       </details><p id="avisoMapa" role="status">Carregando ocorrências…</p>
     </aside>
-    <script src="comunidade.js"></script><script src="script.js"></script><script src="mapa-posts.js"></script>
+    <script src="header.js"></script><script src="localizacao.js"></script><script src="comunidade.js"></script><script src="script.js"></script><script src="mapa-posts.js"></script>
 </body></html>

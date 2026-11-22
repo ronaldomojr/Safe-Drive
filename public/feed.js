@@ -55,3 +55,5 @@ async function carregar() {
 }
 search.onsubmit = event => { event.preventDefault(); carregar(); };
 carregar();
+window.addEventListener('storage', e => { if (e.key === 'safeDrivePostExcluido' || e.key === 'safeDrivePerfilAtualizado') carregar(); });
+window.addEventListener('pageshow', e => { if (e.persisted) carregar(); });

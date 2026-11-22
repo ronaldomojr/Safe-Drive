@@ -42,3 +42,8 @@ body { background: #f6f6f6; color:#333; }
 .feedback:empty { display:none; }
 .comentarios form { display:grid; gap:8px; margin-top:10px; }
 .comentarios form button { justify-self:end; }
+
+#gerenciar { background:white; padding:12px 16px; border-radius:10px; margin-bottom:18px; }
+#gerenciar summary { cursor:pointer; font-weight:650; }
+.gerenciar-post { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:8px 0; border-top:1px solid #eee; overflow-wrap:anywhere; }
+.gerenciar-post button { color:#942e20; }

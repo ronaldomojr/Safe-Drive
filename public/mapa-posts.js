@@ -4,14 +4,38 @@ const detalhesMapa = document.querySelector('#painelMapa');
 const alfinetes = new Map();
 let alvo = new URLSearchParams(location.search).get('post');
 let primeiraCarga = true;
+const gpsMapa = document.querySelector('#gpsMapa');
+controleLocalizacao(map, gpsMapa, document.querySelector('#posicaoMapa'), () => { primeiraCarga = false; });
 let carregando = false;
+let atualizarNovamente = false;
 function focar(marker) {
   detalhesMapa.open = false;
   map.setView(marker.getLatLng(), 16);
   marker.openPopup();
 }
+function popupDoPost(post) {
+  const popup = comunidade.elemento('div', '', 'resumo-mapa');
+  const autor = comunidade.elemento('a', '', 'autor-mapa');
+  autor.href = 'perfil.html?id=' + post.usuario_id;
+  const avatar = comunidade.elemento('span', '', 'mini-avatar');
+  avatar.append(comunidade.avatar(post.autor_nome, post.usuario_id, post.autor_tem_avatar));
+  autor.append(avatar, post.autor_nome);
+  const link = comunidade.elemento('a', 'Abrir post');
+  link.href = 'central.html#post-' + post.id;
+  popup.append(autor, comunidade.elemento('strong', post.titulo),
+    comunidade.elemento('span', post.categoria + ' · ' + post.localizacao));
+  if (post.tem_foto) {
+    const foto = document.createElement('img');
+    foto.className = 'foto-ocorrencia';
+    foto.src = '/api/posts/' + post.id + '/foto';
+    foto.alt = 'Foto da ocorrência';
+    popup.append(foto);
+  }
+  popup.append(link);
+  return popup;
+}
 async function atualizarMapa() {
-  if (carregando) return;
+  if (carregando) { atualizarNovamente = true; return; }
   carregando = true;
   try {
     const posts = (await comunidade.listar()).filter(p => p.latitude != null && p.longitude != null);
@@ -26,16 +50,10 @@ async function atualizarMapa() {
     for (const post of posts) {
       let marker = alfinetes.get(post.id);
       if (!marker) {
-        const popup = document.createElement('div');
-        const link = comunidade.elemento('a', 'Abrir post');
-        link.href = 'central.html#post-' + post.id;
-        popup.append(comunidade.elemento('strong', post.titulo),
-          comunidade.elemento('p', post.categoria + ' · ' + post.autor_nome),
-          comunidade.elemento('p', post.localizacao), link);
-        marker = L.marker([post.latitude, post.longitude], { title: post.titulo })
-          .addTo(map).bindPopup(popup);
+        marker = L.marker([post.latitude, post.longitude], { title: post.titulo }).addTo(map);
         alfinetes.set(post.id, marker);
       }
+      marker.bindPopup(() => popupDoPost(post));
       const item = comunidade.elemento('button', post.categoria + ' · ' + post.titulo);
       item.onclick = () => focar(marker);
       listaMapa.append(item);
@@ -49,9 +67,22 @@ async function atualizarMapa() {
     }
   } catch {
     avisoMapa.textContent = 'Falha ao atualizar os posts. Tente novamente.';
-  } finally { carregando = false; }
+  } finally {
+    carregando = false;
+    if (atualizarNovamente) { atualizarNovamente = false; atualizarMapa(); }
+  }
 }
 document.querySelector('#atualizar').onclick = atualizarMapa;
 document.addEventListener('visibilitychange', () => { if (!document.hidden) atualizarMapa(); });
 setInterval(() => { if (!document.hidden) atualizarMapa(); }, 60000);
 atualizarMapa();
+window.addEventListener('storage', e => {
+  if (e.key === 'safeDrivePerfilAtualizado') atualizarMapa();
+  if (e.key === 'safeDrivePostExcluido' && e.newValue) {
+    const { id } = JSON.parse(e.newValue);
+    alfinetes.get(id)?.remove();
+    alfinetes.delete(id);
+    atualizarMapa();
+  }
+});
+window.addEventListener('pageshow', e => { if (e.persisted) atualizarMapa(); });

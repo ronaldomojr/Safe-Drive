@@ -6,6 +6,7 @@ const perfil = require('../controllers/perfilController');
 
 const router = express.Router();
 
+router.get('/perfil/resumo', autenticarToken, perfil.resumo);
 router.get('/perfil', autenticarToken, perfil.proprio);
 router.put('/perfil', autenticarToken, perfil.salvar);
 router.get('/perfis/:perfilId', perfil.publico);

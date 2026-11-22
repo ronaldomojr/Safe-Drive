@@ -25,6 +25,12 @@ async function salvar(req, res) {
   return res.json({ perfil });
 }
 
+async function resumo(req, res) {
+  const perfil = await usuarios.perfilSocial(req.usuario.id);
+  if (!perfil) return res.sendStatus(404);
+  return res.set('Cache-Control', 'no-store').json(perfil);
+}
+
 async function avatar(req, res) {
   const imagem = await usuarios.buscarAvatar(req.params.perfilId);
   if (!imagem) return res.sendStatus(404);
@@ -32,4 +38,4 @@ async function avatar(req, res) {
     .type('image/jpeg').send(imagem);
 }
 
-module.exports = { proprio, publico, salvar, avatar };
+module.exports = { proprio, publico, salvar, avatar, resumo };

@@ -4,33 +4,34 @@ const ponto = document.querySelector('#point');
 const preview = document.querySelector('#preview');
 const mapa = comunidade.mapa('picker');
 let marcador;
-let selecao = 0;
+const confirmar = document.querySelector('#confirmarGps');
+let estimativa;
 let previewUrl;
 function marcar(latlng) {
-  selecao++;
+  limparGps();
+  confirmar.hidden = true;
+  estimativa = null;
   const posicao = mapa.wrapLatLng(latlng);
   if (marcador) marcador.setLatLng(posicao);
   else marcador = L.marker(posicao).addTo(mapa);
   ponto.textContent = posicao.lat.toFixed(5) + ', ' + posicao.lng.toFixed(5);
 }
 mapa.on('click', e => marcar(e.latlng));
-document.querySelector('#center').onclick = () => marcar(mapa.getCenter());
-document.querySelector('#gps').onclick = () => {
-  if (!navigator.geolocation) {
-    ponto.textContent = 'GPS indisponível. Marque o ponto no mapa.';
+document.querySelector('#center').onclick = () => {
+  if (mapa.getZoom() < 14) {
+    ponto.textContent = 'Aproxime o mapa até enxergar a rua antes de marcar o centro.';
     return;
   }
-  const pedido = ++selecao;
-  ponto.textContent = 'Buscando sua localização…';
-  navigator.geolocation.getCurrentPosition(({ coords }) => {
-    if (pedido !== selecao) return;
-    const local = L.latLng(coords.latitude, coords.longitude);
-    mapa.setView(local, 16);
-    marcar(local);
-  }, () => {
-    if (pedido === selecao) ponto.textContent = 'GPS indisponível. Confirme o ponto no mapa.';
-  }, { enableHighAccuracy: true, timeout: 12000 });
+  marcar(mapa.getCenter());
 };
+const limparGps = controleLocalizacao(mapa, document.querySelector('#gps'), ponto, (posicao, precisao) => {
+  marcador?.remove();
+  marcador = null;
+  estimativa = posicao;
+  confirmar.hidden = !posicao || precisao > 100;
+  if (posicao && precisao > 100) ponto.textContent += ' Toque na rua correta para marcar a ocorrência.';
+});
+confirmar.onclick = () => { if (estimativa) marcar(estimativa); };
 form.elements.imagem.onchange = () => {
   if (previewUrl) URL.revokeObjectURL(previewUrl);
   const file = form.elements.imagem.files[0];
