@@ -62,7 +62,32 @@ async function excluir(id) {
   return resultado.rows[0] || null;
 }
 
+const CAMPOS_PERFIL = 'id, nome, bio, avatar IS NOT NULL AS tem_avatar';
+
+async function perfilSocial(id) {
+  await initDatabase();
+  const resultado = await pool.query(`SELECT ${CAMPOS_PERFIL} FROM usuarios WHERE id = $1`, [id]);
+  return resultado.rows[0];
+}
+
+async function salvarPerfil(id, bio, alterarFoto, foto) {
+  await initDatabase();
+  const resultado = await pool.query(
+    `UPDATE usuarios SET bio = $2, avatar = CASE WHEN $3 THEN $4 ELSE avatar END
+     WHERE id = $1 RETURNING ${CAMPOS_PERFIL}`,
+    [id, bio, alterarFoto, foto]
+  );
+  return resultado.rows[0];
+}
+
+async function buscarAvatar(id) {
+  await initDatabase();
+  const resultado = await pool.query('SELECT avatar FROM usuarios WHERE id = $1', [id]);
+  return resultado.rows[0]?.avatar;
+}
+
 module.exports = {
+  perfilSocial, salvarPerfil, buscarAvatar,
   listar,
   buscarPorId,
   buscarPorEmail,

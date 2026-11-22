@@ -10,6 +10,16 @@ const comunidade = {
     if (classe) el.className = classe;
     return el;
   },
+  avatar(nome, id, temFoto) {
+    if (!temFoto) {
+      const palavras = nome.trim().split(/\s+/);
+      return document.createTextNode((palavras[0][0] + (palavras.length > 1 ? palavras.at(-1)[0] : '')).toUpperCase());
+    }
+    const foto = document.createElement('img');
+    foto.src = '/api/perfis/' + id + '/foto';
+    foto.alt = '';
+    return foto;
+  },
   mapa(id) {
     const mapa = L.map(id).setView([-22.5087, -44.0938], 14);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {

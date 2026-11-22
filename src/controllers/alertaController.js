@@ -1,3 +1,4 @@
+const { lerJPEG } = require('../services/foto');
 const alertaModel = require('../models/alertaModel');
 
 async function listar(req, res) {
@@ -28,17 +29,9 @@ async function criar(req, res) {
       categoria.length > 50 || (cep && String(cep).length > 10)) {
     return res.status(400).json({ erro: 'Confira o tamanho e o formato dos campos.' });
   }
-  let imagem = null;
-  if (foto != null) {
-    if (typeof foto !== 'string' || foto.length > 349528 || !/^[A-Za-z0-9+/]+={0,2}$/.test(foto)) {
-      return res.status(400).json({ erro: 'Envie uma foto JPEG de até 256 KiB.' });
-    }
-    imagem = Buffer.from(foto, 'base64');
-    if (imagem.length > 262144 || imagem.length < 4 ||
-        imagem.readUIntBE(0, 3) !== 0xffd8ff || imagem.readUInt16BE(imagem.length - 2) !== 0xffd9) {
-      return res.status(400).json({ erro: 'Foto JPEG inválida.' });
-    }
-  }
+  let imagem;
+  try { imagem = lerJPEG(foto); }
+  catch (erro) { return res.status(400).json({ erro: erro.message }); }
 
   const alerta = await alertaModel.criarAlerta({
     usuario_id: req.usuario.id,

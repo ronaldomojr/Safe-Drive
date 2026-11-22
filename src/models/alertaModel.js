@@ -1,6 +1,6 @@
 const { pool, initDatabase } = require('../config/database');
 
-async function listarAlertas(q = '') {
+async function listarAlertas(q = '', autor = null) {
   await initDatabase();
   const resultado = await pool.query(`
     SELECT
@@ -15,12 +15,16 @@ async function listarAlertas(q = '') {
       alertas.foto IS NOT NULL AS tem_foto,
       alertas.localizacao,
       alertas.criado_em,
+      (SELECT COUNT(*)::int FROM curtidas WHERE post_id = alertas.id) AS curtidas,
+      (SELECT COUNT(*)::int FROM comentarios WHERE post_id = alertas.id) AS comentarios,
+      usuarios.avatar IS NOT NULL AS autor_tem_avatar,
       usuarios.nome AS autor_nome
     FROM alertas
     INNER JOIN usuarios ON alertas.usuario_id = usuarios.id
-    WHERE $1::text = '' OR strpos(lower(concat_ws(' ', titulo, descricao, categoria, localizacao)), lower($1)) > 0
+    WHERE ($2::int IS NULL OR alertas.usuario_id = $2)
+      AND ($1::text = '' OR strpos(lower(concat_ws(' ', titulo, descricao, categoria, localizacao)), lower($1)) > 0)
     ORDER BY alertas.criado_em DESC, alertas.id DESC
-  `, [q]);
+  `, [q, autor]);
   return resultado.rows;
 }
 

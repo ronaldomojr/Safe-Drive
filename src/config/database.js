@@ -26,6 +26,12 @@ async function inicializar() {
     );
   `);
 
+  await pool.query(`
+    ALTER TABLE usuarios
+      ADD COLUMN IF NOT EXISTS bio VARCHAR(300) NOT NULL DEFAULT '',
+      ADD COLUMN IF NOT EXISTS avatar BYTEA
+  `);
+
   if (process.env.ADMIN_INITIAL_PASSWORD) {
     const senhaHash = await bcrypt.hash(process.env.ADMIN_INITIAL_PASSWORD, 10);
     await pool.query(
@@ -54,6 +60,23 @@ async function inicializar() {
       ADD COLUMN IF NOT EXISTS longitude DOUBLE PRECISION,
       ADD COLUMN IF NOT EXISTS foto BYTEA
   `);
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS curtidas (
+      post_id INTEGER REFERENCES alertas(id) ON DELETE CASCADE,
+      usuario_id INTEGER REFERENCES usuarios(id) ON DELETE CASCADE,
+      PRIMARY KEY (post_id, usuario_id)
+    )
+  `);
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS comentarios (
+      id SERIAL PRIMARY KEY,
+      post_id INTEGER NOT NULL REFERENCES alertas(id) ON DELETE CASCADE,
+      usuario_id INTEGER NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
+      texto VARCHAR(500) NOT NULL
+    )
+  `);
+  await pool.query('CREATE INDEX IF NOT EXISTS comentarios_post_id_idx ON comentarios(post_id, id)');
+
 }
 
 async function initDatabase() {

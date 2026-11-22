@@ -7,6 +7,7 @@ const app = express();
 
 app.use(cors());
 app.post('/api/posts', express.json({ limit: '400kb' }));
+app.put('/api/perfil', express.json({ limit: '400kb' }));
 app.use(express.json());
 
 app.use('/api', userRoutes);
