@@ -877,3 +877,12 @@ body {
 }
 
 
+
+.map-panel { position:fixed; z-index:800; top:14px; right:14px; width:min(300px,88vw); box-sizing:border-box; background:white; padding:16px; border-radius:14px; box-shadow:0 4px 18px #24322830 }
+.map-panel nav { display:flex; justify-content:space-between; gap:12px; margin-bottom:10px }
+.map-panel a { color:#345543; font-weight:bold }
+.map-panel summary { font-weight:bold; cursor:pointer }
+#listaMapa { max-height:35vh; overflow:auto }
+.map-panel button { display:block; text-align:left; width:100%; padding:9px; margin-top:6px; border:1px solid #dccfaf; background:#fffbf1; border-radius:5px; cursor:pointer }
+#avisoMapa:empty { display:none }
+@media(max-width:680px){.map-panel { top:auto; bottom:30px; left:10px; width:calc(100% - 20px) } .search-card { width:175px } }

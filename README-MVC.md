@@ -27,7 +27,7 @@ npm run vercel:dev
 
 Os HTML, CSS, JavaScript, imagens e ícones são publicados pelo diretório `public/`. A Vercel entrega esses arquivos pela CDN e encaminha apenas `/api/*` para a função Express `api/[...route].js`. O `package.json` fixa Node.js em `24.x`, versão aceita pela Vercel.
 
-Para conferir a publicação, abra o endereço gerado e também `/api/status`, `/api/alertas` e `/api/posts`. A API usa PostgreSQL e cria automaticamente as tabelas `usuarios` e `alertas` e o administrador inicial na primeira operação.
+Para conferir a publicação, abra o endereço gerado e também `/api/status`, `/api/alertas` e `/api/posts`. A API usa PostgreSQL e cria automaticamente as tabelas `usuarios` e `alertas` na primeira operação. Para criar o administrador inicial em um banco novo, configure ADMIN_INITIAL_PASSWORD.
 
 ## Estrutura
 
@@ -49,7 +49,7 @@ requests.http          # exemplos para REST Client ou Thunder Client
 
 ## API de demonstração
 
-O administrador inicial é `admin@safedrive.com` com a senha `Admin@123`. A senha está armazenada apenas como hash bcrypt. Defina `JWT_SECRET` nas variáveis de ambiente da Vercel para trocar a chave padrão de desenvolvimento.
+Para um banco novo, defina `ADMIN_INITIAL_PASSWORD` para provisionar `admin@safedrive.com`. Em um banco existente, altere a senha pelo painel se a conta ainda usar a antiga senha de demonstração. Configure também `JWT_SECRET`.
 
 - `POST /api/login` autentica e retorna um JWT válido por uma hora.
 - `POST /api/usuarios` cadastra um usuário e retorna `201`, sem expor senha.
@@ -58,7 +58,7 @@ O administrador inicial é `admin@safedrive.com` com a senha `Admin@123`. A senh
 - `GET /api/alertas` lista alertas persistidos com o nome do autor.
 - `POST /api/alertas` exige token e vincula o alerta ao usuário autenticado.
 - `DELETE /api/alertas/:id` exige token e só permite o autor ou um administrador.
-- `GET /api/status` e `GET/POST /api/posts` permanecem disponíveis para demonstração.
+- `GET /api/status` e `GET/POST /api/posts` estão disponíveis. Os posts usam a mesma tabela PostgreSQL dos alertas.
 
 - O painel visual do CRUD está em `/usuarios.html` após login ou cadastro.
 - Os usuários são persistidos no PostgreSQL conectado pela variável de ambiente do banco.

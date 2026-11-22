@@ -26,13 +26,15 @@ async function inicializar() {
     );
   `);
 
-  const senhaHash = await bcrypt.hash('Admin@123', 10);
-  await pool.query(
-    `INSERT INTO usuarios (nome, email, senha_hash, perfil)
-     VALUES ($1, $2, $3, $4)
-     ON CONFLICT (email) DO NOTHING`,
-    ['Administrador Safe Drive', 'admin@safedrive.com', senhaHash, 'admin']
-  );
+  if (process.env.ADMIN_INITIAL_PASSWORD) {
+    const senhaHash = await bcrypt.hash(process.env.ADMIN_INITIAL_PASSWORD, 10);
+    await pool.query(
+      `INSERT INTO usuarios (nome, email, senha_hash, perfil)
+       VALUES ($1, $2, $3, $4)
+       ON CONFLICT (email) DO NOTHING`,
+      ['Administrador Safe Drive', 'admin@safedrive.com', senhaHash, 'admin']
+    );
+  }
 
   await pool.query(`
     CREATE TABLE IF NOT EXISTS alertas (
@@ -45,6 +47,12 @@ async function inicializar() {
       localizacao VARCHAR(200) NOT NULL,
       criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
+  `);
+  await pool.query(`
+    ALTER TABLE alertas
+      ADD COLUMN IF NOT EXISTS latitude DOUBLE PRECISION,
+      ADD COLUMN IF NOT EXISTS longitude DOUBLE PRECISION,
+      ADD COLUMN IF NOT EXISTS foto BYTEA
   `);
 }
 

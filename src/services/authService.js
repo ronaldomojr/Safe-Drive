@@ -2,7 +2,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const SALT_ROUNDS = 10;
-const JWT_SECRET = process.env.JWT_SECRET || 'safe-drive-chave-desenvolvimento';
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) throw new Error('Configure JWT_SECRET no ambiente.');
 
 function hashSenha(senha) {
   return bcrypt.hash(senha, SALT_ROUNDS);

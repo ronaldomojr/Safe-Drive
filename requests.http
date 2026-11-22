@@ -4,14 +4,14 @@
 ### API e dados de demonstração
 GET {{baseUrl}}/api/status
 
-### Login do administrador inicial (senha: Admin@123)
+### Login do administrador inicial
 # @name login
 POST {{baseUrl}}/api/login
 Content-Type: application/json
 
 {
   "email": "admin@safedrive.com",
-  "senha": "Admin@123"
+  "senha": "{{$processEnv ADMIN_INITIAL_PASSWORD}}"
 }
 
 ### Criar usuário
