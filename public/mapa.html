@@ -18,28 +18,29 @@
     <div id="map"></div>
 
     <div id="contaMapa"></div>
-    <aside class="map-panel search-card">
+    <aside class="map-panel search-card" aria-label="Navegação do Safe Drive">
+      <a class="marca-mapa" href="p_safedrive.html"><img src="Imagens/image-removebg-preview (1).png" alt="">Safe Drive</a>
 
       <details id="planejador"><summary class="search-box"><i class="fas fa-search" aria-hidden="true"></i> Para onde você está indo?</summary>
         <div class="trajeto">
-          <label for="origem">Partida</label><div class="campo-rota"><input id="origem" placeholder="Rua, bairro ou lugar"><button id="buscarOrigem">Buscar</button></div>
-          <div id="resOrigem"></div><div class="opcoes"><button id="marcarOrigem">Marcar partida</button></div>
+          <div class="rotulo-rota"><label for="origem">Partida</label><button id="marcarOrigem">Marcar no mapa</button></div><div class="campo-rota"><input id="origem" placeholder="Rua, bairro ou lugar"><button id="buscarOrigem">Buscar</button></div>
+          <div id="resOrigem"></div>
 
           <button hidden id="usarGps">Usar ponto azul como partida</button>
-          <label for="destino">Destino</label><div class="campo-rota"><input id="destino" placeholder="Para onde você vai?"><button id="buscarDestino">Buscar</button></div>
-          <div id="resDestino"></div><button id="marcarDestino">Marcar destino no mapa</button>
+          <div class="rotulo-rota"><label for="destino">Destino</label><button id="marcarDestino">Marcar no mapa</button></div><div class="campo-rota"><input id="destino" placeholder="Para onde você vai?"><button id="buscarDestino">Buscar</button></div>
+          <div id="resDestino"></div>
           <button id="calcular">Traçar rota</button>
           <p id="rotaAviso" role="status"></p><section id="viagem" hidden><strong id="estimativa"></strong>
             <details><summary>Instruções do trajeto</summary><ol id="manobras"></ol></details>
             <label id="vozOpcao" hidden><input id="vozRota" type="checkbox"> Ouvir instruções</label>
-            <button id="navegar">Iniciar navegação</button><button id="encerrar">Limpar rota</button></section>
+            <div class="acoes-viagem"><button id="navegar">Iniciar navegação</button><button id="encerrar">Limpar rota</button></div></section>
         </div></details>
       <div class="recentes"><div class="recent-title">Locais recentes</div>
         <button class="recent-item" onclick="abrirPopupEndereco('Casa')"><span class="recent-item-left"><i class="fas fa-home"></i><span>Casa<small class="subtitle">Defina uma vez e pronto</small></span></span> ›</button>
         <button class="recent-item" onclick="abrirPopupEndereco('Trabalho')"><span class="recent-item-left"><i class="fas fa-briefcase"></i><span>Trabalho<small class="subtitle">Defina uma vez e pronto</small></span></span> ›</button>
       </div>
       <button id="gpsMapa" aria-pressed="false">◎ Minha localização</button><p id="posicaoMapa" role="status"></p>
-      <nav><a href="central.html">Comunidade</a><a href="react.html">＋ Novo post</a></nav>
+      <nav><a href="central.html"><i class="fas fa-users" aria-hidden="true"></i> Comunidade</a><a href="react.html"><i class="fas fa-plus" aria-hidden="true"></i> Novo post</a></nav>
     </aside>
     <section class="floating-posts-container" aria-label="Postagens da comunidade">
       <div id="listaMapa"></div><p id="avisoMapa" role="status">Carregando postagens…</p><button id="atualizar" hidden>Tentar novamente</button>

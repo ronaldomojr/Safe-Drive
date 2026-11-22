@@ -878,62 +878,69 @@ body {
 
 
 
-.map-panel { position:fixed; z-index:800; top:14px; right:14px; width:min(300px,88vw); box-sizing:border-box; background:white; padding:16px; border-radius:14px; box-shadow:0 4px 18px #24322830 }
-.map-panel nav { display:flex; justify-content:space-between; gap:12px; margin-bottom:10px }
-.map-panel a { color:#345543; font-weight:bold }
-.map-panel summary { font-weight:bold; cursor:pointer }
-#listaMapa { max-height:35vh; overflow:auto }
-.map-panel button { display:block; text-align:left; width:100%; padding:9px; margin-top:6px; border:1px solid #dccfaf; background:#fffbf1; border-radius:5px; cursor:pointer }
-#avisoMapa:empty { display:none }
-@media(max-width:680px){.map-panel { top:auto; bottom:30px; left:10px; width:calc(100% - 20px) } .search-card { width:175px } }
-
+#avisoMapa:empty, #posicaoMapa:empty { display:none; }
 #contaMapa { position:fixed; top:12px; right:14px; z-index:810; }
-#contaMapa:not(:empty) + .map-panel { top:64px; }
-#posicaoMapa:empty { display:none; }
-#gpsMapa { margin:6px 0 10px; }
-@media(max-width:680px){#contaMapa:not(:empty) + .map-panel { top:auto; }}
-
 .resumo-mapa { display:grid; gap:6px; min-width:150px; overflow-wrap:anywhere; }
 .autor-mapa { display:flex; align-items:center; gap:7px; }
 .mini-avatar { display:grid; place-items:center; width:28px; height:28px; overflow:hidden; border-radius:50%; background:#ffe5ad; color:#754a0c; }
 .mini-avatar img { width:100%; height:100%; object-fit:cover; }
 .foto-ocorrencia { width:180px; height:90px; object-fit:cover; border-radius:6px; }
 
-.map-panel { max-height:calc(100dvh - 92px); overflow:auto; width:min(360px,88vw); }
-.map-panel details { padding:8px 0; border-top:1px solid #dedfd8; }
-.trajeto { display:grid; gap:6px; margin-top:12px; }
-.trajeto label { font-weight:700; color:#414b45; font-size:.88rem; }
-.trajeto input { width:100%; min-width:0; padding:10px; border:1px solid #aeb7b2; border-radius:6px; box-sizing:border-box; font:inherit; }
-.campo-rota,.opcoes { display:flex; align-items:center; gap:6px; }
-.campo-rota button { width:auto; margin:0; }
-.trajeto button { margin:0; }
-.trajeto p { margin:2px 0; }
-.trajeto p:empty,.trajeto [hidden] { display:none; }
-#calcular { background:#ffb623; text-align:center; font-weight:bold; border-color:#e8a21a; }
-#manobras { padding-left:22px; font-size:.93em; }
-#manobras li { margin:7px 0; }
-#estimativa { display:block; font-size:1.25rem; margin:8px 0; }
 .pino-rota { display:grid; place-items:center; border-radius:50%; border:2px solid white; background:#1854a2; color:white; font:bold 14px/1 Arial; box-shadow:0 1px 5px #0006; }
 .pino-rota.destino { background:#954500; }
-@media(max-width:680px){.map-panel {max-height:43dvh;width:calc(100% - 20px)}}
-
-#vozOpcao input { width:auto; margin:6px 4px 6px 0; }
-
-/* Painel de busca à esquerda e cartões da comunidade no mapa original. */
-.map-panel.search-card, #contaMapa:not(:empty) + .map-panel.search-card {
-  top:12px; bottom:auto; left:55px; right:auto; width:250px;
-  max-height:calc(100dvh - 48px); padding:12px; border-radius:20px; z-index:1000;
+/* O painel usa a mesma cor de marca, fonte e superfícies da página inicial. */
+.map-panel.search-card {
+  --laranja:#ffa000; --texto:#333; --linha:#e6e6e6;
+  position:fixed; z-index:1000; top:12px; left:55px; right:auto; bottom:auto;
+  box-sizing:border-box; width:258px; max-height:calc(100dvh - 40px); overflow:auto;
+  padding:0 14px 10px; border-radius:16px; background:white; color:var(--texto);
+  box-shadow:0 6px 24px #0002; font:14px/1.4 Roboto,Arial,sans-serif;
 }
-.map-panel.search-card:has(#planejador[open]) { width:min(340px,calc(100vw - 85px)); }
-.search-card #planejador { border:0; padding:0; }
-.search-card #planejador > summary { box-sizing:border-box; font:13px Arial,sans-serif; color:#464646; padding:10px; }
-.search-card #planejador > summary::marker { content:''; }
-.search-card .recent-item { border:0; border-radius:14px; background:#f5f5f5; padding:10px; display:flex; justify-content:space-between; }
-.search-card .recent-item i,.search-box i { color:#df9000; }
-.recent-item .subtitle { display:block; text-align:left; }
+.map-panel.search-card:has(#planejador[open]) { width:min(342px,calc(100vw - 85px)); }
+.map-panel .marca-mapa {
+  display:flex; align-items:center; gap:8px; margin:0 -14px 12px; padding:9px 14px;
+  background:var(--laranja); color:white; text-decoration:none; font-size:20px; font-weight:700;
+}
+.marca-mapa img { height:26px; width:auto; }
+.map-panel button,.map-panel input { font:inherit; box-sizing:border-box; }
+.map-panel button { cursor:pointer; color:var(--texto); border:0; border-radius:8px; padding:8px 10px; background:#f2f2f2; }
+.map-panel button:hover,.map-panel nav a:hover { background:#fff1d5; }
+.map-panel :focus-visible { outline:2px solid #8b5600; outline-offset:2px; }
+.map-panel summary { cursor:pointer; font-weight:700; }
+.map-panel .search-box { box-sizing:border-box; display:flex; gap:8px; padding:10px; font-weight:600; border-radius:9px; }
+.search-box::after { content:''; margin-left:auto; width:7px; height:7px; border:solid #666; border-width:0 2px 2px 0; transform:rotate(45deg); }
+#planejador[open] > .search-box::after { transform:rotate(225deg); }
+.search-box::-webkit-details-marker { display:none; }
 .search-card:has(#planejador[open]) .recentes { display:none; }
-.search-card nav { margin:8px 2px 0; font-size:12px; }
-.search-card #gpsMapa { text-align:center; }
+.map-panel .recent-item { display:flex; width:100%; justify-content:space-between; padding:9px 10px; text-align:left; }
+.recent-item .subtitle { display:block; }
+.recent-item i,.search-box i { color:#ad6900; }
+.trajeto { display:grid; gap:7px; margin-top:12px; }
+.rotulo-rota,.campo-rota,.acoes-viagem { display:flex; align-items:center; gap:8px; }
+.rotulo-rota { justify-content:space-between; }
+.rotulo-rota label { font-weight:700; }
+.map-panel .rotulo-rota button { font-size:12px; padding:5px 7px; background:transparent; color:#805000; text-decoration:underline; }
+.trajeto input:not([type="checkbox"]) { width:100%; min-width:0; border:1px solid #bdbdbd; border-radius:8px; padding:9px 10px; color:var(--texto); }
+.campo-rota button { font-weight:600; }
+.trajeto [id^="res"]:empty,.trajeto p:empty,.map-panel [hidden] { display:none; }
+.trajeto [id^="res"] button { display:block; width:100%; text-align:left; margin-bottom:3px; }
+.map-panel #calcular,.map-panel #navegar { background:var(--laranja); font-weight:700; }
+.map-panel #calcular:hover,.map-panel #navegar:hover { background:#ffb631; }
+#calcular { margin-top:3px; }
+#viagem { border-top:1px solid var(--linha); padding-top:9px; }
+#estimativa { display:block; font-size:21px; font-weight:700; margin:0 0 6px; }
+#viagem details { padding:6px 0; }
+#manobras { padding-left:22px; }
+#manobras li { margin:6px 0; }
+#vozOpcao { display:block; padding:5px 0 9px; }
+#vozOpcao input { accent-color:var(--laranja); }
+.acoes-viagem #navegar { flex:1; }
+#rotaAviso,#posicaoMapa { margin:4px 0; color:#555; font-size:13px; }
+.map-panel #gpsMapa { width:100%; margin:10px 0 5px; border:1px solid var(--linha); font-weight:600; background:white; }
+.map-panel #gpsMapa[aria-pressed="true"] { background:#fff1d5; border-color:var(--laranja); }
+.map-panel nav { display:flex; gap:8px; justify-content:space-between; margin-top:6px; border-top:1px solid var(--linha); padding-top:6px; }
+.map-panel nav a { display:flex; align-items:center; gap:6px; font-weight:600; font-size:13px; color:#444; text-decoration:none; border-radius:6px; padding:6px 4px; }
+.map-panel nav i { color:#a55e00; }
 #listaMapa { display:contents; }
 .floating-post-card a { text-decoration:none; color:inherit; }
 .floating-post-card .avatar-placeholder { display:grid; place-items:center; background:#ffe4ae; color:#735000; font-weight:bold; }
@@ -946,7 +953,10 @@ body {
 @media(min-width:768px){ #contaMapa:not(:empty) ~ .floating-posts-container { top:52px; max-height:calc(100dvh - 120px); } }
 @media(max-width:767px){
   #map { top:0; height:100dvh; }
-  .map-panel.search-card,#contaMapa:not(:empty) + .map-panel.search-card { top:8px;left:50px;width:min(220px,calc(100% - 112px)); max-height:45dvh; }
+  .map-panel.search-card { top:8px;left:50px;width:min(220px,calc(100% - 112px)); max-height:45dvh; }
   .map-panel.search-card:has(#planejador[open]) { width:min(340px,calc(100vw - 76px)); }
   .floating-posts-container { top:auto; left:0; right:auto; bottom:18px; max-height:30dvh; width:min(255px,67vw); box-sizing:border-box; }
+}
+@media(max-width:767px){
+  body:has(#map .leaflet-popup) .map-panel .recentes { display:none; }
 }
