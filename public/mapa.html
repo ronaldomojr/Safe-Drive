@@ -20,10 +20,23 @@
     <div id="contaMapa"></div>
     <aside class="map-panel">
       <nav><a href="central.html">← Comunidade</a><a href="react.html">＋ Novo post</a></nav>
-      <button id="gpsMapa">Minha localização</button><p id="posicaoMapa" role="status"></p>
+      <details id="planejador" open><summary>Rota de carro</summary>
+        <div class="trajeto">
+          <label for="origem">Partida</label><div class="campo-rota"><input id="origem" placeholder="Rua, bairro ou lugar"><button id="buscarOrigem">Buscar</button></div>
+          <div id="resOrigem"></div><div class="opcoes"><button id="gpsMapa">Minha localização</button><button id="marcarOrigem">Marcar partida</button></div>
+          <p id="posicaoMapa" role="status"></p>
+          <button hidden id="usarGps">Usar ponto azul como partida</button>
+          <label for="destino">Destino</label><div class="campo-rota"><input id="destino" placeholder="Para onde você vai?"><button id="buscarDestino">Buscar</button></div>
+          <div id="resDestino"></div><button id="marcarDestino">Marcar destino no mapa</button>
+          <button id="calcular">Traçar rota</button>
+          <p id="rotaAviso" role="status"></p><section id="viagem" hidden><strong id="estimativa"></strong>
+            <details><summary>Instruções do trajeto</summary><ol id="manobras"></ol></details>
+            <label id="vozOpcao" hidden><input id="vozRota" type="checkbox"> Ouvir instruções</label>
+            <button id="navegar">Iniciar navegação</button><button id="encerrar">Limpar rota</button></section>
+        </div></details>
       <details id="painelMapa"><summary>Ocorrências no mapa</summary>
         <div id="listaMapa"></div><button id="atualizar">Atualizar</button>
-      </details><p id="avisoMapa" role="status">Carregando ocorrências…</p>
+      </details><details><summary>Casa e trabalho</summary><button onclick="abrirPopupEndereco('Casa')">Definir casa</button><button onclick="abrirPopupEndereco('Trabalho')">Definir trabalho</button></details><p id="avisoMapa" role="status">Carregando ocorrências…</p>
     </aside>
-    <script src="header.js"></script><script src="localizacao.js"></script><script src="comunidade.js"></script><script src="script.js"></script><script src="mapa-posts.js"></script>
+    <script src="header.js"></script><script src="localizacao.js"></script><script src="comunidade.js"></script><script src="script.js"></script><script src="enderecos.js"></script><script src="rotas.js"></script><script src="mapa-posts.js"></script>
 </body></html>

@@ -27,3 +27,6 @@ label { display:grid; gap:4px; font-weight:650 }
 .section-heading { flex-wrap:wrap }
 #status { font-weight:600 }
 @media(max-width:520px){ .shell {padding-top:22px} .site-nav.open {z-index:1100} }
+
+.busca-local { display:grid; gap:6px; }
+#resultadosPost button { display:block; width:100%; text-align:left; }

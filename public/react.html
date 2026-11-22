@@ -25,12 +25,14 @@
     <label>Foto (opcional)<input name="imagem" type="file" accept="image/jpeg,image/png,image/webp"></label>
     <img id="preview" hidden alt="Prévia da foto selecionada">
     <div class="section-heading"><h2>Local da ocorrência</h2><button type="button" id="gps">Usar minha localização</button></div>
-    <p>Toque no mapa ou mova-o e marque o centro.</p><div id="picker" aria-label="Selecionar localização"></div>
+    <div class="busca-local"><label>Buscar rua ou bairro<input id="enderecoPost" placeholder="Rua ou bairro em Volta Redonda"></label>
+    <button id="buscarPost" type="button">Buscar endereço</button><div id="resultadosPost" aria-live="polite"></div></div>
+    <p>O mapa começa em Volta Redonda. Toque na rua onde aconteceu a ocorrência.</p><div id="picker" aria-label="Selecionar localização"></div>
     <button type="button" id="confirmarGps" hidden>Confirmar ponto do GPS</button>
     <button type="button" id="center">Marcar o centro do mapa</button><output id="point" aria-live="polite">Selecione um ponto.</output>
     <label>Referência (opcional)<input name="referencia" maxlength="200" placeholder="Rua, bairro ou ponto de referência"></label>
     <button class="primary" id="publish">Publicar ocorrência</button>
   </fieldset></form><p id="status" role="status"></p>
 </main>
-<script src="header.js"></script><script src="comunidade.js"></script><script src="foto.js"></script><script src="localizacao.js"></script><script src="publicar.js"></script>
+<script src="header.js"></script><script src="comunidade.js"></script><script src="foto.js"></script><script src="localizacao.js"></script><script src="enderecos.js"></script><script src="publicar.js"></script>
 </body></html>

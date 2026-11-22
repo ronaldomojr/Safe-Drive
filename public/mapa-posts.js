@@ -5,7 +5,10 @@ const alfinetes = new Map();
 let alvo = new URLSearchParams(location.search).get('post');
 let primeiraCarga = true;
 const gpsMapa = document.querySelector('#gpsMapa');
-controleLocalizacao(map, gpsMapa, document.querySelector('#posicaoMapa'), () => { primeiraCarga = false; });
+const limparGpsMapa = controleLocalizacao(map, gpsMapa, document.querySelector('#posicaoMapa'), (ponto, precisao) => {
+  primeiraCarga = false;
+  origemGps(ponto, precisao);
+});
 let carregando = false;
 let atualizarNovamente = false;
 function focar(marker) {
@@ -31,7 +34,9 @@ function popupDoPost(post) {
     foto.alt = 'Foto da ocorrência';
     popup.append(foto);
   }
-  popup.append(link);
+  const ir = comunidade.elemento('button', 'Traçar rota até aqui');
+  ir.onclick = () => { destinoPost(post); map.closePopup(); };
+  popup.append(link, ir);
   return popup;
 }
 async function atualizarMapa() {
@@ -61,7 +66,7 @@ async function atualizarMapa() {
     avisoMapa.textContent = posts.length ? '' : 'Ainda não há posts com localização.';
     if (primeiraCarga) {
       if (alvo && alfinetes.has(Number(alvo))) focar(alfinetes.get(Number(alvo)));
-      else if (posts.length) map.fitBounds(posts.map(p => [p.latitude, p.longitude]), { maxZoom: 15 });
+
       if (alvo && !alfinetes.has(Number(alvo))) avisoMapa.textContent = 'Esta ocorrência não está disponível no mapa.';
       primeiraCarga = false;
     }

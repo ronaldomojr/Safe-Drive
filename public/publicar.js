@@ -7,7 +7,10 @@ let marcador;
 const confirmar = document.querySelector('#confirmarGps');
 let estimativa;
 let previewUrl;
+let referenciaDaBusca = '';
 function marcar(latlng) {
+  if (referenciaDaBusca && form.elements.referencia.value === referenciaDaBusca) form.elements.referencia.value = '';
+  referenciaDaBusca = '';
   limparGps();
   confirmar.hidden = true;
   estimativa = null;
@@ -80,3 +83,11 @@ form.onsubmit = async event => {
     if (document.querySelector('#login').hidden) fields.disabled = false;
   }
 };
+
+buscaEndereco(document.querySelector('#enderecoPost'), document.querySelector('#buscarPost'),
+  document.querySelector('#resultadosPost'), mapa, (local, nome) => {
+    mapa.setView(local, 17);
+    marcar(local);
+    referenciaDaBusca = nome.slice(0, 200);
+    form.elements.referencia.value = referenciaDaBusca;
+  });

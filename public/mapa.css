@@ -898,3 +898,23 @@ body {
 .mini-avatar { display:grid; place-items:center; width:28px; height:28px; overflow:hidden; border-radius:50%; background:#ffe5ad; color:#754a0c; }
 .mini-avatar img { width:100%; height:100%; object-fit:cover; }
 .foto-ocorrencia { width:180px; height:90px; object-fit:cover; border-radius:6px; }
+
+.map-panel { max-height:calc(100dvh - 92px); overflow:auto; width:min(360px,88vw); }
+.map-panel details { padding:8px 0; border-top:1px solid #dedfd8; }
+.trajeto { display:grid; gap:6px; margin-top:12px; }
+.trajeto label { font-weight:700; color:#414b45; font-size:.88rem; }
+.trajeto input { width:100%; min-width:0; padding:10px; border:1px solid #aeb7b2; border-radius:6px; box-sizing:border-box; font:inherit; }
+.campo-rota,.opcoes { display:flex; align-items:center; gap:6px; }
+.campo-rota button { width:auto; margin:0; }
+.trajeto button { margin:0; }
+.trajeto p { margin:2px 0; }
+.trajeto p:empty,.trajeto [hidden] { display:none; }
+#calcular { background:#ffb623; text-align:center; font-weight:bold; border-color:#e8a21a; }
+#manobras { padding-left:22px; font-size:.93em; }
+#manobras li { margin:7px 0; }
+#estimativa { display:block; font-size:1.25rem; margin:8px 0; }
+.pino-rota { display:grid; place-items:center; border-radius:50%; border:2px solid white; background:#1854a2; color:white; font:bold 14px/1 Arial; box-shadow:0 1px 5px #0006; }
+.pino-rota.destino { background:#954500; }
+@media(max-width:680px){.map-panel {max-height:43dvh;width:calc(100% - 20px)}}
+
+#vozOpcao input { width:auto; margin:6px 4px 6px 0; }

@@ -34,14 +34,24 @@ function controleLocalizacao(mapa, botao, aviso, aoEstimar) {
       }
       const { latitude, longitude, accuracy } = melhor;
       const ponto = L.latLng(latitude, longitude);
-      const raio = L.circle(ponto, { radius: Math.max(accuracy, 1), color: '#1664ba', weight: 2, fillOpacity: .12 });
-      camada = L.layerGroup([raio, L.circleMarker(ponto, {
-        radius: 6, color: '#fff', fillColor: '#1664ba', weight: 2, fillOpacity: 1
-      })]).addTo(mapa);
-      mapa.fitBounds(raio.getBounds(), { maxZoom: 17, padding: [24, 24], animate: false });
-      const medida = accuracy >= 1000 ? (accuracy / 1000).toLocaleString('pt-BR', {maximumFractionDigits:1}) + ' km' : Math.ceil(accuracy) + ' m';
-      aviso.textContent = 'Precisão estimada: ' + medida + '. ' + (accuracy > 100 ? 'Área ampla. Confira o local no mapa.' : 'Confira o ponto azul no mapa.');
-      aoEstimar?.(ponto, accuracy);
+      function mostrar() {
+        const raio = L.circle(ponto, { radius: Math.max(accuracy, 1), color: '#1664ba', weight: 2, fillOpacity: .12 });
+        camada = L.layerGroup([raio, L.circleMarker(ponto, {
+          radius: 6, color: '#fff', fillColor: '#1664ba', weight: 2, fillOpacity: 1
+        })]).addTo(mapa);
+        mapa.invalidateSize();
+        mapa.setView(ponto, accuracy <= 250 ? 16 : 13, { animate: false });
+        aviso.textContent = 'Margem informada pelo aparelho: ' + Math.ceil(accuracy) + ' m. Confira a rua.';
+        aoEstimar?.(ponto, accuracy);
+      }
+      if (mapa.distance(ponto, mapa.getCenter()) > 40000) {
+        aviso.textContent = 'O aparelho indicou um ponto distante da região exibida. Se você está em Volta Redonda, busque sua rua ou toque no mapa. ';
+        const ver = document.createElement('button');
+        ver.type = 'button';
+        ver.textContent = 'Ver ponto informado pelo aparelho';
+        ver.onclick = mostrar;
+        aviso.append(ver);
+      } else mostrar();
     }
     timer = setTimeout(finalizar, 12000);
     watch = navigator.geolocation.watchPosition(leitura => {

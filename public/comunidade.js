@@ -1,3 +1,4 @@
+const voltaRedonda = [-22.5203, -44.104];
 const comunidade = {
   async listar(q = '') {
     const r = await fetch('/api/posts?q=' + encodeURIComponent(q), { cache: 'no-store' });
@@ -21,7 +22,7 @@ const comunidade = {
     return foto;
   },
   mapa(id) {
-    const mapa = L.map(id).setView([-14.2, -51.9], 4);
+    const mapa = L.map(id).setView(voltaRedonda, 14);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
