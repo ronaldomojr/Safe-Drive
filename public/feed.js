@@ -2,7 +2,7 @@ const feed = document.querySelector('#feed');
 const statusFeed = document.querySelector('#status');
 const search = document.querySelector('.search');
 const el = comunidade.elemento;
-function card(post, curtidas) {
+function card(post, curtidas, votos) {
   const article = el('article', '', 'post member-card');
   article.id = 'post-' + post.id;
   const header = el('div', '', 'member-header');
@@ -35,7 +35,7 @@ function card(post, curtidas) {
     link.href = 'mapa.html?post=' + post.id;
     actions.append(link);
   }
-  article.append(actions, interacoes(post, curtidas.has(post.id)));
+  article.append(actions, interacoes(post, curtidas.has(post.id)), avaliacao(post, votos.get(post.id)));
   return article;
 }
 let request = 0;
@@ -43,11 +43,11 @@ async function carregar() {
   const numero = ++request;
   statusFeed.textContent = 'Carregando posts…';
   try {
-    const [posts, curtidas] = await Promise.all([
-      comunidade.listar(search.elements.q.value.trim()), minhasCurtidas()
+    const [posts, curtidas, votos] = await Promise.all([
+      comunidade.listar(search.elements.q.value.trim()), minhasCurtidas(), meusVotos()
     ]);
     if (numero !== request) return;
-    feed.replaceChildren(...posts.map(post => card(post, curtidas)));
+    feed.replaceChildren(...posts.map(post => card(post, curtidas, votos)));
     statusFeed.textContent = posts.length ? '' : 'Nenhuma ocorrência encontrada.';
     document.getElementById(location.hash.slice(1))?.scrollIntoView();
   } catch {

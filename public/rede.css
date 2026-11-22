@@ -35,8 +35,9 @@ body { background: #f6f6f6; color:#333; }
 #vazio { text-align:center; }
 @media(max-width:520px){.profile-avatar {width:82px;height:82px;min-width:82px}.profile-bio-container{flex-direction:row;gap:14px}.post-thumbnail-text{font-size:.82rem}}
 
-.interacoes .post-actions { gap:0; padding:3px 6px; flex-wrap:nowrap; }
-.interacoes .action-btn { background:none; border:0; color:#666; gap:5px; padding:10px 3px; font-size:.85rem; white-space:nowrap; }
+.interacoes .post-actions { gap:0; padding:10px 15px; flex-wrap:nowrap; }
+.interacoes .action-btn { min-width:0; }
+.interacoes .action-btn:focus-visible,.vera-btn:focus-visible { outline:2px solid #a55d00; outline-offset:2px; }
 .interacoes button[aria-pressed="true"] { color:#935800; background:#fff1cb; }
 .feedback:not(:empty),.comentarios { padding:10px 16px; }
 .feedback:empty { display:none; }

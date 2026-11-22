@@ -9,6 +9,8 @@ router.param('id', (req, res, next, id) => {
   next();
 });
 const social = require('../controllers/interacaoController');
+router.get('/meus-votos', autenticarToken, social.meusVotos);
+router.put('/posts/:id/voto', autenticarToken, social.votar);
 router.get('/minhas-curtidas', autenticarToken, social.minhas);
 router.put('/posts/:id/curtida', autenticarToken, social.curtir);
 router.delete('/posts/:id/curtida', autenticarToken, social.descurtir);

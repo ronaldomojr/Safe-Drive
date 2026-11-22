@@ -68,6 +68,14 @@ async function inicializar() {
     )
   `);
   await pool.query(`
+    CREATE TABLE IF NOT EXISTS votos_veracidade (
+      post_id INTEGER NOT NULL REFERENCES alertas(id) ON DELETE CASCADE,
+      usuario_id INTEGER NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
+      voto TEXT NOT NULL CHECK (voto IN ('sim', 'nao')),
+      PRIMARY KEY (post_id, usuario_id)
+    )
+  `);
+  await pool.query(`
     CREATE TABLE IF NOT EXISTS comentarios (
       id SERIAL PRIMARY KEY,
       post_id INTEGER NOT NULL REFERENCES alertas(id) ON DELETE CASCADE,

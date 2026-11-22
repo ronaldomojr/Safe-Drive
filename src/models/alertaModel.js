@@ -17,10 +17,16 @@ async function listarAlertas(q = '', autor = null) {
       alertas.criado_em,
       (SELECT COUNT(*)::int FROM curtidas WHERE post_id = alertas.id) AS curtidas,
       (SELECT COUNT(*)::int FROM comentarios WHERE post_id = alertas.id) AS comentarios,
+      votos.sim, votos.nao,
       usuarios.avatar IS NOT NULL AS autor_tem_avatar,
       usuarios.nome AS autor_nome
     FROM alertas
     INNER JOIN usuarios ON alertas.usuario_id = usuarios.id
+    CROSS JOIN LATERAL (
+      SELECT COUNT(*) FILTER (WHERE voto = 'sim')::int AS sim,
+             COUNT(*) FILTER (WHERE voto = 'nao')::int AS nao
+      FROM votos_veracidade WHERE post_id = alertas.id
+    ) votos
     WHERE ($2::int IS NULL OR alertas.usuario_id = $2)
       AND ($1::text = '' OR strpos(lower(concat_ws(' ', titulo, descricao, categoria, localizacao)), lower($1)) > 0)
     ORDER BY alertas.criado_em DESC, alertas.id DESC
