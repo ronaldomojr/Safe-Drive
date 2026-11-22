@@ -30,7 +30,8 @@ function card(post, curtidas) {
   const actions = el('div', '', 'post-actions');
   actions.append(el('span', post.localizacao, 'local'));
   if (post.latitude != null && post.longitude != null) {
-    const link = el('a', 'Ver no mapa ↗');
+    const link = el('a', 'Ver no mapa');
+    link.prepend(comunidade.icone('fas fa-map-marker-alt'), ' ');
     link.href = 'mapa.html?post=' + post.id;
     actions.append(link);
   }

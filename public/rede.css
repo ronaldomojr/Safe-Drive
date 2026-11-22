@@ -36,7 +36,7 @@ body { background: #f6f6f6; color:#333; }
 @media(max-width:520px){.profile-avatar {width:82px;height:82px;min-width:82px}.profile-bio-container{flex-direction:row;gap:14px}.post-thumbnail-text{font-size:.82rem}}
 
 .interacoes .post-actions { gap:0; padding:3px 6px; flex-wrap:nowrap; }
-.interacoes .action-btn { padding:10px 3px; font-size:.85rem; white-space:nowrap; }
+.interacoes .action-btn { background:none; border:0; color:#666; gap:5px; padding:10px 3px; font-size:.85rem; white-space:nowrap; }
 .interacoes button[aria-pressed="true"] { color:#935800; background:#fff1cb; }
 .feedback:not(:empty),.comentarios { padding:10px 16px; }
 .feedback:empty { display:none; }
@@ -47,3 +47,7 @@ body { background: #f6f6f6; color:#333; }
 #gerenciar summary { cursor:pointer; font-weight:650; }
 .gerenciar-post { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:8px 0; border-top:1px solid #eee; overflow-wrap:anywhere; }
 .gerenciar-post button { color:#942e20; }
+
+.abas a i { margin-right:4px; }
+#feed .post-actions a { color:#805100; }
+@media(max-width:420px){.interacoes .action-btn { gap:3px; font-size:.76rem; }}

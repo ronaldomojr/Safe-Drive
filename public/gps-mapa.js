@@ -11,7 +11,7 @@ function pararGpsMapa() {
   marcadorGps?.remove();
   circuloGps = marcadorGps = ultimaPosicaoGps = null;
   origemGps(null);
-  botaoGps.textContent = '◎ Minha localização';
+  botaoGps.querySelector('span').textContent = 'Minha localização';
   botaoGps.setAttribute('aria-pressed', 'false');
   avisoGps.replaceChildren();
 }
@@ -47,7 +47,7 @@ function iniciarGpsMapa() {
   }
   ver.onclick = () => { if (distante && geracao === geracaoGps) mostrar(distante.p,distante.precisao); };
   botaoGps.setAttribute('aria-pressed','true');
-  botaoGps.textContent = 'Parar GPS';
+  botaoGps.querySelector('span').textContent = 'Parar GPS';
   avisoGps.textContent = 'Aguardando o aparelho…';
   observacaoGps = navigator.geolocation.watchPosition(({coords,timestamp}) => {
     if (geracao !== geracaoGps || Date.now()-timestamp > 30000) return;

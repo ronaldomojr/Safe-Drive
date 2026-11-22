@@ -71,7 +71,7 @@ for (const campo of ['origem', 'destino']) {
     pararGpsMapa();
     escolhaMapa = campo;
     painelRota.open = false;
-    porId('planejador').querySelector('summary').textContent = campo === 'origem' ? 'Toque na partida no mapa' : 'Toque no destino no mapa';
+    porId('textoBuscaRota').textContent = campo === 'origem' ? 'Toque na partida no mapa' : 'Toque no destino no mapa';
   };
 }
 map.on('click', e => {
@@ -79,10 +79,10 @@ map.on('click', e => {
   const campo = escolhaMapa;
   definirPonto(campo, e.latlng, campo === 'origem' ? 'Partida marcada no mapa' : 'Destino marcado no mapa');
   painelRota.open = true;
-  painelRota.querySelector('summary').textContent = 'Para onde você está indo?';
+  porId('textoBuscaRota').textContent = 'Para onde você está indo?';
 });
 painelRota.addEventListener('toggle', () => {
-  if (painelRota.open) { escolhaMapa = null; painelRota.querySelector('summary').textContent = 'Para onde você está indo?'; }
+  if (painelRota.open) { escolhaMapa = null; porId('textoBuscaRota').textContent = 'Para onde você está indo?'; }
 });
 function destinoPost(post) {
   definirPonto('destino', L.latLng(post.latitude, post.longitude), post.titulo);

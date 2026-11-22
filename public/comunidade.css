@@ -5,8 +5,8 @@ body { margin: 0; color: #232c2d; background: #f6f5ef; font: 16px/1.5 Roboto, Ar
 h1 { font-size:clamp(2.15rem,7vw,3.7rem); letter-spacing:-.06em; line-height:1.05; margin:12px 0 22px }
 h2,h3,p { margin:8px 0 }
 .eyebrow,.category { font-weight:750; color:#815100; letter-spacing:.09em; text-transform:uppercase; font-size:.76rem }
-button,.primary { cursor:pointer; border:1px solid #b7bbb3; border-radius:8px; background:white; color:#23302d; padding:10px 15px; font:inherit; font-weight:650 }
-.primary { border:0; background:#ffb21b; color:#241d10; text-decoration:none; white-space:nowrap }
+.shell button,.primary { cursor:pointer; border:1px solid #e0e0e0; border-radius:8px; background:#f5f5f5; color:#333; padding:10px 15px; font:inherit; font-weight:650 }
+.shell .primary { border:0; background:#e69100; color:white; text-decoration:none; white-space:nowrap }
 button:disabled { opacity:.6; cursor:wait }
 a { color:#31574a; font-weight:650 }
 input,textarea,select { width:100%; padding:10px 12px; border:1px solid #adb5ad; border-radius:7px; font:inherit; color:inherit; background:#fff }
@@ -30,3 +30,10 @@ label { display:grid; gap:4px; font-weight:650 }
 
 .busca-local { display:grid; gap:6px; }
 #resultadosPost button { display:block; width:100%; text-align:left; }
+
+.shell .primary:hover { background:#c67c00; }
+.shell button:not(:disabled):not(.primary):not(.action-btn):hover { background:#fff7ec; border-color:#e69100; }
+.shell input[type=file]::file-selector-button {
+  cursor:pointer; background:white; border:1px dashed #e69100; color:#955b00;
+  font:600 13px Roboto,Arial,sans-serif; padding:8px 14px; border-radius:8px; margin-right:8px;
+}

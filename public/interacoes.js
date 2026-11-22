@@ -11,6 +11,7 @@ function interacoes(post, curtido) {
   const like = el('button', '', 'action-btn');
   const comentarios = el('button', '', 'action-btn');
   const share = el('button', 'Compartilhar', 'action-btn');
+  share.prepend(comunidade.icone('far fa-share-square'), ' ');
   const aviso = el('p', '', 'feedback');
   aviso.setAttribute('role', 'status');
   const painel = el('section', '', 'comentarios');
@@ -31,9 +32,9 @@ function interacoes(post, curtido) {
   area.append(barra, aviso, painel);
   const api = '/api/posts/' + post.id;
   function rotulos() {
-    like.textContent = (curtido ? '♥ ' : '♡ ') + 'Curtir · ' + post.curtidas;
+    like.replaceChildren(comunidade.icone(curtido ? 'fas fa-thumbs-up' : 'far fa-thumbs-up'), 'Curtir · ' + post.curtidas);
     like.setAttribute('aria-pressed', String(curtido));
-    comentarios.textContent = 'Comentários · ' + post.comentarios;
+    comentarios.replaceChildren(comunidade.icone('far fa-comment'), 'Comentários · ' + post.comentarios);
     comentarios.setAttribute('aria-expanded', String(!painel.hidden));
   }
   function pedirSessao() {

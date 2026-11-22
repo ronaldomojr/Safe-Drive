@@ -11,6 +11,12 @@ const comunidade = {
     if (classe) el.className = classe;
     return el;
   },
+  icone(classes) {
+    const icone = document.createElement('i');
+    icone.className = classes;
+    icone.setAttribute('aria-hidden', 'true');
+    return icone;
+  },
   avatar(nome, id, temFoto) {
     if (!temFoto) {
       const palavras = nome.trim().split(/\s+/);

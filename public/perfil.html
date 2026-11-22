@@ -6,6 +6,7 @@
   <title>Perfil | Safe Drive</title>
   <link rel="icon" href="favicon.ico/favicon.ico">
   <link rel="stylesheet" href="central.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="header.css">
   <link rel="stylesheet" href="comunidade.css">
   <link rel="stylesheet" href="perfil.css">
@@ -17,24 +18,24 @@
   <button class="site-nav-toggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <nav class="site-nav"><a href="mapa.html">Mapa ao vivo</a><a href="central.html">Comunidade</a><a class="site-nav-btn" href="index.html">Entrar</a></nav>
 </div></header>
-<nav class="abas" aria-label="Navegação da comunidade"><a href="central.html">Área geral</a><a href="perfil.html" aria-current="page">Perfil</a><a href="central.html#busca">Procurar</a></nav>
+<nav class="abas" aria-label="Navegação da comunidade"><a href="central.html"><i class="fas fa-home" aria-hidden="true"></i> Área geral</a><a href="perfil.html" aria-current="page"><i class="fas fa-user" aria-hidden="true"></i> Perfil</a><a href="central.html#busca"><i class="fas fa-search" aria-hidden="true"></i> Procurar</a></nav>
 <main class="shell">
   <p role="status" id="status">Carregando perfil…</p>
   <a id="entrar" hidden href="index.html">Entrar na minha conta</a>
   <section id="identidade" hidden class="profile-bio-container">
     <div id="avatar" class="profile-avatar"></div>
     <div class="profile-info"><h1 id="nome" class="profile-name"></h1><p id="bio" class="profile-bio"></p>
-      <button id="editar" hidden type="button" aria-controls="editor" aria-expanded="false">Editar perfil</button></div>
+      <button id="editar" hidden type="button" aria-controls="editor" aria-expanded="false"><i class="fas fa-user-edit" aria-hidden="true"></i> Editar perfil</button></div>
   </section>
   <form id="editor" hidden><fieldset><legend>Editar perfil</legend>
     <label>Bio<textarea name="bio" rows="3" maxlength="300" placeholder="Conte um pouco sobre você"></textarea></label>
     <label>Foto de perfil<input type="file" name="foto" accept="image/jpeg,image/png,image/webp"></label>
     <label id="removerLabel" hidden><span><input type="checkbox" name="remover"> Remover foto atual</span></label>
-    <div><button class="primary">Salvar alterações</button> <button type="button" id="cancelar">Cancelar</button></div>
+    <div><button class="primary"><i class="fas fa-check" aria-hidden="true"></i> Salvar alterações</button> <button type="button" id="cancelar">Cancelar</button></div>
     <p role="status" id="retorno"></p>
   </fieldset></form>
   <section id="publicacoes" hidden><h2 class="posts-grid-title" id="contagem">Publicações</h2>
-    <details id="gerenciar" hidden><summary>Excluir postagens</summary><div id="listaExcluir"></div></details>
+    <details id="gerenciar" hidden><summary><i class="fas fa-trash-alt" aria-hidden="true"></i> Excluir postagens</summary><div id="listaExcluir"></div></details>
     <div id="grade" class="profile-posts-grid"></div><p id="vazio" hidden>Ainda não há publicações.</p></section>
 </main>
 <script src="header.js"></script><script src="comunidade.js"></script>

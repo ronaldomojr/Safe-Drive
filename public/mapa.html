@@ -21,7 +21,7 @@
     <aside class="map-panel search-card" aria-label="Navegação do Safe Drive">
       <a class="marca-mapa" href="p_safedrive.html"><img src="Imagens/image-removebg-preview (1).png" alt="">Safe Drive</a>
 
-      <details id="planejador"><summary class="search-box"><i class="fas fa-search" aria-hidden="true"></i> Para onde você está indo?</summary>
+      <details id="planejador"><summary class="search-box"><img alt="" class="icon-left" src="https://cdn-icons-png.flaticon.com/512/54/54481.png"><span id="textoBuscaRota">Para onde você está indo?</span><img alt="" class="icon-right" src="https://cdn-icons-png.flaticon.com/512/709/709631.png"></summary>
         <div class="trajeto">
           <div class="rotulo-rota"><label for="origem">Partida</label><button id="marcarOrigem">Marcar no mapa</button></div><div class="campo-rota"><input id="origem" placeholder="Rua, bairro ou lugar"><button id="buscarOrigem">Buscar</button></div>
           <div id="resOrigem"></div>
@@ -36,10 +36,10 @@
             <div class="acoes-viagem"><button id="navegar">Iniciar navegação</button><button id="encerrar">Limpar rota</button></div></section>
         </div></details>
       <div class="recentes"><div class="recent-title">Locais recentes</div>
-        <button class="recent-item" onclick="abrirPopupEndereco('Casa')"><span class="recent-item-left"><i class="fas fa-home"></i><span>Casa<small class="subtitle">Defina uma vez e pronto</small></span></span> ›</button>
-        <button class="recent-item" onclick="abrirPopupEndereco('Trabalho')"><span class="recent-item-left"><i class="fas fa-briefcase"></i><span>Trabalho<small class="subtitle">Defina uma vez e pronto</small></span></span> ›</button>
+        <button class="recent-item" onclick="abrirPopupEndereco('Casa')"><span class="recent-item-left"><img alt="" class="" src="https://cdn-icons-png.flaticon.com/512/1946/1946433.png"><span>Casa<small class="subtitle">Defina uma vez e pronto</small></span></span><img alt="" class="seta-recente" src="https://cdn-icons-png.flaticon.com/512/271/271228.png"></button>
+        <button class="recent-item" onclick="abrirPopupEndereco('Trabalho')"><span class="recent-item-left"><img alt="" class="" src="https://cdn-icons-png.flaticon.com/512/3103/3103446.png"><span>Trabalho<small class="subtitle">Defina uma vez e pronto</small></span></span><img alt="" class="seta-recente" src="https://cdn-icons-png.flaticon.com/512/271/271228.png"></button>
       </div>
-      <button id="gpsMapa" aria-pressed="false">◎ Minha localização</button><p id="posicaoMapa" role="status"></p>
+      <button id="gpsMapa" aria-pressed="false"><i class="fas fa-location-arrow" aria-hidden="true"></i> <span>Minha localização</span></button><p id="posicaoMapa" role="status"></p>
       <nav><a href="central.html"><i class="fas fa-users" aria-hidden="true"></i> Comunidade</a><a href="react.html"><i class="fas fa-plus" aria-hidden="true"></i> Novo post</a></nav>
     </aside>
     <section class="floating-posts-container" aria-label="Postagens da comunidade">
