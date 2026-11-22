@@ -918,3 +918,35 @@ body {
 @media(max-width:680px){.map-panel {max-height:43dvh;width:calc(100% - 20px)}}
 
 #vozOpcao input { width:auto; margin:6px 4px 6px 0; }
+
+/* Painel de busca à esquerda e cartões da comunidade no mapa original. */
+.map-panel.search-card, #contaMapa:not(:empty) + .map-panel.search-card {
+  top:12px; bottom:auto; left:55px; right:auto; width:250px;
+  max-height:calc(100dvh - 48px); padding:12px; border-radius:20px; z-index:1000;
+}
+.map-panel.search-card:has(#planejador[open]) { width:min(340px,calc(100vw - 85px)); }
+.search-card #planejador { border:0; padding:0; }
+.search-card #planejador > summary { box-sizing:border-box; font:13px Arial,sans-serif; color:#464646; padding:10px; }
+.search-card #planejador > summary::marker { content:''; }
+.search-card .recent-item { border:0; border-radius:14px; background:#f5f5f5; padding:10px; display:flex; justify-content:space-between; }
+.search-card .recent-item i,.search-box i { color:#df9000; }
+.recent-item .subtitle { display:block; text-align:left; }
+.search-card:has(#planejador[open]) .recentes { display:none; }
+.search-card nav { margin:8px 2px 0; font-size:12px; }
+.search-card #gpsMapa { text-align:center; }
+#listaMapa { display:contents; }
+.floating-post-card a { text-decoration:none; color:inherit; }
+.floating-post-card .avatar-placeholder { display:grid; place-items:center; background:#ffe4ae; color:#735000; font-weight:bold; }
+.floating-post-card .location-indicator { background:none; border:0; }
+.floating-post-card .member-description { white-space:pre-wrap; overflow-wrap:anywhere; }
+#avisoMapa:not(:empty),#atualizar:not([hidden]) { background:white; padding:10px; border-radius:10px; }
+.pin-ocorrencia { display:grid; place-items:center; border-radius:50%; background:#ef991a; color:white; }
+.pin-ocorrencia.batida { background:#dc4940; }
+#contaMapa { z-index:1010; }
+@media(min-width:768px){ #contaMapa:not(:empty) ~ .floating-posts-container { top:52px; max-height:calc(100dvh - 120px); } }
+@media(max-width:767px){
+  #map { top:0; height:100dvh; }
+  .map-panel.search-card,#contaMapa:not(:empty) + .map-panel.search-card { top:8px;left:50px;width:min(220px,calc(100% - 112px)); max-height:45dvh; }
+  .map-panel.search-card:has(#planejador[open]) { width:min(340px,calc(100vw - 76px)); }
+  .floating-posts-container { top:auto; left:0; right:auto; bottom:18px; max-height:30dvh; width:min(255px,67vw); box-sizing:border-box; }
+}

@@ -44,6 +44,7 @@ function invalidarRota() {
   porId('viagem').hidden = true;
 }
 function definirPonto(campo, ponto, nome) {
+  pararGpsMapa();
   invalidarRota();
   escolhaMapa = null;
   limparBusca[campo]?.();
@@ -67,6 +68,7 @@ for (const campo of ['origem', 'destino']) {
     pinosRota[campo]?.remove();
   });
   porId('marcar' + sufixo).onclick = () => {
+    pararGpsMapa();
     escolhaMapa = campo;
     painelRota.open = false;
     porId('planejador').querySelector('summary').textContent = campo === 'origem' ? 'Toque na partida no mapa' : 'Toque no destino no mapa';
@@ -77,10 +79,10 @@ map.on('click', e => {
   const campo = escolhaMapa;
   definirPonto(campo, e.latlng, campo === 'origem' ? 'Partida marcada no mapa' : 'Destino marcado no mapa');
   painelRota.open = true;
-  painelRota.querySelector('summary').textContent = 'Rota de carro';
+  painelRota.querySelector('summary').textContent = 'Para onde você está indo?';
 });
 painelRota.addEventListener('toggle', () => {
-  if (painelRota.open) { escolhaMapa = null; painelRota.querySelector('summary').textContent = 'Rota de carro'; }
+  if (painelRota.open) { escolhaMapa = null; painelRota.querySelector('summary').textContent = 'Para onde você está indo?'; }
 });
 function destinoPost(post) {
   definirPonto('destino', L.latLng(post.latitude, post.longitude), post.titulo);
@@ -138,9 +140,13 @@ async function calcular(partida, recalculo = false) {
     linhaRota = L.polyline(pontos, {color:'#1862bb',weight:6,opacity:.9}).addTo(map);
     if (!recalculo) {
       const painel = document.querySelector('.map-panel').getBoundingClientRect();
-      const mobile = matchMedia('(max-width:680px)').matches;
-      map.fitBounds(linhaRota.getBounds(), {paddingTopLeft:[28,32],
-        paddingBottomRight:mobile ? [28,painel.height+40] : [painel.width+32,32],maxZoom:16});
+      const mobile = matchMedia('(max-width:767px)').matches;
+      const largura = map.getSize().x;
+      const direita = document.querySelector('.floating-posts-container').offsetWidth;
+      map.fitBounds(linhaRota.getBounds(), {
+        paddingTopLeft:mobile ? [16,Math.min(painel.height+16,map.getSize().y*.4)] : [Math.min(painel.width+32,largura*.3),30],
+        paddingBottomRight:mobile ? [16,80] : [Math.min(direita+24,largura*.33),32],maxZoom:16
+      });
     }
     porId('estimativa').textContent = Math.max(1,Math.round(trip.summary.time / 60)) + ' min · ' + trip.summary.length.toLocaleString('pt-BR',{maximumFractionDigits:1}) + ' km';
     porId('manobras').replaceChildren(...leg.maneuvers.map(m => comunidade.elemento('li',m.instruction)));
@@ -160,6 +166,7 @@ porId('encerrar').onclick = () => {
 porId('navegar').onclick = () => {
   if (acompanhamento !== null) { consulta++; revisando = false; pararNavegacao(); avisoRota.textContent = 'Navegação encerrada.'; return; }
   if (!navigator.geolocation || !viagem) { avisoRota.textContent = 'GPS indisponível.'; return; }
+  pararGpsMapa();
   desvios = 0; ultimoRecalculo = 0;
   porId('navegar').textContent = 'Parar navegação';
   avisoRota.textContent = 'Aguardando sua posição na rota…';
